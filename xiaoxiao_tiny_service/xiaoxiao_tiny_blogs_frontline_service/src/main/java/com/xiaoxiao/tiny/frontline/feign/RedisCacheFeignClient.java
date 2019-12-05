@@ -1,9 +1,6 @@
 package com.xiaoxiao.tiny.frontline.feign;
 
-import com.xiaoxiao.pojo.XiaoxiaoAdminMessage;
-import com.xiaoxiao.pojo.XiaoxiaoArticles;
-import com.xiaoxiao.pojo.XiaoxiaoMenu;
-import com.xiaoxiao.pojo.XiaoxiaoUsers;
+import com.xiaoxiao.pojo.*;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import com.xiaoxiao.utils.PageResult;
@@ -152,6 +149,7 @@ public interface RedisCacheFeignClient
 
     /**
      * 插入文章推荐缓存信息
+     *
      * @param result
      */
     @PostMapping(value = "/redis_article_service/insert_article_new_recommend")
@@ -167,6 +165,7 @@ public interface RedisCacheFeignClient
 
     /**
      * 缓存首页博客
+     *
      * @param result
      */
     @PostMapping(value = "/redis_article_service/insert_index_article")
@@ -175,6 +174,7 @@ public interface RedisCacheFeignClient
 
     /**
      * 获取首页博客
+     *
      * @return
      */
     @PostMapping(value = "/redis_article_service/get_index_article")
@@ -183,6 +183,7 @@ public interface RedisCacheFeignClient
 
     /**
      * 缓存分类文章
+     *
      * @param sortId
      * @return
      */
@@ -190,7 +191,8 @@ public interface RedisCacheFeignClient
     PageResult getBlogsBySortsToRedis(@RequestParam(name = "sortId") Long sortId);
 
     /**
-     *插入分类缓存
+     * 插入分类缓存
+     *
      * @param result
      * @param sortId
      */
@@ -200,33 +202,54 @@ public interface RedisCacheFeignClient
 
     /**
      * 插入首页标签文章
+     *
      * @param result
      */
     @PostMapping(value = "/redis_label_service/insert_index_article_label")
-     void insertIndexArticleLabel(@RequestBody PageResult result);
+    void insertIndexArticleLabel(@RequestBody PageResult result);
 
 
     /**
      * 获取首页标签文章
+     *
      * @return
      */
     @PostMapping(value = "/redis_label_service/get_index_article_label")
-     PageResult getIndexArticleLabel();
+    PageResult getIndexArticleLabel();
 
 
     /**
      * 插入首页缓存关于我
+     *
      * @param users
      */
     @PostMapping(value = "/redis_service/insert_show_me_to_redis")
-     void insertShowMeToRedis(@RequestBody XiaoxiaoUsers users);
+    void insertShowMeToRedis(@RequestBody XiaoxiaoUsers users);
 
     /**
      * 获取首页缓存关于我
+     *
      * @return
      */
     @PostMapping(value = "/redis_service/get_show_me_to_redis")
-     XiaoxiaoUsers getShowMeToRedis();
+    XiaoxiaoUsers getShowMeToRedis();
+
+
+    /**
+     * 插入缓存
+     *
+     * @param list
+     */
+    @PostMapping(value = "/redis_hobby_service/insert_hobby_to_redis")
+    void insertHobbyToRedis(@RequestBody List<XiaoxiaoHobby> list);
+
+    /**
+     * 获取缓存
+     *
+     * @return
+     */
+    @PostMapping(value = "/redis_hobby_service/get_hobby_to_redis")
+    List<XiaoxiaoHobby> getHobbyToRedis();
 
 
 }

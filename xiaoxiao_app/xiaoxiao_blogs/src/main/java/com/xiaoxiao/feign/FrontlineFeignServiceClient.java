@@ -134,4 +134,12 @@ public interface FrontlineFeignServiceClient
     @PostMapping(value = "/frontline/tiny/user/show_me")
     Result showMe();
 
+
+    /**
+     * 获取我的爱好
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/hobby/find_me_hobby")
+    Result findMeHobby();
+
 }
