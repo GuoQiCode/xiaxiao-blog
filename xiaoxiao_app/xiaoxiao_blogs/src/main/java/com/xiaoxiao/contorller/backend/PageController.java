@@ -45,15 +45,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class PageController
 {
-    @GetMapping(value = "/page")
-    public String page(){
-        return "page";
-    }
 
-    @GetMapping(value = "/")
-    public String index(){
-        return "index";
-    }
+
+
 
     /**
      * 跳转到登录页面

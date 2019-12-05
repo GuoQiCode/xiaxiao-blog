@@ -52,6 +52,8 @@ public class RedisUserServiceImpl implements RedisUserService
     @Value("${USER_REDIS_ID}")
     private String USER_REDIS_ID;
 
+    @Value("${SHOW_ME}")
+    private String SHOW_ME;
 
     @Autowired
     private RedisTemplate<String,Object> redisTemplate;
@@ -109,5 +111,27 @@ public class RedisUserServiceImpl implements RedisUserService
     public void updateUserToRedis(XiaoxiaoUsers users)
     {
          this.redisTemplate.opsForValue().set(this.USER_REDIS_ID+token, users);
+    }
+
+
+    /**
+     * 缓存首页关于我
+     * @param users
+     */
+    @Override
+    public void insertShowMeToRedis(XiaoxiaoUsers users)
+    {
+        this.redisTemplate.opsForValue().set(this.SHOW_ME, users);
+    }
+
+
+    /**
+     * 获取首页关于我
+     * @return
+     */
+    @Override
+    public XiaoxiaoUsers getShowMeToRedis()
+    {
+        return (XiaoxiaoUsers) this.redisTemplate.opsForValue().get(this.SHOW_ME);
     }
 }

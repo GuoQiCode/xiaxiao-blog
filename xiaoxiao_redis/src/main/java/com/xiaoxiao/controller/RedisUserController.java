@@ -84,4 +84,17 @@ public class RedisUserController
     public void updateUserToRedis(@RequestBody XiaoxiaoUsers users){
         this.redisUserService.updateUserToRedis(users);
     }
+
+
+    @ApiOperation(value = "缓存首页展示我的个人信息",notes = "缓存首页展示我的个人信息")
+    @PostMapping(value = "/insert_show_me_to_redis")
+    public void insertShowMeToRedis(@RequestBody XiaoxiaoUsers users){
+        this.redisUserService.insertShowMeToRedis(users);
+    }
+
+    @ApiOperation(value = "获取缓存首页关于我的信息",notes = "获取缓存首页关于我的信息")
+    @PostMapping(value = "/get_show_me_to_redis")
+    public XiaoxiaoUsers getShowMeToRedis(){
+        return this.redisUserService.getShowMeToRedis();
+    }
 }

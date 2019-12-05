@@ -47,4 +47,10 @@ public interface RedisUserService
     void loginOut(String token);
 
     void updateUserToRedis(XiaoxiaoUsers users);
+
+    void insertShowMeToRedis(XiaoxiaoUsers users);
+
+    XiaoxiaoUsers getShowMeToRedis();
+
+
 }

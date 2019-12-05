@@ -371,4 +371,6 @@ public interface BlogsFeignServiceClient
      */
     @PostMapping(value = "/tiny_user_admin/update")
     Result update(@RequestBody XiaoxiaoUsers users);
+
+
 }

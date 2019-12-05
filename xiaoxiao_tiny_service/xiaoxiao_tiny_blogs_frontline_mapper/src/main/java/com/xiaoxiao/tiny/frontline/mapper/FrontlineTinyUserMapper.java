@@ -49,4 +49,8 @@ public interface FrontlineTinyUserMapper
      */
     @Select("SELECT u.user_nickname,u.user_age,u.user_profile_photo,u.user_signature,u.user_hobby FROM xiaoxiao_users u WHERE u.user_id = 2767617006734525570")
     XiaoxiaoUsers aboutMe();
+
+    @Select("SELECT x.user_nickname,x.user_signature,x.user_profile_photo FROM xiaoxiao_users x WHERE x.user_id = 2767617006734525570")
+    XiaoxiaoUsers showMe();
+
 }

@@ -127,6 +127,11 @@ public interface FrontlineFeignServiceClient
                                  @RequestParam(name = "rows",defaultValue = "10") Integer rows);
 
 
-
+    /**
+     * 关于我信息
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/user/show_me")
+    Result showMe();
 
 }

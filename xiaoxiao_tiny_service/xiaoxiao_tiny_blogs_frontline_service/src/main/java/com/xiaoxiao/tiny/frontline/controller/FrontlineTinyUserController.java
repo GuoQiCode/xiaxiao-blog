@@ -1,11 +1,13 @@
-package com.xiaoxiao.service.frontline.impl;
+package com.xiaoxiao.tiny.frontline.controller;
 
-import com.xiaoxiao.feign.BlogsFeignServiceClient;
-import com.xiaoxiao.feign.FrontlineFeignServiceClient;
-import com.xiaoxiao.service.frontline.FrontlineUserService;
+import com.xiaoxiao.tiny.frontline.service.FrontlineTinyUserService;
 import com.xiaoxiao.utils.Result;
+import io.swagger.annotations.ApiOperation;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * _ooOoo_
@@ -39,21 +41,25 @@ import org.springframework.stereotype.Service;
  * 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
- * @date:2019/12/2:14:37
+ * @date:2019/12/5:13:15
  * @author:shinelon
  * @Describe:
  */
-@Service
-public class FrontlineUserServiceImpl implements FrontlineUserService
+@RestController
+@RequestMapping(value = "/frontline/tiny/user")
+public class FrontlineTinyUserController
 {
 
+
     @Autowired
-    private FrontlineFeignServiceClient client;
+    private FrontlineTinyUserService frontlineTinyUserService;
 
 
-    @Override
-    public Result showMe()
-    {
-        return this.client.showMe();
+    @ApiOperation(value = "前端展示我的个人信息",response = Result.class,notes = "前端展示我的个人信息")
+    @PostMapping(value = "/show_me")
+    public Result showMe(){
+        return this.frontlineTinyUserService.showMe();
     }
+
+
 }

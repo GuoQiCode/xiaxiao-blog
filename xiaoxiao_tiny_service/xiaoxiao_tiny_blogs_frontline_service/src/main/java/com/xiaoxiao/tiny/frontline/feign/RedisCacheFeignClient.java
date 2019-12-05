@@ -3,6 +3,7 @@ package com.xiaoxiao.tiny.frontline.feign;
 import com.xiaoxiao.pojo.XiaoxiaoAdminMessage;
 import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.XiaoxiaoMenu;
+import com.xiaoxiao.pojo.XiaoxiaoUsers;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import com.xiaoxiao.utils.PageResult;
@@ -211,5 +212,21 @@ public interface RedisCacheFeignClient
      */
     @PostMapping(value = "/redis_label_service/get_index_article_label")
      PageResult getIndexArticleLabel();
+
+
+    /**
+     * 插入首页缓存关于我
+     * @param users
+     */
+    @PostMapping(value = "/redis_service/insert_show_me_to_redis")
+     void insertShowMeToRedis(@RequestBody XiaoxiaoUsers users);
+
+    /**
+     * 获取首页缓存关于我
+     * @return
+     */
+    @PostMapping(value = "/redis_service/get_show_me_to_redis")
+     XiaoxiaoUsers getShowMeToRedis();
+
 
 }

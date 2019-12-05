@@ -1,0 +1,22 @@
+{
+  "code": 20000,
+  "flag": true,
+  "message": "操作成功",
+  "data": {
+    "userId": null,
+    "userIp": null,
+    "userName": null,
+    "userPassword": null,
+    "userEmail": "29461648@qq.com",
+    "userProfilePhoto": "http://img.zcool.cn/community/03856cc56c8348132f875520f6e893a.jpg",
+    "userRegistrationTime": null,
+    "userBirthday": null,
+    "userAge": null,
+    "userTelephoneNumber": "17674110942",
+    "userNickname": "作落潇城๑",
+    "userSignature": "郭祺…其实说真的，我并不知道是哪天开始对你有了依赖\r\n也许是你每天催着我吃饭开始\r\n也许是你愿意为我唱歌开始\r\n也许是你暖暖的霸道开始\r\n也许是你每晚陪我打游戏开始\r\n也许是我自己发现在你面前能撒娇耍赖开始\r\n也许是我发现能随时找到你开始\r\n也许……\r\n我真的不知道\r\n我只知道每天很期待有你的消息，只有你的消息会让我嘴角上扬，我只知道，我会等，等那个可能不会再来的消息……\r\n只是知道已经离不开你\r\n是，我不敢说不敢提，很多次，很多很多次，我想说，话到嘴边却吞了回去\r\n是，因为我怕，我怕，告诉你太多，我们的聊天会出现红色感叹号，我怕\r\n我想在你身边，哪怕是姐姐的名义，就算我们不会有任何交集，有个你远远的你，就够了",
+    "userRealName": null,
+    "userSex": null,
+    "userHobby": "{\"编程\",\"潇潇\",\"写作\",\"运动\",\"黑客\"}"
+  }
+}

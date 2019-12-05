@@ -53,9 +53,10 @@ public class FrontlineUserController
     private FrontlineUserService service;
 
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "/show_me")
     public Result showMe(){
         return this.service.showMe();
     }
+
 
 }

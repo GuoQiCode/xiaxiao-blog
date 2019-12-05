@@ -5,9 +5,9 @@
 </head>
 <body>
 
-
+<script th:src="@{/js/about.js}"></script>
 <!--导航-->
-<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace = "_fragments :: nav(1)">
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace = "_fragments :: nav">
 </nav>
 
 
@@ -18,7 +18,7 @@
       <div class="ui stackable grid">
         <div class="eleven wide column">
           <div class="ui segment">
-            <img src="https://unsplash.it/800/600?image=1005" alt="" class="ui rounded image">
+            <img name="userProfilePhoto" src="" alt="" class="ui rounded image">
           </div>
         </div>
         <div class="five wide column">
@@ -26,8 +26,8 @@
             <div class="ui header">关于我</div>
           </div>
           <div class="ui attached segment">
-            <p class="m-text">李仁密，一个独立开发者，折腾在 0 和 1 世界的大叔；一个终身学习者，誓将学习无限循环. 希望结识可以共同成长的小伙伴.</p>
-            <p class="m-text">热爱编程，喜欢折腾，正在探索高效学习编程技术的方法...</p>
+            <p class="m-text"><span id="userNickname"></span>,<span id="userSignature"></span></p>
+
           </div>
           <div class="ui attached segment">
             <div class="ui orange basic left pointing label">编程</div>
@@ -94,7 +94,6 @@
       <div class="ui inverted section divider"></div>
       <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2016 - 2017 Lirenmi Designed by Lirenmi</p>
     </div>
-
   </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>

@@ -1,11 +1,6 @@
-package com.xiaoxiao.service.frontline.impl;
+package com.xiaoxiao.tiny.frontline.service;
 
-import com.xiaoxiao.feign.BlogsFeignServiceClient;
-import com.xiaoxiao.feign.FrontlineFeignServiceClient;
-import com.xiaoxiao.service.frontline.FrontlineUserService;
 import com.xiaoxiao.utils.Result;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * _ooOoo_
@@ -39,21 +34,11 @@ import org.springframework.stereotype.Service;
  * 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
- * @date:2019/12/2:14:37
+ * @date:2019/12/2:16:59
  * @author:shinelon
  * @Describe:
  */
-@Service
-public class FrontlineUserServiceImpl implements FrontlineUserService
+public interface FrontlineTinyUserService
 {
-
-    @Autowired
-    private FrontlineFeignServiceClient client;
-
-
-    @Override
-    public Result showMe()
-    {
-        return this.client.showMe();
-    }
+    Result showMe();
 }

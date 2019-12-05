@@ -1,11 +1,10 @@
-package com.xiaoxiao.service.frontline.impl;
+package com.xiaoxiao.contorller.frontline;
 
-import com.xiaoxiao.feign.BlogsFeignServiceClient;
-import com.xiaoxiao.feign.FrontlineFeignServiceClient;
-import com.xiaoxiao.service.frontline.FrontlineUserService;
-import com.xiaoxiao.utils.Result;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import sun.awt.SunHints;
 
 /**
  * _ooOoo_
@@ -39,21 +38,32 @@ import org.springframework.stereotype.Service;
  * 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
- * @date:2019/12/2:14:37
+ * @date:2019/12/5:17:33
  * @author:shinelon
  * @Describe:
  */
-@Service
-public class FrontlineUserServiceImpl implements FrontlineUserService
+@Controller
+@CrossOrigin(origins = {"*"},maxAge = 3600)
+public class FrontlinePageController
 {
 
-    @Autowired
-    private FrontlineFeignServiceClient client;
-
-
-    @Override
-    public Result showMe()
-    {
-        return this.client.showMe();
+    /**
+     * 首页
+     * @return
+     */
+    @GetMapping(value = "/")
+    public String index(){
+        return "page";
     }
+
+
+    /**
+     * 关于我
+     * @return
+     */
+    @GetMapping(value = "/about")
+    public String about(){
+        return "about";
+    }
+
 }
