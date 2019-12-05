@@ -101,7 +101,7 @@ public class FrontlineArticleController
     @PostMapping(value = "/find_blogs_by_sorts")
     public Result findBlogsBySorts(@RequestParam(name = "page",defaultValue = "1")Integer page,
                                    @RequestParam(name = "rows",defaultValue = "10")Integer rows,
-                                   @RequestParam(name = "sortId")Integer sortId){
+                                   @RequestParam(name = "sortId")Long sortId){
         return this.frontlineArticleService
                 .findBlogsBySorts(page,rows,sortId);
     }

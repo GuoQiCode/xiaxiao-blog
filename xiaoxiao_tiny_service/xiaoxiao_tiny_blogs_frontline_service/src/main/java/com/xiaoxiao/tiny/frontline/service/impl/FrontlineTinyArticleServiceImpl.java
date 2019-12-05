@@ -1,10 +1,7 @@
 package com.xiaoxiao.tiny.frontline.service.impl;
 
-import com.alibaba.druid.sql.PagerUtils;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.xiaoxiao.pojo.XiaoxiaoAdminMessage;
 import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
 import com.xiaoxiao.tiny.frontline.feign.RedisCacheFeignClient;
@@ -14,14 +11,9 @@ import com.xiaoxiao.tiny.frontline.utils.PageUtils;
 import com.xiaoxiao.utils.PageResult;
 import com.xiaoxiao.utils.Result;
 import com.xiaoxiao.utils.StatusCode;
-import org.hibernate.validator.internal.constraintvalidators.bv.time.futureorpresent.FutureOrPresentValidatorForLocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.support.ResourceHolderSupport;
-import org.springframework.util.ResourceUtils;
-
-import java.awt.font.TextHitInfo;
 import java.util.List;
 
 /**
@@ -215,8 +207,8 @@ public class FrontlineTinyArticleServiceImpl implements FrontlineTinyArticleServ
     {
         try
         {
-            List<XiaoxiaoArticleVo> blogsBySortsToRedis = this.client.getBlogsBySortsToRedis(sortId);
-            if(blogsBySortsToRedis != null && blogsBySortsToRedis.size() > 0){
+            PageResult blogsBySortsToRedis = this.client.getBlogsBySortsToRedis(sortId);
+            if(blogsBySortsToRedis != null && blogsBySortsToRedis.getResult().size() > 0){
                 return Result.ok(StatusCode.OK, true,this.MARKED_WORDS_SUCCESS,blogsBySortsToRedis);
             }
         } catch (Exception e)
@@ -225,16 +217,17 @@ public class FrontlineTinyArticleServiceImpl implements FrontlineTinyArticleServ
         }
         PageHelper.startPage(page, rows);
         List<XiaoxiaoArticleVo> blogsBySorts = this.frontlineTinyArticleMapper.findBlogsBySorts(sortId);
+        PageResult result = PageUtils.getResult(new PageInfo<XiaoxiaoArticleVo>(blogsBySorts), page);
         if(blogsBySorts != null && blogsBySorts.size() > 0){
             try
             {
-                this.client.insertBlogsBySortsToRedis(blogsBySorts, sortId);
+                this.client.insertBlogsBySortsToRedis(result, sortId);
             } catch (Exception e)
             {
                 e.printStackTrace();
             }
             return Result.ok(StatusCode.OK, true,this
-            .MARKED_WORDS_SUCCESS,PageUtils.getResult(new PageInfo<XiaoxiaoArticleVo>(blogsBySorts), page));
+            .MARKED_WORDS_SUCCESS,result);
         }
         return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
     }

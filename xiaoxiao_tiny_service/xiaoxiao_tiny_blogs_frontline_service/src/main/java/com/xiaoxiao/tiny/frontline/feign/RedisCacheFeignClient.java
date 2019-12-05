@@ -186,15 +186,15 @@ public interface RedisCacheFeignClient
      * @return
      */
     @PostMapping(value = "/redis_article_service/get_blogs_by_sorts_to_redis")
-    List<XiaoxiaoArticleVo> getBlogsBySortsToRedis(@RequestParam(name = "sortId") Long sortId);
+    PageResult getBlogsBySortsToRedis(@RequestParam(name = "sortId") Long sortId);
 
     /**
      *插入分类缓存
-     * @param articleVos
+     * @param result
      * @param sortId
      */
     @PostMapping(value = "/redis_article_service/insert_blogs_by_sorts_to_redis")
-    void insertBlogsBySortsToRedis(@RequestBody List<XiaoxiaoArticleVo> articleVos, @RequestParam(name = "sortId") Long sortId);
+    void insertBlogsBySortsToRedis(@RequestBody PageResult result, @RequestParam(name = "sortId") Long sortId);
 
 
     /**

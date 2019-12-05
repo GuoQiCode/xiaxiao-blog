@@ -133,15 +133,16 @@ public class RedisArticleController
 
     @ApiOperation(value = "插入分类文章缓存数据", notes = "插入分类文章缓存数据")
     @PostMapping(value = "/insert_blogs_by_sorts_to_redis")
-    public void insertBlogsBySortsToRedis(@RequestBody List<XiaoxiaoArticleVo> articleVos, @RequestParam(name = "sortId") Long sortId)
+    public void insertBlogsBySortsToRedis(@RequestBody PageResult result
+            , @RequestParam(name = "sortId") Long sortId)
     {
-        this.redisArticleService.insertBlogsBySortsToRedis(articleVos, sortId);
+        this.redisArticleService.insertBlogsBySortsToRedis(result, sortId);
     }
 
 
     @ApiOperation(value = "获取分类文章缓存数据", notes = "获取分类文章缓存数据")
     @PostMapping(value = "/get_blogs_by_sorts_to_redis")
-    public List<XiaoxiaoArticleVo> getBlogsBySortsToRedis(@RequestParam(name = "sortId") Long sortId)
+    public PageResult getBlogsBySortsToRedis(@RequestParam(name = "sortId") Long sortId)
     {
         return this.redisArticleService.getBlogsBySortsToRedis(sortId);
     }

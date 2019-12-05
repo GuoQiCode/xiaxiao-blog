@@ -1,9 +1,6 @@
 package com.xiaoxiao.service;
 
-import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
 import com.xiaoxiao.utils.PageResult;
-
-import java.util.List;
 
 /**
  * _ooOoo_
@@ -61,9 +58,9 @@ public interface RedisArticleService
 
     void deleteIndexArticle();
 
-    void insertBlogsBySortsToRedis(List<XiaoxiaoArticleVo> articleVos, Long sortId);
+    void insertBlogsBySortsToRedis(PageResult articleVos, Long sortId);
 
-    List<XiaoxiaoArticleVo> getBlogsBySortsToRedis(Long sortId);
+    PageResult getBlogsBySortsToRedis(Long sortId);
 
     void deleteBlogsBySortsToRedis(Long sortId);
 

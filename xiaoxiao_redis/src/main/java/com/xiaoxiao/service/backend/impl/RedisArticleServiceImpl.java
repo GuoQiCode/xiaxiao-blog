@@ -182,20 +182,21 @@ public class RedisArticleServiceImpl implements RedisArticleService
      * @param sortId
      */
     @Override
-    public void insertBlogsBySortsToRedis(List<XiaoxiaoArticleVo> articleVos, Long sortId)
+    public void insertBlogsBySortsToRedis(PageResult articleVos, Long sortId)
     {
-        this.redisTemplate.opsForValue().set(String.valueOf(sortId), articleVos,1,TimeUnit.DAYS);
+        this.redisTemplate.opsForValue().set(String.valueOf(sortId), articleVos,6,TimeUnit.HOURS);
     }
 
 
     /**
      *  获取缓存分类文章
      * @param sortId
+     * @return
      */
     @Override
-    public List<XiaoxiaoArticleVo> getBlogsBySortsToRedis(Long sortId)
+    public PageResult getBlogsBySortsToRedis(Long sortId)
     {
-        return (List<XiaoxiaoArticleVo>) this.redisTemplate.opsForValue().get(String.valueOf(sortId));
+        return (PageResult) this.redisTemplate.opsForValue().get(String.valueOf(sortId));
     }
 
 

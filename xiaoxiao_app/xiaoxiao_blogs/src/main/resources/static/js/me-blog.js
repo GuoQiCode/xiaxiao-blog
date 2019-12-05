@@ -27,11 +27,11 @@ function find_index_article() {
         type: "POST",
         timeout: 5000,
         success:(data)=>{
-            $("#content").html("")
+
             totalRows = data.data.totalRows
             totalPage = data.data.totalPages
             pageSize = data.data.pageSize
-            splice(data.data.result)
+            splice(data.data)
         }
     })
 }
@@ -40,7 +40,15 @@ function find_index_article() {
  * 拼接首页字符串
  */
 function splice(data) {
-    data.forEach((item)=>{
+    /**
+     * 最大条数
+     */
+    $("#articleSum").text(data.totalRows)
+    /**
+     * 置空中间内容
+     */
+    $("#content").html("")
+    data.result.forEach((item)=>{
         $("#content").append(`
             <div class="ui padded vertical segment m-padded-tb-large">
                         <div class="ui mobile reversed stackable grid">
@@ -92,7 +100,7 @@ function find_all_sort() {
         type: "POST",
         timeout: 5000,
         success:(data)=>{
-            jointArticleSorts(data)
+            jointArticleSorts(data.data)
         }
     })
 }
@@ -102,7 +110,7 @@ function find_all_sort() {
  * @param data
  */
 function jointArticleSorts(data) {
-    data.data.forEach((item)=>{
+    data.forEach((item)=>{
         $("#article_sorts").append(`
            <a onclick="find_article_by_sorts(${item.sortId})" target="_blank" class="ui teal basic left pointing large label m-margin-tb-tiny">
               ${item.sortName} <div class="detail">${item.sum}</div>
@@ -132,5 +140,13 @@ function articleSum() {
  * @param sortId
  */
 function find_article_by_sorts(sortId) {
-    $.ajax("")
+    $.ajax("/frontline/article/find_blogs_by_sorts",{
+        dataType: 'JSON',
+        type:'POST',
+        data:{'sortId':sortId},
+        timeout:3000,
+        success:(data)=>{
+            splice(data.data)
+        }
+    })
 }

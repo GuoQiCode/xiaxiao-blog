@@ -108,7 +108,7 @@ public interface FrontlineFeignServiceClient
     @PostMapping(value = "/frontline/tiny/article/find_blogs_by_sorts")
     Result findBlogsBySorts(@RequestParam(name = "page",defaultValue = "1") Integer page,
                             @RequestParam(name = "rows",defaultValue = "10") Integer rows,
-                            @RequestParam(name = "sortId") Integer sortId);
+                            @RequestParam(name = "sortId") Long sortId);
 
     /**
      * =========================================标签

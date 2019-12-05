@@ -95,7 +95,7 @@ public class FrontlineArticleServiceImpl implements FrontlineArticleService
      * @return
      */
     @Override
-    public Result findBlogsBySorts(Integer page, Integer rows, Integer sortId)
+    public Result findBlogsBySorts(Integer page, Integer rows, Long sortId)
     {
         return this.frontlineFeignServiceClient.findBlogsBySorts(page,rows,sortId);
     }

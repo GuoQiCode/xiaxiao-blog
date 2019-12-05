@@ -46,6 +46,6 @@ public interface FrontlineArticleService
 
     Result findIndexArticle(Integer page, Integer rows);
 
-    Result findBlogsBySorts(Integer page, Integer rows, Integer sortId);
+    Result findBlogsBySorts(Integer page, Integer rows, Long sortId);
 
 }
