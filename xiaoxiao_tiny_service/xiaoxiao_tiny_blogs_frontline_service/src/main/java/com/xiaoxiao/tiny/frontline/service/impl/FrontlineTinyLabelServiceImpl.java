@@ -2,6 +2,8 @@ package com.xiaoxiao.tiny.frontline.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sun.org.apache.bcel.internal.generic.LADD;
+import com.xiaoxiao.pojo.XiaoxiaoLabels;
 import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
 import com.xiaoxiao.tiny.frontline.feign.RedisCacheFeignClient;
 import com.xiaoxiao.tiny.frontline.mapper.FrontlineTinyLabelMapper;
@@ -108,6 +110,39 @@ public class FrontlineTinyLabelServiceImpl implements FrontlineTinyLabelService
                 e.printStackTrace();
             }
             return Result.ok(StatusCode.OK, true, this.MARKED_WORDS_SUCCESS,result1);
+        }
+        return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
+    }
+
+    /**
+     * 获取全部的标签
+     * @param page
+     * @param rows
+     * @return
+     */
+    @Override
+    public Result findAllLabel(Integer page, Integer rows)
+    {
+        try
+        {
+            List<XiaoxiaoLabels> labelToRedis = this.client.getLabelToRedis();
+            if(labelToRedis != null && labelToRedis.size() > 0){
+                return Result.ok(StatusCode.OK, true, this.MARKED_WORDS_SUCCESS, labelToRedis);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        List<XiaoxiaoLabels> allLabel = this.frontlineTinyLabelMapper.findAllLabel();
+        if(allLabel != null && allLabel.size() > 0){
+            try
+            {
+                this.client.insertLabelToRedis(allLabel);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return Result.ok(StatusCode.OK, true,this.MARKED_WORDS_SUCCESS,allLabel);
         }
         return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
     }

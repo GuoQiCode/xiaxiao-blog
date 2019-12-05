@@ -75,7 +75,7 @@ public class RedisLabelServiceImpl implements RedisLabelService
     @Override
     public void insertLabelToRedis(List<XiaoxiaoLabels> labels)
     {
-        redisTemplate.opsForValue().set(this.LABEL_KEY, labels);
+        redisTemplate.opsForValue().set(this.LABEL_KEY, labels,6,TimeUnit.DAYS);
     }
 
 

@@ -62,4 +62,17 @@ public class FrontlineLabelServiceImpl implements FrontlineLabelService
     {
         return this.client.findIndexLabelArticle(page, rows);
     }
+
+
+    /**
+     * 获取全部的标签
+     * @param page
+     * @param rows
+     * @return
+     */
+    @Override
+    public Result findAllLabel(Integer page, Integer rows)
+    {
+        return this.client.findAllLabel(page,rows);
+    }
 }

@@ -11,6 +11,12 @@ $(function () {
      * 展示我的爱好
      */
     find_me_hobby()
+
+
+    /**
+     * 展示全部的标签
+     */
+    find_all_label()
 })
 
 /**
@@ -47,3 +53,21 @@ function find_me_hobby() {
     })
 }
 
+
+/**
+ * 查询全部标签
+ */
+function find_all_label() {
+    $.ajax("/frontline/label/find_all_label",{
+        dataType: "json",
+        type: "POST",
+        timeout: 5000,
+        success:(data)=>{
+            data.data.forEach((item)=>{
+                $("#label").append(`
+                       <div class="ui teal basic left pointing label m-margin-tb-tiny">${item.labelName}</div>
+                `)
+            })
+        }
+    })
+}

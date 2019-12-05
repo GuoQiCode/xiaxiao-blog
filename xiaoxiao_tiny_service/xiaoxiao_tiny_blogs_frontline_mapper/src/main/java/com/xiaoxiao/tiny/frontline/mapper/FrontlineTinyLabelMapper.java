@@ -52,4 +52,11 @@ public interface FrontlineTinyLabelMapper
      */
     @Select("SELECT SUM(1) sum, x.label_name,x.label_id FROM xiaoxiao_articles a,xiaoxiao_set_artitle_label l,xiaoxiao_labels x WHERE a.article_id = l.article_id AND x.label_id = l.label_id GROUP BY l.label_id")
     List<XiaoxiaoLabelVo>findIndexLabelArticle();
+
+    /**
+     * 查看全部的标签
+     * @return
+     */
+    @Select("SELECT * FROM xiaoxiao_labels")
+    List<XiaoxiaoLabels> findAllLabel();
 }

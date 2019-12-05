@@ -252,4 +252,11 @@ public interface RedisCacheFeignClient
     List<XiaoxiaoHobby> getHobbyToRedis();
 
 
+    @PostMapping(value = "/redis_label_service/insert_label_to_redis")
+    void insertLabelToRedis(@RequestBody List<XiaoxiaoLabels> labels);
+
+
+    @PostMapping(value = "/redis_label_service/get_label_to_redis")
+    List<XiaoxiaoLabels> getLabelToRedis();
 }
+

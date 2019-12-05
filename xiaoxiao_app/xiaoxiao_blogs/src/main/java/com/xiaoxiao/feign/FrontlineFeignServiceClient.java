@@ -142,4 +142,18 @@ public interface FrontlineFeignServiceClient
     @PostMapping(value = "/frontline/tiny/hobby/find_me_hobby")
     Result findMeHobby();
 
+
+    /**
+     * 获取全部的标签
+     * @param page
+     * @param rows
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/label/find_all_label")
+    Result findAllLabel(@RequestParam(name = "page",defaultValue = "1")Integer page,
+                        @RequestParam(name = "rows",defaultValue = "10")Integer rows);
+
+
+
+
 }

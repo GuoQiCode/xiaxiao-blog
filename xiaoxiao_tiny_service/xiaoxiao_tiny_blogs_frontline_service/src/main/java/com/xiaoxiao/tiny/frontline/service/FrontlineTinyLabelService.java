@@ -42,4 +42,5 @@ public interface FrontlineTinyLabelService
 {
     Result findIndexLabelArticle(Integer page, Integer rows);
 
+    Result findAllLabel(Integer page, Integer rows);
 }

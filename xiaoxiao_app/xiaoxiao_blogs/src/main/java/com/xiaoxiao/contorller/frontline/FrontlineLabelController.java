@@ -58,4 +58,15 @@ public class FrontlineLabelController
         return this.frontlineLabelService.findIndexLabelArticle(page,rows);
     }
 
+
+    /**
+     * 获取全部的标签
+     * @return
+     */
+    @PostMapping(value = "/find_all_label")
+    public Result findAllLabel(@RequestParam(name = "page",defaultValue = "1")Integer page,
+                               @RequestParam(name = "rows",defaultValue = "10")Integer rows){
+        return this.frontlineLabelService.findAllLabel(page,rows);
+    }
+
 }

@@ -2,12 +2,15 @@ package com.xiaoxiao.tiny.frontline.controller;
 
 import com.xiaoxiao.tiny.frontline.service.FrontlineTinyLabelService;
 import com.xiaoxiao.utils.Result;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 /**
  * _ooOoo_
@@ -54,11 +57,19 @@ public class FrontlineTinyLabelController
     private FrontlineTinyLabelService frontlineTinyLabelService;
 
 
-
+    @ApiOperation(value = "查询首页标签文章",response = Result.class,notes = "查询首页标签文章")
     @PostMapping(value = "/find_index_label_article")
     public Result findIndexLabelArticle(@RequestParam(name = "page",defaultValue = "1")Integer page,
                                         @RequestParam(name = "rows",defaultValue = "10")Integer rows){
         return  this.frontlineTinyLabelService.findIndexLabelArticle(page,rows);
+    }
+
+
+    @ApiOperation(value = "查询全部的标签",response = Result.class,notes = "查询全部的标签")
+    @PostMapping(value = "/find_all_label")
+    public Result findAllLabel(@RequestParam(name = "page",defaultValue = "1")Integer page,
+                        @RequestParam(name = "rows",defaultValue = "10")Integer rows){
+        return this.frontlineTinyLabelService.findAllLabel(page,rows);
     }
 
 }
