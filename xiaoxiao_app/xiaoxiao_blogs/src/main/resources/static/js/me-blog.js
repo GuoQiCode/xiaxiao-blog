@@ -11,10 +11,6 @@ $(function () {
      */
     find_index_article()
 
-    /**
-     * 请求文章个数
-     */
-    articleSum()
 })
 
 
@@ -27,7 +23,6 @@ function find_index_article() {
         type: "POST",
         timeout: 5000,
         success:(data)=>{
-
             totalRows = data.data.totalRows
             totalPage = data.data.totalPages
             pageSize = data.data.pageSize
@@ -112,7 +107,7 @@ function find_all_sort() {
 function jointArticleSorts(data) {
     data.forEach((item)=>{
         $("#article_sorts").append(`
-           <a onclick="find_article_by_sorts(${item.sortId})" target="_blank" class="ui teal basic left pointing large label m-margin-tb-tiny">
+           <a onclick="find_article_by_sorts(null,${item.sortId})" target="_blank" class="ui teal basic left pointing large label m-margin-tb-tiny">
               ${item.sortName} <div class="detail">${item.sum}</div>
             </a>
          `)
@@ -120,32 +115,25 @@ function jointArticleSorts(data) {
 }
 
 
-/**
- * 获取全部的文章
- */
-function articleSum() {
-    $.ajax("/frontline/article/find_article_sum",{
-        dataType: 'JSON',
-        type:'POST',
-        timeout:3000,
-        success:(data)=>{
-            $("#articleSum").text(data.data)
-        }
-    })
-}
-
 
 /**
  * 根据指定分类获取博客
  * @param sortId
  */
-function find_article_by_sorts(sortId) {
+function find_article_by_sorts(currentPage,sortID) {
+    /**
+     * 赋值sortID给common.js中的变量
+     */
+    sortId = sortID
     $.ajax("/frontline/article/find_blogs_by_sorts",{
         dataType: 'JSON',
         type:'POST',
-        data:{'sortId':sortId},
+        data:{'sortId':sortId,'page':currentPage},
         timeout:3000,
         success:(data)=>{
+            totalRows = data.data.totalRows
+            totalPage = data.data.totalPages
+            pageSize = data.data.pageSize
             splice(data.data)
         }
     })

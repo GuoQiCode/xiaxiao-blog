@@ -18,6 +18,10 @@ let totalRows
 let pageSize
 let curPage
 
+/**
+ * 在分类分页查询中实现存储分类ID
+ */
+let  sortId
 
 /**
  * 页面之间传值

@@ -40,7 +40,17 @@
             <div th:include="admin/_page.html"></div>
             <script type="text/javascript">
                 function currentPage(currentPage){
-                    find_index_article(currentPage);
+                    if(sortId != null){
+                        /**
+                         * 如果sortsID有值的情况下执行分类文章的分页查询
+                         */
+                        find_article_by_sorts(currentPage,sortId)
+                    }else {
+                        /**
+                         * 没有值的情况下执行全部查询
+                         */
+                        find_index_article(currentPage);
+                    }
                 }
                 $("#pager").zPager({
                     totalData: totalRows,
