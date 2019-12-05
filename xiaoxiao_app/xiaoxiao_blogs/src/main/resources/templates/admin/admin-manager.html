@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <title>博客管理</title>
+</head>
+<body>
+
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace="admin/_fragments :: nav">
+</nav>
+
+<!--菜单-->
+<div class="ui attached pointing menu" th:replace="admin/_fragments :: menu">
+</div>
+<script th:src="@{/js/admin-manager.js}"></script>
+<!--中间内容-->
+<div class="m-container-big m-padded-tb-big">
+    <div class="ui container">
+        <table class="ui celled table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>后台菜单名称</th>
+                <th>菜单URL</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="admin-manager-list">
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="6">
+                    <div th:include="admin/_page.html"></div>
+                </th>
+                <script type="text/javascript">
+                    function currentPage(currentPage) {
+                        find_manager_all(currentPage);
+                    }
+                    $("#pager").zPager({
+                        totalData: totalRows,
+                        pageData: pageSize,
+                        pageCount: totalPage,
+                        htmlBox: $('#wraper'),
+                        btnShow: true,
+                        ajaxSetData: false,
+                    });
+                </script>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<br>
+<br>
+
+
+<!--
+    后台管理弹窗
+-->
+<form class="ui modal form" id="form">
+    <i class="close icon"></i>
+    <div class="header">
+        分类管理
+    </div>
+    <div class="content">
+        <div class="field">
+            <label>后台功能名称</label>
+            <input placeholder="请输入名称...." name="adminName" id="adminName" type="text" value="">
+        </div>
+        <div class="field">
+            <label>地址URL</label>
+            <input placeholder="请输入URL...." name="adminUrl" id="adminUrl" type="text" value="">
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui submit button" onclick="submit()">Submit</div>
+        <div class="ui positive right labeled icon button">
+            取消
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</form>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    })
+</script>
+</body>
+</html>

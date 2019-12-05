@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <title>个人信息管理</title>
+</head>
+<body>
+
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace="admin/_fragments :: nav">
+</nav>
+
+<!--菜单-->
+<div class="ui attached pointing menu" th:replace="admin/_fragments :: menu">
+</div>
+
+<script th:src="@{/js/admin-me-about.js}"></script>
+  <!--中间内容-->
+  <div  class="m-container m-padded-tb-big">
+    <div class="ui container">
+      <div class="ui stackable grid">
+        <div class="eleven wide column">
+          <div class="ui segment">
+            <img id="userProfilePhoto" src="" class="ui rounded image">
+          </div>
+        </div>
+
+        <div class="five wide column">
+          <div class="ui top attached segment">
+            <div class="ui header">关于我</div>
+          </div>
+          <div class="ui attached segment">
+            <p id="userSignature" class="m-text"></p>
+          </div>
+            <!--爱好-->
+          <div class="ui attached segment" id="hobby">
+
+          </div>
+            <!--标签-->
+          <div class="ui attached segment">
+            <div class="ui teal basic left pointing label m-margin-tb-tiny" id="label">...</div>
+          </div>
+
+          <div class="ui bottom attached segment">
+            <a href="#" class="ui circular icon button"><i class="github icon"></i></a>
+            <a href="#" class="ui wechat circular icon button"><i class="weixin icon"></i></a>
+            <a href="#" class="ui qq circular icon button" data-content="865729312" data-position="bottom center"><i class="qq icon"></i></a>
+          </div>
+
+          <div class="ui wechat-qr flowing popup transition hidden">
+            <img src="../static/images/wechat.jpg" alt="" class="ui rounded image" style="width: 110px">
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="m-container-small m-padded-tb-big">
+    <h2 class="ui icon header">
+        <i class="settings icon"></i>
+        <div class="content">
+            个人信息修改
+            <div class="sub header">管理我的个人信息,需要修改哪项在那个项目修改值为空的不予修改</div>
+        </div>
+    </h2>
+
+    <form class="ui form" method="post" action="#" id="form">
+        <div class="ui divided selection list">
+            <input hidden="hidden" name="userId">
+            <label class="item">
+                <div class="ui red horizontal label">用户昵称</div>
+                <input type="text" name="userNickname">
+            </label>
+            <label class="item">
+                <div class="ui purple horizontal label">用户名</div>
+                <input type="text" name="userName">
+            </label>
+            <label class="item">
+                <div class="ui red horizontal label">用户Email</div>
+                <input type="text" name="userEmail">
+            </label>
+            <label class="item">
+                <div class="ui purple horizontal label">用户电话</div>
+                <input type="text" name="userTelephoneNumber">
+            </label>
+
+            <label class="item">
+                <div class="ui red horizontal label" id="hobby-list">用户爱好</div>
+                <!--    爱好-->
+
+            </label>
+            <label class="item">
+                <div class="ui purple horizontal label">用户头像</div>
+                <input type="text" name="userProfilePhoto">
+            </label>
+            <label class="item">
+                <div class="ui red horizontal label">用户签名</div>
+                <textarea name="userSignature"></textarea>
+            </label>
+        </div>
+        <div class="actions">
+            <div class="ui  submit button" onclick="submit()">保存</div>
+        </div>
+    </form>
+</div>
+
+
+
+  <script>
+    $('.menu.toggle').click(function () {
+      $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    })
+    $('.wechat').popup({
+      popup : $('.wechat-qr'),
+      position: 'bottom center'
+    });
+    $('.qq').popup();
+
+  </script>
+
+</body>
+</html>

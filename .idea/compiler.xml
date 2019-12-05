@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="xiaoxiao_tiny_blogs_mapper" />
+        <module name="xiaoxiao_tiny_blogs_frontline_service" />
+        <module name="xiaoxiao_tiny_blogs_pojo" />
+        <module name="xiaoxiao_redis" />
+        <module name="xiaoxiao_sso" />
+        <module name="xiaoxiao_common" />
+        <module name="xiaoxiao_tiny_blogs_service" />
+        <module name="xiaoxiao_tiny_blogs_frontline_mapper" />
+        <module name="xiaoxiao_blogs" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="xiaoxiao_blogs_web" target="1.8" />
+      <module name="xiaoxiao_dependency" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="xiaoxiao_app" options="-parameters" />
+      <module name="xiaoxiao_blogs" options="-parameters" />
+      <module name="xiaoxiao_blogs_web" options="-parameters" />
+      <module name="xiaoxiao_common" options="-parameters" />
+      <module name="xiaoxiao_redis" options="-parameters" />
+      <module name="xiaoxiao_sso" options="-parameters" />
+      <module name="xiaoxiao_tiny_blogs_frontline_mapper" options="-parameters" />
+      <module name="xiaoxiao_tiny_blogs_frontline_service" options="-parameters" />
+      <module name="xiaoxiao_tiny_blogs_mapper" options="-parameters" />
+      <module name="xiaoxiao_tiny_blogs_pojo" options="-parameters" />
+      <module name="xiaoxiao_tiny_blogs_service" options="-parameters" />
+      <module name="xiaoxiao_tiny_service" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <title>我的博文</title>
+</head>
+<body>
+<body>
+
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace="_fragments :: nav">
+</nav>
+<script th:src="@{/js/me-blog.js}"></script>
+  <!--中间内容-->
+  <div  class="m-container-small m-padded-tb-big">
+    <div class="ui container">
+      <!--header-->
+      <div class="ui top attached segment">
+        <div class="ui middle aligned two column grid">
+          <div class="column">
+            <h3 class="ui teal header">分类</h3>
+          </div>
+          <div class="right aligned column">
+            共 <h2 class="ui orange header m-inline-block m-text-thin" id="articleSum">  </h2> 篇
+          </div>
+        </div>
+      </div>
+
+        <!--分类标签-->
+      <div class="ui attached segment m-padded-tb-large" id="article_sorts">
+
+      </div>
+
+        <!--内容-->
+      <div class="ui top attached teal segment" id="content">
+
+      </div>
+
+        <div class="ui bottom attached segment">
+            <div th:include="admin/_page.html"></div>
+            <script type="text/javascript">
+                function currentPage(currentPage){
+                    find_index_article(currentPage);
+                }
+                $("#pager").zPager({
+                    totalData: totalRows,
+                    pageData: pageSize,
+                    pageCount: totalPage,
+                    htmlBox: $('#wraper'),
+                    btnShow: true,
+                    ajaxSetData: false,
+                });
+            </script>
+        </div>
+  </div>
+
+  <script>
+    $('.menu.toggle').click(function () {
+      $('.m-item').toggleClass('m-mobile-hide');
+    });
+  </script>
+</body>
+</html>

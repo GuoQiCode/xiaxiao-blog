@@ -1,0 +1,38 @@
+server:
+  port: 10020
+spring:
+  application:
+    name: xiaoxiao-tiny-blogs-frontline-service
+  datasource:
+    username: root
+    password: 159302
+    url: jdbc:mysql://localhost:3306/xiaoxiao_borker?characterEncoding=UTF-8
+    sql-script-encoding: UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  thymeleaf:
+    cache: false
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    root: info
+    com.xiaoxiao: debug
+  file:
+    name: log/blogs-dev.log
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9999/eureka/
+
+ribbon:
+  ConnectTimeout: 30000
+  ReadTimeout: 30000
+debug: false
+
+MARKED_WORDS_SUCCESS: 操作成功
+MARKED_WORDS_FAULT: 操作失败

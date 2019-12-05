@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>404</title>
+</head>
+<body>
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace="_fragments :: nav(1)">
+
+</nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="m-container-small m-padded-tb-massive ">
+    <h2>404-该资源已经删除......</h2>
+    <span>您访问的资源不存在...</span>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!--底部footer-->
+<footer th:replace = "_fragments :: footer">
+</footer>
+</body>
+</html>

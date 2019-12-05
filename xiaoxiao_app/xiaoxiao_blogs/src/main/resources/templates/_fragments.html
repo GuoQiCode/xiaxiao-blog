@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)" >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">博客详情</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+    <script th:src="@{/js/common.js}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href = "@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/css/animate.css" th:href = "@{/css/animate.css}">
+    <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href = "@{/lib/prism/prism.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href ="@{/lib/tocbot/tocbot.css}">
+    <link rel="stylesheet" href="../static/css/me.css" th:href = "@{/css/me.css}">
+
+
+</head>
+<body>
+
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:fragment = "nav">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item" id="title">作落潇城๑</h2>
+            <a href='' class='m-item item m-mobile-hide'><i class='mini cloud icon'></i>技术分享</a>
+            <a href='/me_blog' class='m-item item m-mobile-hide'><i class='mini idea icon'></i>我的博文</a>
+            <a href='' class='m-item item m-mobile-hide'><i class='mini home icon'></i>我的相册</a>
+            <a href='' class='m-item item m-mobile-hide'><i class='mini pin icon'></i>关于我</a>
+            <a href='' class='m-item item m-mobile-hide'><i class='mini book icon'></i>留言</a>
+            <a href='' class='m-item item m-mobile-hide'><i class='mini moon icon'></i>归档</a>
+            <div class="right m-item item m-mobile-hide">
+                <div class="ui icon inverted transparent input m-margin-tb-tiny">
+                   <form name="search" target="_blank" method="post">
+                       <input type="text" name="query" placeholder="Search....">
+                       <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+</body>
+</html>

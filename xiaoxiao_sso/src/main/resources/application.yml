@@ -1,0 +1,17 @@
+server:
+  port: 9997
+spring:
+  application:
+    name: xiaoxiao-sso
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9999/eureka/
+
+COOKIE_NAME: USER
+
+ribbon:
+  ConnectTimeout: 30000
+  ReadTimeout: 30000

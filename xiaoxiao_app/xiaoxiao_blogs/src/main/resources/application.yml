@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: xiaoxiao-blogs
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 10MB
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9999/eureka/
+
+
+COOKIE_NAME: USER
+
+ribbon:
+  ConnectTimeout: 30000
+  ReadTimeout: 30000
+
+xiaoxiao-tiny-blogs-service:
+  ribbon:
+    OkToRetryOnAllOperations: true
+    MaxAutoRetries: 2
+    MaxAutoRetriesNextServer: 0
+xiaoxiao-sso:
+  ribbon:
+    OkToRetryOnAllOperations: true
+    MaxAutoRetries: 2
+    MaxAutoRetriesNextServer: 0
+
+
+
