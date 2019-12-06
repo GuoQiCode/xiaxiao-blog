@@ -60,7 +60,7 @@ public class RedisLabelController
 
     @ApiOperation(value = "插入缓存", notes = "插入缓存")
     @PostMapping(value = "/insert_label_to_redis")
-    public void insertLabelToRedis(List<XiaoxiaoLabels> labels)
+    public void insertLabelToRedis(@RequestBody List<XiaoxiaoLabels> labels)
     {
         this.redisLabelService.insertLabelToRedis(labels);
     }

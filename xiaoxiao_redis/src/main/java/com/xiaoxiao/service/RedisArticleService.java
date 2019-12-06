@@ -1,5 +1,6 @@
 package com.xiaoxiao.service;
 
+import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.utils.PageResult;
 
 /**
@@ -64,4 +65,7 @@ public interface RedisArticleService
 
     void deleteBlogsBySortsToRedis(Long sortId);
 
+    void insertArticleById(XiaoxiaoArticles articles);
+
+    XiaoxiaoArticles getArticleById(Long articleId);
 }

@@ -47,4 +47,7 @@ public interface FrontlineTinyArticleService
     Result findIndexArticle(Integer page, Integer rows);
 
     Result findBlogsBySorts(Integer page, Integer rows, Long sortId);
+
+    Result findBlogById(Long articleId);
+
 }

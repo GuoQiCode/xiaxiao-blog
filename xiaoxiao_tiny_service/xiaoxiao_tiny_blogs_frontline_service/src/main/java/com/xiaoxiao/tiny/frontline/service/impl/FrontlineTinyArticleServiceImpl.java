@@ -14,6 +14,8 @@ import com.xiaoxiao.utils.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import sun.java2d.pipe.AATextRenderer;
+
 import java.util.List;
 
 /**
@@ -228,6 +230,37 @@ public class FrontlineTinyArticleServiceImpl implements FrontlineTinyArticleServ
             }
             return Result.ok(StatusCode.OK, true,this
             .MARKED_WORDS_SUCCESS,result);
+        }
+        return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
+    }
+
+
+
+    @Override
+    public Result findBlogById(Long articleId)
+    {
+        try
+        {
+            XiaoxiaoArticles articleById = this.client.getArticleById(articleId);
+            if(articleById != null){
+                return Result.ok(StatusCode.OK,true,this.MARKED_WORDS_SUCCESS,articleById );
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        XiaoxiaoArticles article = this.frontlineTinyArticleMapper.findBlogById(articleId);
+
+        if(article != null)
+        {
+            try
+            {
+                this.client.insertArticleById(article);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return Result.ok(StatusCode.OK, true,this.MARKED_WORDS_SUCCESS,article);
         }
         return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
     }

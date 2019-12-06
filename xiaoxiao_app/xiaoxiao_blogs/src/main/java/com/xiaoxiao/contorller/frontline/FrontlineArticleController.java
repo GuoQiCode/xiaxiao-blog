@@ -104,4 +104,14 @@ public class FrontlineArticleController
                 .findBlogsBySorts(page,rows,sortId);
     }
 
+
+    /**
+     * 查询指定的文章信息
+     * @return
+     */
+    @PostMapping(value = "/find_blog_by_id")
+    public Result findBlogById(Long articleId){
+       return this.frontlineArticleService.findBlogById(articleId);
+    }
+
 }

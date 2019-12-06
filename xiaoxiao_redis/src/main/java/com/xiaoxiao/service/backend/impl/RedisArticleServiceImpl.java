@@ -1,5 +1,6 @@
 package com.xiaoxiao.service.backend.impl;
 
+import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
 import com.xiaoxiao.service.RedisArticleService;
 import com.xiaoxiao.utils.PageResult;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.awt.font.TextHitInfo;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -208,5 +210,28 @@ public class RedisArticleServiceImpl implements RedisArticleService
     public void deleteBlogsBySortsToRedis(Long sortId)
     {
         this.redisTemplate.delete(String.valueOf(sortId));
+    }
+
+
+    /**
+     *
+     * @param articles
+     */
+    @Override
+    public void insertArticleById(XiaoxiaoArticles articles)
+    {
+        this.redisTemplate.opsForValue().set(String.valueOf(articles.getArticleId()), articles,1,TimeUnit.DAYS);
+    }
+
+
+    /**
+     *
+     * @param articleId
+     * @return
+     */
+    @Override
+    public XiaoxiaoArticles getArticleById(Long articleId)
+    {
+        return (XiaoxiaoArticles) this.redisTemplate.opsForValue().get(String.valueOf(articleId));
     }
 }

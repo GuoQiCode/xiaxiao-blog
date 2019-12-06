@@ -154,6 +154,12 @@ public interface FrontlineFeignServiceClient
                         @RequestParam(name = "rows",defaultValue = "10")Integer rows);
 
 
-
+    /**
+     * 获取详情信息
+     * @param articleId
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/article/find_blog_by_id")
+    Result findBlogById(@RequestParam("articleId")Long articleId);
 
 }

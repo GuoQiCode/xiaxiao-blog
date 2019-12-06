@@ -79,4 +79,14 @@ public interface FrontlineTinyArticleMapper
      */
     @Select("SELECT a.article_id,a.article_title,a.article_desc,a.article_date,a.article_bk_first_img,a.article_views,u.user_nickname,u.user_profile_photo FROM `xiaoxiao_articles` a,xiaoxiao_users u WHERE a.user_id = u.user_id AND a.article_bk_sorts_id = #{sortId} ORDER BY a.article_date DESC")
     List<XiaoxiaoArticleVo> findBlogsBySorts(@Param("sortId") Long sortId);
+
+
+    /**
+     * 获取文章信息
+     * @param articleId
+     * @return
+     */
+    @Select("SELECT * FROM xiaoxiao_articles WHERE article_id = #{articleId} ")
+    XiaoxiaoArticles findBlogById(@Param("articleId") Long articleId);
+
 }

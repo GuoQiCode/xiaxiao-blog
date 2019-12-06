@@ -87,4 +87,12 @@ public class FrontlineTinyArticleController
         return this.frontlineTinyArticleService.findBlogsBySorts(page,rows,sortId);
     }
 
+
+
+    @ApiOperation(value = "获取文章的详细信息",response = Result.class,notes = "获取文章的详细信息")
+    @PostMapping(value = "/find_blog_by_id")
+    public Result findBlogById(@RequestParam("articleId") Long articleId){
+        return this.frontlineTinyArticleService.findBlogById(articleId);
+    }
+
 }

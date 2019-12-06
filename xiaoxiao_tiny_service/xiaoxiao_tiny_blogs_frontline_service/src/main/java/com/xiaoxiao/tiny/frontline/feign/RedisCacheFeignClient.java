@@ -258,5 +258,23 @@ public interface RedisCacheFeignClient
 
     @PostMapping(value = "/redis_label_service/get_label_to_redis")
     List<XiaoxiaoLabels> getLabelToRedis();
+
+
+    /**
+     * 插入文章信息
+     * @param articles
+     */
+    @PostMapping(value = "/redis_article_service/insert_article_by_id")
+     void insertArticleById(@RequestBody XiaoxiaoArticles articles);
+
+
+    /**
+     * 获取文章信息
+     * @param articleId
+     * @return
+     */
+    @PostMapping(value = "/redis_article_service/get_article_by_id")
+     XiaoxiaoArticles getArticleById(@RequestParam(name = "articleId")Long articleId);
+
 }
 

@@ -99,4 +99,16 @@ public class FrontlineArticleServiceImpl implements FrontlineArticleService
     {
         return this.frontlineFeignServiceClient.findBlogsBySorts(page,rows,sortId);
     }
+
+
+    /**
+     * 获取文章详情
+     * @param articleId
+     * @return
+     */
+    @Override
+    public Result findBlogById(Long articleId)
+    {
+        return this.frontlineFeignServiceClient.findBlogById(articleId);
+    }
 }

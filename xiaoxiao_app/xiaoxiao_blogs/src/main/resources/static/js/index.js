@@ -106,7 +106,20 @@ function findIndexLabelArticle() {
 }
 
 
-
+/**
+ * 获取一个的文章的信息
+ */
+function get_article_by_id(articleId) {
+    alert(articleId)
+  /*  $.ajax("",{
+        dataType: 'JSON',
+        type: 'POST',
+        timeout: 3000,
+        success:(data)=>{
+            alert(JSON.stringify(data))
+        }
+    })*/
+}
 
 
 /**
@@ -115,7 +128,7 @@ function findIndexLabelArticle() {
 function splice(data) {
     data.forEach((item)=>{
         $("#content").append(`
-            <div class="ui padded vertical segment m-padded-tb-large">
+            <div class="ui padded vertical segment m-padded-tb-large" onclick="get_article_by_id(${item.articleId})">
                         <div class="ui mobile reversed stackable grid">
                             <div class="eleven wide column">
                                 <h3 class="ui header">${item.articleTitle}</h3>

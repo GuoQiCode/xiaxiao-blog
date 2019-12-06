@@ -48,4 +48,6 @@ public interface FrontlineArticleService
 
     Result findBlogsBySorts(Integer page, Integer rows, Long sortId);
 
+    Result findBlogById(Long articleId);
+
 }
