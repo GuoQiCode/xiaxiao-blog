@@ -5,6 +5,7 @@ import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
 import com.xiaoxiao.service.RedisArticleService;
 import com.xiaoxiao.utils.PageResult;
 import com.xiaoxiao.utils.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
 import jdk.nashorn.internal.objects.annotations.Optimistic;
@@ -52,6 +53,8 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/redis_article_service")
+@CrossOrigin(origins = "*",maxAge = 3600)
+@Api(value = "缓存文章")
 public class RedisArticleController
 {
 

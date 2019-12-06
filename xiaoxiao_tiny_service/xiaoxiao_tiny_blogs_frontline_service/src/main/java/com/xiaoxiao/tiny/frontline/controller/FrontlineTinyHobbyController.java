@@ -2,13 +2,14 @@ package com.xiaoxiao.tiny.frontline.controller;
 
 import com.xiaoxiao.tiny.frontline.service.FrontlineTinyHobbyService;
 import com.xiaoxiao.utils.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 
 /**
  * _ooOoo_
@@ -48,6 +49,8 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping(value = "/frontline/tiny/hobby")
+@CrossOrigin(origins = "*",maxAge = 3600)
+@Api(value = "前端爱好")
 public class FrontlineTinyHobbyController
 {
     @Autowired

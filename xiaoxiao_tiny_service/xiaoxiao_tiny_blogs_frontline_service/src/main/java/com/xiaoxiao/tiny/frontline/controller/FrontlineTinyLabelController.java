@@ -2,13 +2,11 @@ package com.xiaoxiao.tiny.frontline.controller;
 
 import com.xiaoxiao.tiny.frontline.service.FrontlineTinyLabelService;
 import com.xiaoxiao.utils.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -50,6 +48,8 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping(value = "/frontline/tiny/label")
+@CrossOrigin(origins = "*",maxAge = 3600)
+@Api(value = "前端标签")
 public class FrontlineTinyLabelController
 {
 

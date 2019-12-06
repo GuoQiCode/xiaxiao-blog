@@ -49,6 +49,8 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/redis_admin_manager_service")
+@CrossOrigin(origins = "*",maxAge = 3600)
+@Api(value = "缓存后台管理页面")
 public class RedisAdminManagerController
 {
 

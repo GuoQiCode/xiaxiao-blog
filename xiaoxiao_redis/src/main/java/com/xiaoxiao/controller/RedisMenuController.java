@@ -2,6 +2,7 @@ package com.xiaoxiao.controller;
 
 import com.xiaoxiao.pojo.XiaoxiaoMenu;
 import com.xiaoxiao.service.RedisMenuService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,8 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/redis_menu_service")
+@CrossOrigin(origins = "*",maxAge = 3600)
+@Api(value = "缓存菜单")
 public class RedisMenuController
 {
 

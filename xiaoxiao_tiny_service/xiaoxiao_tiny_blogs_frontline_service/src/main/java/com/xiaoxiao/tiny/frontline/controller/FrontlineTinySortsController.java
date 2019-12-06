@@ -2,12 +2,10 @@ package com.xiaoxiao.tiny.frontline.controller;
 
 import com.xiaoxiao.tiny.frontline.service.FrontlineTinySortsService;
 import com.xiaoxiao.utils.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * _ooOoo_
@@ -47,6 +45,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/frontline/tiny/sorts")
+@CrossOrigin(origins = "*",maxAge = 3600)
+@Api(value = "前端分类")
 public class FrontlineTinySortsController
 {
 

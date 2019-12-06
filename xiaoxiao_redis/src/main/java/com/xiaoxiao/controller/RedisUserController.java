@@ -46,7 +46,8 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/redis_service")
-@Api(value = "redis")
+@Api(value = "缓存用户")
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class RedisUserController
 {
     @Autowired

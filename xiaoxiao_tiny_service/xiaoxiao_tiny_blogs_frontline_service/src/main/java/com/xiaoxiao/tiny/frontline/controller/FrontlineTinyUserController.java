@@ -2,9 +2,10 @@ package com.xiaoxiao.tiny.frontline.controller;
 
 import com.xiaoxiao.tiny.frontline.service.FrontlineTinyUserService;
 import com.xiaoxiao.utils.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +48,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/frontline/tiny/user")
+@CrossOrigin(origins = "*",maxAge = 3600)
+@Api(value = "前端用户")
 public class FrontlineTinyUserController
 {
 

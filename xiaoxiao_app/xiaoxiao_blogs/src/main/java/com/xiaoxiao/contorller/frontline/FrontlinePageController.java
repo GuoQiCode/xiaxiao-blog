@@ -44,6 +44,7 @@ import sun.awt.SunHints;
  */
 @Controller
 @CrossOrigin(origins = {"*"},maxAge = 3600)
+
 public class FrontlinePageController
 {
 

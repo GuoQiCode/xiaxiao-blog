@@ -49,6 +49,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/redis_sorts_service")
 @Api(value = "分类缓存服务")
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class RedisSortsController
 {
 

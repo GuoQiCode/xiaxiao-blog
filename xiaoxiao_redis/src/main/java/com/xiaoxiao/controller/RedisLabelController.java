@@ -48,6 +48,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/redis_label_service")
+@CrossOrigin(origins = "*",maxAge = 3600)
 @Api(value = "标签的缓存")
 public class RedisLabelController
 {
