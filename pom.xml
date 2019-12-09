@@ -33,6 +33,8 @@
         <oss-version>3.5.0</oss-version>
     </properties>
     <dependencyManagement>
+
+
         <dependencies>
             <dependency>
                 <groupId>mysql</groupId>

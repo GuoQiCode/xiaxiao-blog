@@ -8,9 +8,11 @@ import com.xiaoxiao.tiny.frontline.feign.RedisCacheFeignClient;
 import com.xiaoxiao.tiny.frontline.mapper.FrontlineTinyArticleMapper;
 import com.xiaoxiao.tiny.frontline.service.FrontlineTinyArticleService;
 import com.xiaoxiao.tiny.frontline.utils.PageUtils;
+import com.xiaoxiao.utils.MarkdownUtils;
 import com.xiaoxiao.utils.PageResult;
 import com.xiaoxiao.utils.Result;
 import com.xiaoxiao.utils.StatusCode;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -250,7 +252,11 @@ public class FrontlineTinyArticleServiceImpl implements FrontlineTinyArticleServ
             e.printStackTrace();
         }
         XiaoxiaoArticles article = this.frontlineTinyArticleMapper.findBlogById(articleId);
-
+        /**
+         * 转换内容为HTML文档
+         */
+        String s = MarkdownUtils.markdownToHtmlExtensions(article.getArticleContent());
+        article.setArticleContent(s);
         if(article != null)
         {
             try

@@ -9,12 +9,12 @@
         <module name="xiaoxiao_tiny_blogs_mapper" />
         <module name="xiaoxiao_tiny_blogs_frontline_service" />
         <module name="xiaoxiao_tiny_blogs_pojo" />
-        <module name="xiaoxiao_blogs" />
-        <module name="xiaoxiao_sso" />
-        <module name="xiaoxiao_tiny_blogs_frontline_mapper" />
-        <module name="xiaoxiao_tiny_blogs_service" />
         <module name="xiaoxiao_redis" />
+        <module name="xiaoxiao_sso" />
         <module name="xiaoxiao_common" />
+        <module name="xiaoxiao_tiny_blogs_service" />
+        <module name="xiaoxiao_tiny_blogs_frontline_mapper" />
+        <module name="xiaoxiao_blogs" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

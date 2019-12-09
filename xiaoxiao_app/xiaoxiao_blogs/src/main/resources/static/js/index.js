@@ -105,20 +105,19 @@ function findIndexLabelArticle() {
     })
 }
 
-
 /**
- * 获取一个的文章的信息
+ *查看文章详情信息
  */
 function get_article_by_id(articleId) {
-    alert(articleId)
-  /*  $.ajax("",{
+    $.ajax("/blog_details",{
         dataType: 'JSON',
-        type: 'POST',
+        type: 'GET',
+        data:{"articleId":articleId},
         timeout: 3000,
         success:(data)=>{
-            alert(JSON.stringify(data))
+            alert(data)
         }
-    })*/
+    })
 }
 
 
@@ -128,7 +127,7 @@ function get_article_by_id(articleId) {
 function splice(data) {
     data.forEach((item)=>{
         $("#content").append(`
-            <div class="ui padded vertical segment m-padded-tb-large" onclick="get_article_by_id(${item.articleId})">
+            <div class="ui padded vertical segment m-padded-tb-large" target = "_blank" onclick="get_article_by_id(${item.articleId})">
                         <div class="ui mobile reversed stackable grid">
                             <div class="eleven wide column">
                                 <h3 class="ui header">${item.articleTitle}</h3>
@@ -150,14 +149,14 @@ function splice(data) {
                                         </div>
                                     </div>
                                     <div class="right aligned five wide column">
-                                        <a href="#" target="_blank"
+                                        <a href="/blog_details/${item.articleId}" target="_blank"
                                            class="ui teal basic label m-padded-tiny m-text-thin">详情查看</a>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="five wide column">
-                                <a href="#" target="_blank">
+                                <a href="/blog_details/${item.articleId}" target="_blank">
                                     <img src="${item.userProfilePhoto}" alt="" class="ui rounded image">
                                 </a>
                             </div>

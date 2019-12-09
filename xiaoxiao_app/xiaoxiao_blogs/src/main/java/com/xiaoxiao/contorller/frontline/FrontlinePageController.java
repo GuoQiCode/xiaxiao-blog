@@ -1,10 +1,14 @@
 package com.xiaoxiao.contorller.frontline;
 
+import com.xiaoxiao.utils.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 import sun.awt.SunHints;
+
+import javax.jws.WebParam;
 
 /**
  * _ooOoo_
@@ -65,6 +69,22 @@ public class FrontlinePageController
     @GetMapping(value = "/about")
     public String about(){
         return "about";
+    }
+
+
+    @Autowired
+    private FrontlineArticleController frontlineArticleController;
+
+    /**
+     * 博客详情页面跳转
+     * @return
+     */
+    @GetMapping(value = "/blog_details/{articleId}")
+    public String blogDetails(@PathVariable Long articleId,Model model){
+        Result result = frontlineArticleController.findBlogById(Long.parseLong(String.valueOf(articleId)));
+        model.addAttribute("article", result.getData());
+        System.out.println(model.getAttribute("article"));
+        return "blog";
     }
 
 }
