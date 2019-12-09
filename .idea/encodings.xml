@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xiaoxiao_app" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xiaoxiao_app/xiaoxiao_blogs" charset="UTF-8" />
@@ -13,5 +13,6 @@
     <file url="file://$PROJECT_DIR$/xiaoxiao_tiny_service/xiaoxiao_tiny_blogs_mapper" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xiaoxiao_tiny_service/xiaoxiao_tiny_blogs_pojo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xiaoxiao_tiny_service/xiaoxiao_tiny_blogs_service" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

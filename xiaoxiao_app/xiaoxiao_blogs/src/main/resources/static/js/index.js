@@ -57,7 +57,7 @@ function findArticleNewRecommend() {
             result.forEach((item)=>{
                 $("#recommend").after(`
                      <div class="ui segment">
-                        <a href="#" target="_blank" class="m-black m-text-thin">${item.articleTitle}</a>
+                        <a href="/blog_details/${item.articleId}" target="_blank" class="m-black m-text-thin">${item.articleTitle}</a>
                     </div>
                 `)
             })
