@@ -178,4 +178,20 @@ public class FrontlineTinyLabelServiceImpl implements FrontlineTinyLabelService
         }
         return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
     }
+
+
+    /**
+     * 获取文章的全部的标签名字
+     * @param articleId
+     * @return
+     */
+    @Override
+    public Result findArticleLabelName(Long articleId)
+    {
+        List<XiaoxiaoLabels> articleLabelName = this.frontlineTinyLabelMapper.findArticleLabelName(articleId);
+        if(articleLabelName != null && articleLabelName.size() > 0){
+            return Result.ok(StatusCode.OK,true,this.MARKED_WORDS_SUCCESS,articleLabelName);
+        }
+        return Result.error(StatusCode.OK, this.MARKED_WORDS_FAULT);
+    }
 }

@@ -220,7 +220,7 @@ public class RedisArticleServiceImpl implements RedisArticleService
      * @param articles
      */
     @Override
-    public void insertArticleById(XiaoxiaoArticles articles)
+    public void insertArticleById(XiaoxiaoArticleVo articles)
     {
         this.redisTemplate.opsForValue().set(String.valueOf(articles.getArticleId()), articles,1,TimeUnit.DAYS);
     }
@@ -232,9 +232,9 @@ public class RedisArticleServiceImpl implements RedisArticleService
      * @return
      */
     @Override
-    public XiaoxiaoArticles getArticleById(Long articleId)
+    public XiaoxiaoArticleVo getArticleById(Long articleId)
     {
-        return (XiaoxiaoArticles) this.redisTemplate.opsForValue().get(String.valueOf(articleId));
+        return (XiaoxiaoArticleVo) this.redisTemplate.opsForValue().get(String.valueOf(articleId));
     }
 
 

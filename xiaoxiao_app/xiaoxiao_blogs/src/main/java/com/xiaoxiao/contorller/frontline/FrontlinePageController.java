@@ -74,6 +74,8 @@ public class FrontlinePageController
 
     @Autowired
     private FrontlineArticleController frontlineArticleController;
+    @Autowired
+    private FrontlineLabelController frontlineLabelController;
 
     /**
      * 博客详情页面跳转
@@ -82,7 +84,9 @@ public class FrontlinePageController
     @GetMapping(value = "/blog_details/{articleId}")
     public String blogDetails(@PathVariable Long articleId,Model model){
         Result result = frontlineArticleController.findBlogById(Long.parseLong(String.valueOf(articleId)));
+        Result articleLabelName = frontlineLabelController.findArticleLabelName(articleId);
         model.addAttribute("article", result.getData());
+        model.addAttribute("label", articleLabelName.getData());
         return "blog";
     }
 

@@ -69,9 +69,9 @@ public interface RedisArticleService
 
     void deleteBlogsBySortsToRedis(Long sortId);
 
-    void insertArticleById(XiaoxiaoArticles articles);
+    void insertArticleById(XiaoxiaoArticleVo articles);
 
-    XiaoxiaoArticles getArticleById(Long articleId);
+    XiaoxiaoArticleVo getArticleById(Long articleId);
 
     void insertArticleArchive(Map<String, List<XiaoxiaoArticleVo>> map);
 

@@ -162,14 +162,14 @@ public class RedisArticleController
 
     @ApiOperation(value = "缓存文章详情信息",notes = "缓存文章详情信息")
     @PostMapping(value = "/insert_article_by_id")
-    public void insertArticleById(@RequestBody XiaoxiaoArticles articles){
+    public void insertArticleById(@RequestBody XiaoxiaoArticleVo articles){
         this.redisArticleService.insertArticleById(articles);
     }
 
 
     @ApiOperation(value = "获取缓存的文章",response = XiaoxiaoArticles.class,notes = "获取缓存的文章")
     @PostMapping(value = "/get_article_by_id")
-    public XiaoxiaoArticles getArticleById(@RequestParam(name = "articleId")Long articleId)
+    public XiaoxiaoArticleVo getArticleById(@RequestParam(name = "articleId")Long articleId)
     {
         return this.redisArticleService.getArticleById(articleId);
     }

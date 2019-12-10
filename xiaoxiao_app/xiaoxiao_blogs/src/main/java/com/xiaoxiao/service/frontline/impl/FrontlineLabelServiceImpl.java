@@ -86,4 +86,16 @@ public class FrontlineLabelServiceImpl implements FrontlineLabelService
     {
         return this.client.labelCount();
     }
+
+
+    /**
+     * 获取文章的全部标签
+     * @param articleId
+     * @return
+     */
+    @Override
+    public Result findArticleLabelName(Long articleId)
+    {
+        return this.client.findArticleLabelName(articleId);
+    }
 }

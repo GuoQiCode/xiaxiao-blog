@@ -51,4 +51,6 @@ public class XiaoxiaoArticleVo extends XiaoxiaoArticles
     private String userNickname;
     private String userProfilePhoto;
     private String year;
+    private String userQrCode;
+    private String labelName;
 }

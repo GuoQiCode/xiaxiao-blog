@@ -4,6 +4,7 @@ import com.xiaoxiao.pojo.XiaoxiaoLabels;
 import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
 import com.xiaoxiao.service.RedisLabelService;
 import com.xiaoxiao.utils.PageResult;
+import com.xiaoxiao.utils.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,5 +122,6 @@ public class RedisLabelController
     public void deleteLabelCount(){
         this.redisLabelService.deleteLabelCount();
     }
+
 
 }

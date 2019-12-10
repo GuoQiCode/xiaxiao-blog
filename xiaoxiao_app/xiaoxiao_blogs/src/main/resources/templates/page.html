@@ -63,7 +63,7 @@
                                 <i class="idea icon"></i>分类
                             </div>
                             <div class="right aligned column">
-                                <a href="#" target="_blank">more <i class="angle double right icon"></i></a>
+                                <a href="/me_blog" target="_blank">more <i class="angle double right icon"></i></a>
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                 <!--二维码-->
                 <h4 class="ui horizontal divider header m-margin-top-large">扫码关注我</h4>
                 <div class="ui centered card" style="width: 11em">
-                    <img th:src="@{/images/wechat.jpg}" alt="" class="ui rounded image">
+                    <img src="https://xiaoxiao-xiaoxiao.oss-cn-beijing.aliyuncs.com/xiaoxiao-article/me.jpg" alt="" class="ui rounded image">
                 </div>
             </div>
 
@@ -114,16 +114,8 @@
     </div>
 
 </div>
-
 <br>
 <br>
-<!--底部footer-->
-<footer th:replace="admin/_fragments :: footer">
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
-
 <script>
     $('.menu.toggle').click(function () {
         $('.m-item').toggleClass('m-mobile-hide');

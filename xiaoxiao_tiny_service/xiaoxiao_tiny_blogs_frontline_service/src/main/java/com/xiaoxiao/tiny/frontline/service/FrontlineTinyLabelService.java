@@ -46,4 +46,5 @@ public interface FrontlineTinyLabelService
 
     Result count();
 
+    Result findArticleLabelName(Long articleId);
 }

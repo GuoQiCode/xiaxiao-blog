@@ -26,7 +26,6 @@ function find_sorts_sum() {
 }
 
 
-
 /**
  * 查询首页标签文章数据
  */
@@ -45,4 +44,12 @@ function find_label_sum_and_article() {
             })
         }
     })
+}
+
+/**
+ * 请求标签页文章
+ * @param currentPage
+ */
+function find_all_article(currentPage) {
+    
 }

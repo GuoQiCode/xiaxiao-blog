@@ -26,4 +26,8 @@ public class XiaoxiaoUsers
     private String userRealName;
     private String userSex;
     private String userHobby;
+    /**
+     * 二维码
+     */
+    private String userQrCode;
 }

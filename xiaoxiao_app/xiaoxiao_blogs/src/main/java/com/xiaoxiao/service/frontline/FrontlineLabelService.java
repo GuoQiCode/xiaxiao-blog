@@ -46,4 +46,5 @@ public interface FrontlineLabelService
 
     Result count();
 
+    Result findArticleLabelName(Long articleId);
 }

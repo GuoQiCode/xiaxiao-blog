@@ -178,4 +178,12 @@ public interface FrontlineFeignServiceClient
     @PostMapping(value = "/frontline/tiny/label/count")
     Result labelCount();
 
+
+    /**
+     * 获取文章的全部标签
+     * @param articleId
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/label/find_article_label_name")
+    Result findArticleLabelName(@RequestParam("articleId") Long articleId);
 }

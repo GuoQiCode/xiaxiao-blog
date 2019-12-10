@@ -82,12 +82,12 @@ public interface FrontlineTinyArticleMapper
 
 
     /**
-     * 获取文章信息
+     * 获取文章信息根据文章ID
      * @param articleId
      * @return
      */
-    @Select("SELECT * FROM xiaoxiao_articles WHERE article_id = #{articleId} ")
-    XiaoxiaoArticles findBlogById(@Param("articleId") Long articleId);
+    @Select("select a.*,b.user_nickname,b.user_qr_code from xiaoxiao_articles as a,xiaoxiao_users as b where a.user_id = b.user_id and a.article_id = #{articleId}")
+    XiaoxiaoArticleVo findBlogById(@Param("articleId") Long articleId);
 
 
     /**
@@ -99,7 +99,7 @@ public interface FrontlineTinyArticleMapper
 
 
     /**
-     * 获取指定
+     * 获取指定年份的文章
      * @param year
      * @return
      */

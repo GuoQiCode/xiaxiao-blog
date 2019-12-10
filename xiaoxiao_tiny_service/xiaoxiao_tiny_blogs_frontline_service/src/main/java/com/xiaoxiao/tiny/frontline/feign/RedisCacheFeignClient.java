@@ -278,7 +278,7 @@ public interface RedisCacheFeignClient
      * @return
      */
     @PostMapping(value = "/redis_article_service/get_article_by_id")
-    XiaoxiaoArticles getArticleById(@RequestParam(name = "articleId") Long articleId);
+    XiaoxiaoArticleVo getArticleById(@RequestParam(name = "articleId") Long articleId);
 
 
     /**

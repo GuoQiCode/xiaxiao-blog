@@ -245,7 +245,7 @@ public class FrontlineTinyArticleServiceImpl implements FrontlineTinyArticleServ
     {
         try
         {
-            XiaoxiaoArticles articleById = this.client.getArticleById(articleId);
+            XiaoxiaoArticleVo articleById = this.client.getArticleById(articleId);
             if(articleById != null){
                 return Result.ok(StatusCode.OK,true,this.MARKED_WORDS_SUCCESS,articleById );
             }
@@ -253,7 +253,7 @@ public class FrontlineTinyArticleServiceImpl implements FrontlineTinyArticleServ
         {
             e.printStackTrace();
         }
-        XiaoxiaoArticles article = this.frontlineTinyArticleMapper.findBlogById(articleId);
+        XiaoxiaoArticleVo article = this.frontlineTinyArticleMapper.findBlogById(articleId);
         /**
          * 转换内容为HTML文档
          */

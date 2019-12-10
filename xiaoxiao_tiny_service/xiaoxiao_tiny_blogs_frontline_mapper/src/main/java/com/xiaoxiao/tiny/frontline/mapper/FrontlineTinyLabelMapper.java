@@ -1,7 +1,10 @@
 package com.xiaoxiao.tiny.frontline.mapper;
 
+import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.XiaoxiaoLabels;
+import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -67,4 +70,23 @@ public interface FrontlineTinyLabelMapper
      */
     @Select("select count(label_id) sum from xiaoxiao_labels where label_id in (select distinct a.label_id from xiaoxiao_set_artitle_label as  a)")
     XiaoxiaoLabelVo count();
+
+
+    /**
+     * 根据指定的标签查询文章
+     * @param labelId
+     * @return
+     */
+    @Select("select a.*,c.user_nickname,c.user_profile_photo,d.label_name from xiaoxiao_articles as a,xiaoxiao_set_artitle_label as b,xiaoxiao_users c,xiaoxiao_labels d where a.article_id = b.article_id and a.user_id = c.user_id and b.label_id = d.label_id and b.label_id = #{labelId}")
+    List<XiaoxiaoArticleVo> findArticleByLabelId(@Param("labelId") Long labelId);
+
+
+
+    /**
+     * 获取文章的标签数据
+     * @param articleId
+     * @return
+     */
+    @Select("select label_name from xiaoxiao_labels as a,xiaoxiao_set_artitle_label as b where a.label_id = b.label_id and  b.article_id = #{articleId}")
+    List<XiaoxiaoLabels> findArticleLabelName(@Param("articleId") Long articleId);
 }

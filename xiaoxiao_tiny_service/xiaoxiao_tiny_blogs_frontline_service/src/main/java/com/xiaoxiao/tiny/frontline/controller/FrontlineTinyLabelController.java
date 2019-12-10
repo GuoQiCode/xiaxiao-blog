@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -76,12 +77,19 @@ public class FrontlineTinyLabelController
 
 
 
-
     @ApiOperation(value = "获取标签的总数", response = Result.class, notes = "获取标签的总数")
     @PostMapping(value = "/count")
     public Result count()
     {
         return this.frontlineTinyLabelService.count();
+    }
+
+
+
+    @ApiOperation(value = "获取文章的全部的数据",response = Result.class,notes = "获取文章的全部的数据")
+    @PostMapping(value = "/find_article_label_name")
+    public Result findArticleLabelName(@RequestParam(name = "articleId") Long articleId){
+        return this.frontlineTinyLabelService.findArticleLabelName(articleId);
     }
 
 }

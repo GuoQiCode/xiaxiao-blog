@@ -1,3 +1,43 @@
+POST http://localhost:8080/frontline/label/find_article_label_name?articleId=157536036650239
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-10T061941.200.json
+
+###
+
+POST http://localhost:8080/frontline/label/find_article_label_name?articleId=157536036650239
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-10T061750.200.html
+
+###
+
+POST http://localhost:10020/frontline/tiny/label/find_article_label_name?articleId=157536036650239
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-10T061606.200.json
+
+###
+
+POST http://localhost:10020/frontline/tiny/label/find_article_label_name?artcileId=157536036650239
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-10T061536.400.json
+
+###
+
+POST http://localhost:10020/frontline/tiny/label/find_article_label_name?artcileId=157536036650239
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-10T061500.400.json
+
+###
+
 POST http://localhost:8080/frontline/label/count
 Accept: */*
 Cache-Control: no-cache

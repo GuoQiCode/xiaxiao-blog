@@ -77,4 +77,15 @@ public class FrontlineLabelController
         return this.frontlineLabelService.count();
     }
 
+
+    /**
+     * 获取文章的标签名字
+     * @param articleId
+     * @return
+     */
+    @PostMapping(value = "/find_article_label_name")
+    public Result findArticleLabelName(Long articleId){
+        return this.frontlineLabelService.findArticleLabelName(articleId);
+    }
+
 }
