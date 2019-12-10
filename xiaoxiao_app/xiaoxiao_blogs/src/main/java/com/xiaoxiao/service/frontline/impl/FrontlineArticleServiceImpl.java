@@ -111,4 +111,15 @@ public class FrontlineArticleServiceImpl implements FrontlineArticleService
     {
         return this.frontlineFeignServiceClient.findBlogById(articleId);
     }
+
+
+    /**
+     * 获取归档文章的信息
+     * @return
+     */
+    @Override
+    public Result findArticleArchive()
+    {
+        return this.frontlineFeignServiceClient.findArticleOfYear();
+    }
 }

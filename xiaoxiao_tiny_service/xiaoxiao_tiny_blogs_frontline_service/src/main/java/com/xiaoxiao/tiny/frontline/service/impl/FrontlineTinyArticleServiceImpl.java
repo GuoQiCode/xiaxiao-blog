@@ -18,7 +18,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import sun.java2d.pipe.AATextRenderer;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * _ooOoo_
@@ -267,6 +269,47 @@ public class FrontlineTinyArticleServiceImpl implements FrontlineTinyArticleServ
                 e.printStackTrace();
             }
             return Result.ok(StatusCode.OK, true,this.MARKED_WORDS_SUCCESS,article);
+        }
+        return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
+    }
+
+
+    /**
+     * 获取按照年份分类的文章
+     * @return
+     */
+    @Override
+    public Result findArticleOfYear()
+    {
+        try
+        {
+            Map<String, List<XiaoxiaoArticleVo>> articleArchive = this.client.getArticleArchive();
+            if(articleArchive != null && articleArchive.size() > 0){
+                return Result.ok(StatusCode.OK, true,this.MARKED_WORDS_SUCCESS,articleArchive);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        List<String> years = frontlineTinyArticleMapper.findArticleYear();
+        Map<String,List<XiaoxiaoArticleVo>> map = new HashMap<>();
+        /**
+         * 根据年份循环获取文章
+         */
+        for (String y: years
+             )
+        {
+            map.put(y,this.frontlineTinyArticleMapper.findArticleOfYear(y));
+        }
+        if(map != null && map.size() > 0){
+            try
+            {
+                this.client.insertArticleArchive(map);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return Result.ok(StatusCode.OK,true,this.MARKED_WORDS_SUCCESS,map);
         }
         return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
     }

@@ -83,8 +83,24 @@ public class FrontlinePageController
     public String blogDetails(@PathVariable Long articleId,Model model){
         Result result = frontlineArticleController.findBlogById(Long.parseLong(String.valueOf(articleId)));
         model.addAttribute("article", result.getData());
-        System.out.println(model.getAttribute("article"));
         return "blog";
     }
+
+
+
+
+
+    /**
+     * 归档页面的跳转
+     * @return
+     */
+    @GetMapping(value = "/archive")
+    public String archive(){
+        return "archives";
+    }
+
+
+
+
 
 }

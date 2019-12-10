@@ -1,7 +1,11 @@
 package com.xiaoxiao.service;
 
 import com.xiaoxiao.pojo.XiaoxiaoArticles;
+import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
 import com.xiaoxiao.utils.PageResult;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * _ooOoo_
@@ -68,4 +72,12 @@ public interface RedisArticleService
     void insertArticleById(XiaoxiaoArticles articles);
 
     XiaoxiaoArticles getArticleById(Long articleId);
+
+    void insertArticleArchive(Map<String, List<XiaoxiaoArticleVo>> map);
+
+    Map<String, List<XiaoxiaoArticleVo>> getArticleArchive();
+
+    void deleteArticleArchive();
+
+
 }

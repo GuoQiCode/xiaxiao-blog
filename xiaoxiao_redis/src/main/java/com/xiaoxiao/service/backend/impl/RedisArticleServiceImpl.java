@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.awt.font.TextHitInfo;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -60,19 +61,20 @@ public class RedisArticleServiceImpl implements RedisArticleService
     @Value("${ARTICLE_SUM}")
     private String ARTICLE_SUM;
 
-
     /**
      * 缓存最新的推荐的文章的数据
      */
     @Value("${ARTICLE_RECOMMEND}")
     private String ARTICLE_RECOMMEND;
 
-
     /**
      * 首页博客数据
      */
     @Value("${INDEX_ARTICLE}")
     private String INDEX_ARTICLE;
+
+    @Value("${ARCHIVE_BLOG}")
+    private String ARCHIVE_BLOG;
 
 
 
@@ -233,5 +235,38 @@ public class RedisArticleServiceImpl implements RedisArticleService
     public XiaoxiaoArticles getArticleById(Long articleId)
     {
         return (XiaoxiaoArticles) this.redisTemplate.opsForValue().get(String.valueOf(articleId));
+    }
+
+
+    /**
+     * 缓存归档文章
+     * @param map
+     */
+    @Override
+    public void insertArticleArchive(Map<String, List<XiaoxiaoArticleVo>> map)
+    {
+        this.redisTemplate.opsForValue().set(this.ARCHIVE_BLOG, map,1,TimeUnit.DAYS);
+    }
+
+
+    /**
+     * 获取缓存的归档信息
+     * @return
+     */
+    @Override
+    public Map<String, List<XiaoxiaoArticleVo>> getArticleArchive()
+    {
+        return (Map<String, List<XiaoxiaoArticleVo>>) this.redisTemplate
+                .opsForValue().get(this.ARCHIVE_BLOG);
+    }
+
+
+    /**
+     * 删除缓存归档日志
+     */
+    @Override
+    public void deleteArticleArchive()
+    {
+        this.redisTemplate.delete(this.ARCHIVE_BLOG);
     }
 }

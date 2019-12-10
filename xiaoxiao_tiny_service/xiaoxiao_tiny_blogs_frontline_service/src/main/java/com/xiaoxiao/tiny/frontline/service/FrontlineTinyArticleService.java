@@ -50,4 +50,6 @@ public interface FrontlineTinyArticleService
 
     Result findBlogById(Long articleId);
 
+    Result findArticleOfYear();
+
 }

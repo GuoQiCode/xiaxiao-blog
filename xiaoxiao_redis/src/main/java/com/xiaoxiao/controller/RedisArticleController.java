@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Map;
 
 /**
  * _ooOoo_
@@ -171,6 +172,27 @@ public class RedisArticleController
     public XiaoxiaoArticles getArticleById(@RequestParam(name = "articleId")Long articleId)
     {
         return this.redisArticleService.getArticleById(articleId);
+    }
+
+
+    @ApiOperation(value = "缓存归档文章下信息",notes = "缓存归档文章下信息")
+    @PostMapping(value = "/insert_article_archive")
+    public void insertArticleArchive(@RequestBody Map<String,List<XiaoxiaoArticleVo>> map){
+        this.redisArticleService.insertArticleArchive(map);
+    }
+
+
+    @ApiOperation(value = "获取缓存的归档日志信息",response = Map.class,notes = "获取缓存的归档日志信息")
+    @PostMapping(value = "/get_article_archive")
+    public Map<String,List<XiaoxiaoArticleVo>>  getArticleArchive(){
+        return this.redisArticleService.getArticleArchive();
+    }
+
+
+    @ApiOperation(value = "删除缓存的归档日志信息",notes = "删除缓存的归档日志信息")
+    @PostMapping(value = "/delete_article_archive")
+    public void deleteArticleArchive(){
+        this.redisArticleService.deleteArticleArchive();
     }
 
 }

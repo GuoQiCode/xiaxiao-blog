@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * _ooOoo_
@@ -262,19 +263,38 @@ public interface RedisCacheFeignClient
 
     /**
      * 插入文章信息
+     *
      * @param articles
      */
     @PostMapping(value = "/redis_article_service/insert_article_by_id")
-     void insertArticleById(@RequestBody XiaoxiaoArticles articles);
+    void insertArticleById(@RequestBody XiaoxiaoArticles articles);
 
 
     /**
      * 获取文章信息
+     *
      * @param articleId
      * @return
      */
     @PostMapping(value = "/redis_article_service/get_article_by_id")
-     XiaoxiaoArticles getArticleById(@RequestParam(name = "articleId")Long articleId);
+    XiaoxiaoArticles getArticleById(@RequestParam(name = "articleId") Long articleId);
+
+
+    /**
+     *缓存归档日志信息
+     * @param map
+     */
+    @PostMapping(value = "/redis_article_service/insert_article_archive")
+    void insertArticleArchive(@RequestBody Map<String, List<XiaoxiaoArticleVo>> map);
+
+
+    /**
+     * 获取缓存的归档日志
+     * @return
+     */
+    @PostMapping(value = "/redis_article_service/get_article_archive")
+    Map<String, List<XiaoxiaoArticleVo>> getArticleArchive();
+
 
 }
 

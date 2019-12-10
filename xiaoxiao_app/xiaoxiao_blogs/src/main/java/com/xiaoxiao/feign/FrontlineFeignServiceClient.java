@@ -162,4 +162,13 @@ public interface FrontlineFeignServiceClient
     @PostMapping(value = "/frontline/tiny/article/find_blog_by_id")
     Result findBlogById(@RequestParam("articleId")Long articleId);
 
+
+    /**
+     *获取 文章归档信息
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/article/find_article_of_year")
+    Result findArticleOfYear();
+
+
 }

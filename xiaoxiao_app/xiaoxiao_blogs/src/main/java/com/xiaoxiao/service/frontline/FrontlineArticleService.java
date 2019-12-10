@@ -50,4 +50,6 @@ public interface FrontlineArticleService
 
     Result findBlogById(Long articleId);
 
+    Result findArticleArchive();
+
 }

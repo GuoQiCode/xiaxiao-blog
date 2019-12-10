@@ -5,6 +5,8 @@ import com.xiaoxiao.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.StringJoiner;
+
 /**
  * _ooOoo_
  * o8888888o
@@ -115,5 +117,13 @@ public class FrontlineArticleController
     }
 
 
+    /**
+     * 获取归档文件信息
+     * @return
+     */
+    @PostMapping(value = "/find_article_archive")
+    public Result findArticleArchive(){
+        return this.frontlineArticleService.findArticleArchive();
+    }
 
 }

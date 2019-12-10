@@ -95,4 +95,13 @@ public class FrontlineTinyArticleController
         return this.frontlineTinyArticleService.findBlogById(articleId);
     }
 
+
+    @ApiOperation(value = "获取分类文章的年份",response = Result.class,notes = "获取分类文章的年份")
+    @PostMapping(value = "/find_article_of_year")
+    public  Result findArticleOfYear(){
+        return this.frontlineTinyArticleService.findArticleOfYear();
+    }
+
+
+
 }

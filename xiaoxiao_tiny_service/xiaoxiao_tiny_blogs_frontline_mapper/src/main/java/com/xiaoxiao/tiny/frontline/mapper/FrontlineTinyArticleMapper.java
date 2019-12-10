@@ -89,4 +89,20 @@ public interface FrontlineTinyArticleMapper
     @Select("SELECT * FROM xiaoxiao_articles WHERE article_id = #{articleId} ")
     XiaoxiaoArticles findBlogById(@Param("articleId") Long articleId);
 
+
+    /**
+     * 获取文章的年份
+     * @return
+     */
+    @Select("select date_format(a.article_date,'%Y') as year from  xiaoxiao_articles as a group by a.article_date order by  a.article_date desc")
+    List<String> findArticleYear();
+
+
+    /**
+     * 获取指定
+     * @param year
+     * @return
+     */
+    @Select("select  b.article_id,b.article_title,date_format(b.article_date,'%m-%d') as year,b.article_type  from xiaoxiao_articles as b where date_format(b.article_date,'%Y') = #{year}")
+    List<XiaoxiaoArticleVo> findArticleOfYear(@Param("year") String year);
 }

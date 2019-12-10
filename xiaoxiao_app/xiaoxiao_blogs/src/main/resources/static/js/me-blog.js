@@ -67,14 +67,14 @@ function splice(data) {
                                         </div>
                                     </div>
                                     <div class="right aligned five wide column">
-                                        <a href="#" target="_blank"
+                                        <a href="/blog_details/${item.articleId}" target="_blank"
                                            class="ui teal basic label m-padded-tiny m-text-thin">详情查看</a>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="five wide column">
-                                <a href="#" target="_blank">
+                                <a href="/blog_details/${item.articleId}" target="_blank">
                                     <img src="${item.userProfilePhoto}" alt="" class="ui rounded image">
                                 </a>
                             </div>
