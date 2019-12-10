@@ -113,4 +113,5 @@ public class FrontlineTinySortsServiceImpl implements FrontlineTinySortsService
 
         return Result.error(StatusCode.OK, this.MARKED_WORDS_FAULT);
     }
+
 }

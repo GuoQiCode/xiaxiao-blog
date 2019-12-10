@@ -1,3 +1,27 @@
+POST http://localhost:8080/frontline/label/count
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-10T031635.200.json
+
+###
+
+POST http://localhost:8080/frontline/label/count
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-10T030841.200.html
+
+###
+
+POST http://localhost:10020/frontline/tiny/label/count
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-10T025034.200.json
+
+###
+
 POST http://localhost:10020/frontline/tiny/article/find_article_of_year
 Accept: */*
 Cache-Control: no-cache

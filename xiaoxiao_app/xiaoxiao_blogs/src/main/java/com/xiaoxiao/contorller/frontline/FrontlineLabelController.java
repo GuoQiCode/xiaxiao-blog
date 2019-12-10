@@ -67,4 +67,14 @@ public class FrontlineLabelController
         return this.frontlineLabelService.findAllLabel(page,rows);
     }
 
+
+    /**
+     * 获取标签的个数
+     * @return
+     */
+    @PostMapping(value = "/count")
+    public Result count(){
+        return this.frontlineLabelService.count();
+    }
+
 }

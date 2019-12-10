@@ -2,6 +2,7 @@ package com.xiaoxiao.tiny.frontline.feign;
 
 import com.xiaoxiao.pojo.*;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
+import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import com.xiaoxiao.utils.PageResult;
 import io.swagger.annotations.ApiOperation;
@@ -294,6 +295,23 @@ public interface RedisCacheFeignClient
      */
     @PostMapping(value = "/redis_article_service/get_article_archive")
     Map<String, List<XiaoxiaoArticleVo>> getArticleArchive();
+
+
+    /**
+     * 插入文章的总数
+     * @param xiaoxiaoLabelVo
+     */
+    @PostMapping(value = "/redis_label_service/insert_label_count")
+    void insertLabelCount(@RequestBody XiaoxiaoLabelVo xiaoxiaoLabelVo);
+
+
+    /**
+     * 获取文章的总数
+     * @return
+     */
+    @PostMapping(value = "/redis_label_service/get_label_count")
+    XiaoxiaoLabelVo getLabelCount();
+
 
 
 }

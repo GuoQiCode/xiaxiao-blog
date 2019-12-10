@@ -100,6 +100,15 @@ public class FrontlinePageController
     }
 
 
+    /**
+     * 跳转到标签分类页
+     * @return
+     */
+    @GetMapping(value = "/label")
+    public String label(){
+        return "tags";
+    }
+
 
 
 

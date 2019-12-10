@@ -171,4 +171,11 @@ public interface FrontlineFeignServiceClient
     Result findArticleOfYear();
 
 
+    /**
+     * 获取标签个数
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/label/count")
+    Result labelCount();
+
 }

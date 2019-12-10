@@ -75,4 +75,15 @@ public class FrontlineLabelServiceImpl implements FrontlineLabelService
     {
         return this.client.findAllLabel(page,rows);
     }
+
+
+    /**
+     * 获取标签的个数
+     * @return
+     */
+    @Override
+    public Result count()
+    {
+        return this.client.labelCount();
+    }
 }

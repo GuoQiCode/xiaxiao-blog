@@ -48,7 +48,7 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping(value = "/frontline/tiny/label")
-@CrossOrigin(origins = "*",maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Api(value = "前端标签")
 public class FrontlineTinyLabelController
 {
@@ -57,19 +57,31 @@ public class FrontlineTinyLabelController
     private FrontlineTinyLabelService frontlineTinyLabelService;
 
 
-    @ApiOperation(value = "查询首页标签文章",response = Result.class,notes = "查询首页标签文章")
+    @ApiOperation(value = "查询首页标签文章", response = Result.class, notes = "查询首页标签文章")
     @PostMapping(value = "/find_index_label_article")
-    public Result findIndexLabelArticle(@RequestParam(name = "page",defaultValue = "1")Integer page,
-                                        @RequestParam(name = "rows",defaultValue = "10")Integer rows){
-        return  this.frontlineTinyLabelService.findIndexLabelArticle(page,rows);
+    public Result findIndexLabelArticle(@RequestParam(name = "page", defaultValue = "1") Integer page, @RequestParam(name = "rows", defaultValue = "10") Integer rows)
+    {
+        return this.frontlineTinyLabelService.findIndexLabelArticle(page, rows);
     }
 
 
-    @ApiOperation(value = "查询全部的标签",response = Result.class,notes = "查询全部的标签")
+
+
+    @ApiOperation(value = "查询全部的标签", response = Result.class, notes = "查询全部的标签")
     @PostMapping(value = "/find_all_label")
-    public Result findAllLabel(@RequestParam(name = "page",defaultValue = "1")Integer page,
-                        @RequestParam(name = "rows",defaultValue = "10")Integer rows){
-        return this.frontlineTinyLabelService.findAllLabel(page,rows);
+    public Result findAllLabel(@RequestParam(name = "page", defaultValue = "1") Integer page, @RequestParam(name = "rows", defaultValue = "10") Integer rows)
+    {
+        return this.frontlineTinyLabelService.findAllLabel(page, rows);
+    }
+
+
+
+
+    @ApiOperation(value = "获取标签的总数", response = Result.class, notes = "获取标签的总数")
+    @PostMapping(value = "/count")
+    public Result count()
+    {
+        return this.frontlineTinyLabelService.count();
     }
 
 }

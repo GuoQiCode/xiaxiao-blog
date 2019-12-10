@@ -59,4 +59,12 @@ public interface FrontlineTinyLabelMapper
      */
     @Select("SELECT * FROM xiaoxiao_labels")
     List<XiaoxiaoLabels> findAllLabel();
+
+
+    /**
+     * 获取全部的标签的信息
+     * @return
+     */
+    @Select("select count(label_id) sum from xiaoxiao_labels where label_id in (select distinct a.label_id from xiaoxiao_set_artitle_label as  a)")
+    XiaoxiaoLabelVo count();
 }

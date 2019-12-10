@@ -1,6 +1,7 @@
 package com.xiaoxiao.service.backend.impl;
 
 import com.xiaoxiao.pojo.XiaoxiaoLabels;
+import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
 import com.xiaoxiao.service.RedisLabelService;
 import com.xiaoxiao.utils.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,12 @@ public class RedisLabelServiceImpl implements RedisLabelService
 
 
     /**
+     * 标签总数
+     */
+    @Value("${LABEL_COUNT}")
+    private String LABEL_COUNT;
+
+    /**
      * 插入
      * @param labels
      */
@@ -119,4 +126,38 @@ public class RedisLabelServiceImpl implements RedisLabelService
     {
         this.redisTemplate.delete(this.INDEX_LABEL_ARTICLE);
     }
+
+
+    /**
+     * 获取标签的总数
+     * @param xiaoxiaoLabelVo
+     */
+    @Override
+    public void insertLabelCount(XiaoxiaoLabelVo xiaoxiaoLabelVo)
+    {
+        this.redisTemplate.opsForValue().set(this.LABEL_COUNT, xiaoxiaoLabelVo,1,TimeUnit.DAYS);
+    }
+
+
+    /**
+     * 获取标签总数
+     * @return
+     */
+    @Override
+    public XiaoxiaoLabelVo getLabelCount()
+    {
+        return (XiaoxiaoLabelVo) this.redisTemplate.opsForValue().get(this.LABEL_COUNT);
+    }
+
+
+    /**
+     * 删除标签总数
+     */
+    @Override
+    public void deleteLabelCount()
+    {
+        this.redisTemplate.delete(this.LABEL_COUNT);
+    }
+
+
 }

@@ -43,4 +43,7 @@ public interface FrontlineLabelService
     Result findIndexLabelArticle(Integer page,Integer rows);
 
     Result findAllLabel(Integer page, Integer rows);
+
+    Result count();
+
 }

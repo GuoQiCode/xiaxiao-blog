@@ -1,6 +1,7 @@
 package com.xiaoxiao.service;
 
 import com.xiaoxiao.pojo.XiaoxiaoLabels;
+import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
 import com.xiaoxiao.utils.PageResult;
 
 import java.util.List;
@@ -52,5 +53,11 @@ public interface RedisLabelService
     PageResult getIndexArticleLabel();
 
     void deleteIndexArticleLabel();
+
+    void insertLabelCount(XiaoxiaoLabelVo xiaoxiaoLabelVo);
+
+    XiaoxiaoLabelVo getLabelCount();
+
+    void deleteLabelCount();
 
 }

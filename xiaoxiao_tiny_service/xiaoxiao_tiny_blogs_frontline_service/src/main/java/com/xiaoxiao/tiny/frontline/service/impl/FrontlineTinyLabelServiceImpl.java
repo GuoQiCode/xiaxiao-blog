@@ -146,4 +146,36 @@ public class FrontlineTinyLabelServiceImpl implements FrontlineTinyLabelService
         }
         return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
     }
+
+
+    /**
+     * 获取标签个数
+     * @return
+     */
+    @Override
+    public Result count()
+    {
+        try
+        {
+            XiaoxiaoLabelVo labelCount = this.client.getLabelCount();
+            if(labelCount != null){
+                return Result.ok(StatusCode.OK, true,this.MARKED_WORDS_SUCCESS,labelCount);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        XiaoxiaoLabelVo count = this.frontlineTinyLabelMapper.count();
+        if (count != null){
+            try
+            {
+                this.client.insertLabelCount(count);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return Result.ok(StatusCode.OK, true,this.MARKED_WORDS_SUCCESS,count);
+        }
+        return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
+    }
 }

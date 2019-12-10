@@ -63,5 +63,4 @@ public class FrontlineTinySortsController
         return this.frontlineTinySortsService.findAllSorts(page,rows);
     }
 
-
 }

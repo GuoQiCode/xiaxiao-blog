@@ -1,6 +1,7 @@
 package com.xiaoxiao.controller;
 
 import com.xiaoxiao.pojo.XiaoxiaoLabels;
+import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
 import com.xiaoxiao.service.RedisLabelService;
 import com.xiaoxiao.utils.PageResult;
 import io.swagger.annotations.Api;
@@ -97,5 +98,28 @@ public class RedisLabelController
         this.redisLabelService.deleteIndexArticleLabel();
     }
 
+
+
+    @ApiOperation(value = "插入到标签总数",notes = "插入到标签总数")
+    @PostMapping(value = "/insert_label_count")
+    public void insertLabelCount(@RequestBody XiaoxiaoLabelVo xiaoxiaoLabelVo)
+    {
+        this.redisLabelService.insertLabelCount(xiaoxiaoLabelVo);
+    }
+
+
+    @ApiOperation(value = "获取标签的总数",response = XiaoxiaoLabelVo.class,notes = "获取标签的总数")
+    @PostMapping(value = "/get_label_count")
+    public XiaoxiaoLabelVo getLabelCount(){
+        return this.redisLabelService.getLabelCount();
+    }
+
+
+
+    @ApiOperation(value = "删除标签总数",notes = "删除标签总数")
+    @PostMapping(value = "/delete_label_count")
+    public void deleteLabelCount(){
+        this.redisLabelService.deleteLabelCount();
+    }
 
 }
