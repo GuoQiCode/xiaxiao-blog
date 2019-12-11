@@ -209,4 +209,13 @@ public interface FrontlineFeignServiceClient
     @PostMapping(value = "/frontline/tiny/article/find_article_by_sort_sum")
     Result findArticleBySortSum(@RequestParam("sortId") Long sortId);
 
+
+    /**
+     * 获取标签文章的个数
+     * @param labelId
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/article/find_article_label_sum")
+    Result findArticleLabelSum(@RequestParam(name = "labelId") Long labelId);
+
 }

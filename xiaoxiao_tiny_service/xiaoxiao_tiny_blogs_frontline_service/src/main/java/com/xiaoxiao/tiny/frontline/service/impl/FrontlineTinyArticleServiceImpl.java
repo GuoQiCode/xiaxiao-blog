@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.sun.org.apache.bcel.internal.generic.LADD;
 import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
+import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import com.xiaoxiao.tiny.frontline.feign.RedisCacheFeignClient;
 import com.xiaoxiao.tiny.frontline.mapper.FrontlineTinyArticleMapper;
@@ -382,6 +383,39 @@ public class FrontlineTinyArticleServiceImpl implements FrontlineTinyArticleServ
                 e.printStackTrace();
             }
             return Result.ok(StatusCode.OK,true,this.MARKED_WORDS_SUCCESS,articleBySortSum);
+        }
+        return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
+    }
+
+
+
+
+
+
+
+    @Override
+    public Result findArticleLabelSum(Long labelId)
+    {
+        try
+        {
+            XiaoxiaoLabelVo articleLabelSum1 = this.client.getArticleLabelSum(labelId);
+            if(articleLabelSum1 != null){
+                return Result.ok(StatusCode.OK, true,this.MARKED_WORDS_SUCCESS,articleLabelSum1);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        XiaoxiaoLabelVo articleLabelSum = this.frontlineTinyArticleMapper.findArticleLabelSum(labelId);
+        if(articleLabelSum != null ){
+            try
+            {
+                this.client.insertArticleLabelSum(labelId, articleLabelSum);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return Result.ok(StatusCode.OK, true,this.MARKED_WORDS_SUCCESS,articleLabelSum);
         }
         return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
     }

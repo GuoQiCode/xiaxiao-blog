@@ -124,4 +124,9 @@ public class FrontlinePageController
     }
 
 
+    @GetMapping(value = "/blogLabel")
+    public String blogLabel(){
+        return "blog-label";
+    }
+
 }

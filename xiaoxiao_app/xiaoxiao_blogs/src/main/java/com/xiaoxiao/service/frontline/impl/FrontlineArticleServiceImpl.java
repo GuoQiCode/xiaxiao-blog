@@ -148,4 +148,10 @@ public class FrontlineArticleServiceImpl implements FrontlineArticleService
     {
         return this.frontlineFeignServiceClient.findArticleBySortSum(sortId);
     }
+
+    @Override
+    public Result findArticleLabelSum(Long labelId)
+    {
+        return this.frontlineFeignServiceClient.findArticleLabelSum(labelId);
+    }
 }

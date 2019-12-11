@@ -10,18 +10,15 @@ $(function () {
  * 获取全部的文章
  */
 function articleSum() {
-    $.ajax("/frontline/article/find_article_sum",{
+    $.ajax("/frontline/article/find_article_sum", {
         dataType: 'JSON',
-        type:'POST',
-        timeout:3000,
-        success:(data)=>{
+        type: 'POST',
+        timeout: 3000,
+        success: (data) => {
             $("#articleSum").text(data.data)
         }
     })
 }
-
-
-
 
 
 /**
@@ -42,18 +39,17 @@ function findAllSorts() {
 }
 
 
-
 /**
  * 查询最新推荐
  */
 function findArticleNewRecommend() {
-    $.ajax("/frontline/article/find_article_new_recommend",{
+    $.ajax("/frontline/article/find_article_new_recommend", {
         dataType: 'JSON',
         type: 'POST',
         timeout: 3000,
-        success:(data)=>{
-           const result = data.data.result
-            result.forEach((item)=>{
+        success: (data) => {
+            const result = data.data.result
+            result.forEach((item) => {
                 $("#recommend").after(`
                      <div class="ui segment">
                         <a href="/blog_details/${item.articleId}" target="_blank" class="m-black m-text-thin">${item.articleTitle}</a>
@@ -68,11 +64,11 @@ function findArticleNewRecommend() {
  * 获取首页博客列表
  */
 function indexArticle(currentPage) {
-    $.ajax("/frontline/article/find_index_article?page="+currentPage,{
+    $.ajax("/frontline/article/find_index_article?page=" + currentPage, {
         dataType: 'JSON',
         type: 'POST',
         timeout: 3000,
-        success:(data)=>{
+        success: (data) => {
             totalRows = data.data.totalRows
             totalPage = data.data.totalPages
             pageSize = data.data.pageSize
@@ -87,83 +83,20 @@ function indexArticle(currentPage) {
  * 查询首页标签文章数据
  */
 function findIndexLabelArticle() {
-    $.ajax("/frontline/label/find_index_label_article",{
+    $.ajax("/frontline/label/find_index_label_article", {
         dataType: 'JSON',
         type: 'POST',
         timeout: 3000,
-        success:(data)=>{
-          data.data.result.forEach((item)=>{
-              $("#labelArticle").append(`
-                         <a href="/blog_type" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
+        success: (data) => {
+            data.data.result.forEach((item) => {
+                $("#labelArticle").append(`
+                         <a href="/blogLabel?labelId=${item.labelId}" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
                             ${item.labelName}
                             <div class="detail">${item.sum}</div>
                          </a>
               `)
-          })
+            })
         }
     })
 }
-
-/**
- *查看文章详情信息
- */
-function get_article_by_id(articleId) {
-    $.ajax("/blog_details",{
-        dataType: 'JSON',
-        type: 'GET',
-        data:{"articleId":articleId},
-        timeout: 3000,
-        success:(data)=>{
-            alert(data)
-        }
-    })
-}
-
-
-/*
-*
- * 拼接首页字符串
-function splice(data) {
-    data.forEach((item)=>{
-        $("#content").append(`
-            <div class="ui padded vertical segment m-padded-tb-large" target = "_blank" onclick="get_article_by_id(${item.articleId})">
-                        <div class="ui mobile reversed stackable grid">
-                            <div class="eleven wide column">
-                                <h3 class="ui header">${item.articleTitle}</h3>
-                                <p class="m-text">${item.articleDesc}</p>
-                                <div class="ui grid">
-                                    <div class="eleven wide column">
-                                        <div class="ui mini horizontal link list">
-                                            <div class="item">
-                                                <img src="${item.userProfilePhoto}" alt=""
-                                                     class="ui avatar image">
-                                                <div class="content"><a href="#" class="header">${item.userNickname}</a></div>
-                                            </div>
-                                            <div class="item">
-                                                <i class="calendar icon"></i> ${item.articleDate}
-                                            </div>
-                                            <div class="item">
-                                                <i class="eye icon"></i> ${item.articleViews}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="right aligned five wide column">
-                                        <a href="/blog_details/${item.articleId}" target="_blank"
-                                           class="ui teal basic label m-padded-tiny m-text-thin">详情查看</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="five wide column">
-                                <a href="/blog_details/${item.articleId}" target="_blank">
-                                    <img style="width: 150px;height: 100px" src="${item.articleBkFirstImg}" alt="" class="ui rounded image">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-    `)
-    })
-}
-*/
-
 

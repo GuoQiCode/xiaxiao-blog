@@ -1,6 +1,7 @@
 package com.xiaoxiao.service;
 
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
+import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import com.xiaoxiao.utils.PageResult;
 
@@ -105,4 +106,26 @@ public interface RedisArticleService
      * @param sortId
      */
     void deleteArticleSortSum(Long sortId);
+
+
+    /**
+     * 删除
+     * @param labelId
+     */
+    void deleteArticleLabelSum(Long labelId);
+
+    /**获取
+     *
+     * @return
+     * @param labelId
+     */
+    XiaoxiaoLabelVo getArticleLabelSum(Long labelId);
+
+
+    /**
+     * 插入
+     * @param labelId
+     * @param labelVo
+     */
+    void insertArticleLabelSum(Long labelId, XiaoxiaoLabelVo labelVo);
 }

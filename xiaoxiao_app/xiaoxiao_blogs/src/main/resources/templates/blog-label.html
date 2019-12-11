@@ -2,12 +2,12 @@
 <html lang="en">
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="_fragments :: head(~{::title})">
-    <title>我的博文</title>
+    <title>标签</title>
 </head>
 <body>
 <body>
 
-
+<script th:src="@{/js/blog-label.js}"></script>
 <!--导航-->
 <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace="_fragments :: nav">
 </nav>
@@ -19,7 +19,7 @@
       <div class="ui top attached segment">
         <div class="ui middle aligned two column grid">
           <div class="column">
-            <h3 class="ui teal header">关于JAVA类文章</h3>
+              <h3 class="ui teal header">关于<span id="labelName"></span>标签文章</h3>
           </div>
           <div class="right aligned column">
               <!--含有标签数据-->
@@ -43,7 +43,8 @@
             <div th:include="admin/_page.html"></div>
             <script type="text/javascript">
                 function currentPage(currentPage){
-
+                    labelId = UrlParam.paramValues("labelId")
+                    find_article_by_label(labelId[0],currentPage)
                 }
                 $("#pager").zPager({
                     totalData: totalRows,

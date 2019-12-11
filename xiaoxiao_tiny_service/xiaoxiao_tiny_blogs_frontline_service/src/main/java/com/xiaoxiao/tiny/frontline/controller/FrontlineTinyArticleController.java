@@ -5,6 +5,7 @@ import com.xiaoxiao.utils.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -119,5 +120,19 @@ public class FrontlineTinyArticleController
     public Result findArticleBySortSum(@RequestParam(name = "sortId") Long sortId){
         return this.frontlineTinyArticleService.findArticleBySortSum(sortId);
     }
+
+
+    /**
+     *
+     * @param labelId
+     * @return
+     */
+    @ApiOperation(value = "获取标签文章的个数",
+    response = Result.class,notes = "获取标签文章的个数")
+    @PostMapping(value = "/find_article_label_sum")
+    public Result findArticleLabelSum(@RequestParam(name = "labelId") Long labelId){
+        return this.frontlineTinyArticleService.findArticleLabelSum(labelId);
+    }
+
 
 }

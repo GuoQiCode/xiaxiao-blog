@@ -1,6 +1,7 @@
 package com.xiaoxiao.service.backend.impl;
 
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
+import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import com.xiaoxiao.service.RedisArticleService;
 import com.xiaoxiao.utils.PageResult;
@@ -77,6 +78,9 @@ public class RedisArticleServiceImpl implements RedisArticleService
 
     @Value("${SORT_ARTICLE_SUM}")
     private String SORT_ARTICLE_SUM;
+
+    @Value("${ARTICLE_LABEL_SUM}")
+    private String ARTICLE_LABEL_SUM;
 
 
     @Autowired
@@ -322,5 +326,31 @@ public class RedisArticleServiceImpl implements RedisArticleService
     public void deleteArticleSortSum(Long sortId)
     {
         this.redisTemplate.delete(this.SORT_ARTICLE_SUM+sortId);
+    }
+
+
+
+
+
+
+
+
+    @Override
+    public void deleteArticleLabelSum(Long labelId)
+    {
+        this.redisTemplate
+                .delete(this.ARTICLE_LABEL_SUM+labelId);
+    }
+
+    @Override
+    public XiaoxiaoLabelVo getArticleLabelSum(Long labelId)
+    {
+        return (XiaoxiaoLabelVo) this.redisTemplate.opsForValue().get(this.ARTICLE_LABEL_SUM+labelId);
+    }
+
+    @Override
+    public void insertArticleLabelSum(Long labelId, XiaoxiaoLabelVo labelVo)
+    {
+        this.redisTemplate.opsForValue().set(ARTICLE_LABEL_SUM+labelId, labelVo,6,TimeUnit.HOURS);
     }
 }

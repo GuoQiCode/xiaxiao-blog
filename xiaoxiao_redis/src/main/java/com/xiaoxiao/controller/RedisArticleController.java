@@ -2,6 +2,7 @@ package com.xiaoxiao.controller;
 
 import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
+import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import com.xiaoxiao.service.RedisArticleService;
 import com.xiaoxiao.utils.PageResult;
@@ -241,5 +242,24 @@ public class RedisArticleController
         this.redisArticleService.deleteArticleSortSum(sortId);
     }
 
+
+    @ApiOperation(value = "缓存标签文章的个数",notes = "缓存标签文章的个数")
+    @PostMapping(value = "/insertArticleLabelSum")
+    public void insertArticleLabelSum(@RequestParam(name = "labelId") Long labelId, @RequestBody XiaoxiaoLabelVo labelVo){
+        this.redisArticleService.insertArticleLabelSum(labelId,labelVo);
+    }
+
+
+    @ApiOperation(value = "获取文章标签个数",response = XiaoxiaoLabelVo.class,notes = "获取文章标签个数")
+    @PostMapping(value = "/getArticleLabelSum")
+    public XiaoxiaoLabelVo getArticleLabelSum(@RequestParam(name = "labelId") Long labelId){
+        return this.redisArticleService.getArticleLabelSum(labelId);
+    }
+
+    @ApiOperation(value = "删除文章标签数据",notes = "删除文章标签数据")
+    @PostMapping(value = "/deleteArticleLabelSum")
+    public void deleteArticleLabelSum(@RequestParam(name = "labelId") Long labelId){
+        this.redisArticleService.deleteArticleLabelSum(labelId);
+    }
 
 }

@@ -120,4 +120,14 @@ public class FrontlineArticleController {
         return this.frontlineArticleService.findArticleBySortSum(sortId);
     }
 
+
+    /**
+     * 获取标签文章的个数
+     * @return
+     */
+    @PostMapping(value = "/find_article_label_sum")
+    public Result findArticleLabelSum(@RequestParam(name = "labelId") Long labelId){
+        return this.frontlineArticleService.findArticleLabelSum(labelId);
+    }
+
 }

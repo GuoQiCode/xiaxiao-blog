@@ -55,4 +55,11 @@ public interface FrontlineArticleService
     Result findArticleByLabelId(Long labelId, Integer page, Integer rows);
 
     Result findArticleBySortSum(Long sortId);
+
+    /**
+     * 获取标签文章的个数
+     * @param labelId
+     * @return
+     */
+    Result findArticleLabelSum(Long labelId);
 }

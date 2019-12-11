@@ -2,6 +2,7 @@ package com.xiaoxiao.tiny.frontline.mapper;
 
 import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
+import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -123,5 +124,15 @@ public interface FrontlineTinyArticleMapper
      */
     @Select("select b.sort_name,count(b.sort_id) sum from xiaoxiao_articles as a,xiaoxiao_sorts as b where a.article_bk_sorts_id = b.sort_id group by b.sort_id having b.sort_id = #{sortId}")
     XiaoxiaoSortsVo findArticleBySortSum(@Param("sortId") Long sortId);
+
+
+    /**
+     * 获取标签文章个数
+     * @param labelId
+     * @return
+     */
+    @Select("select b.label_name,count(b.label_id) sum from xiaoxiao_set_artitle_label as a,xiaoxiao_labels as b where a.label_id = b.label_id group by b.label_id having b.label_id = #{labelId}")
+    XiaoxiaoLabelVo findArticleLabelSum(@Param("labelId") Long labelId);
+
 
 }
