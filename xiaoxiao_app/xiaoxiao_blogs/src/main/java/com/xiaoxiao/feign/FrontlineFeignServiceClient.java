@@ -1,8 +1,10 @@
 package com.xiaoxiao.feign;
 
+import com.xiaoxiao.pojo.XiaoxiaoComments;
 import com.xiaoxiao.utils.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -218,4 +220,21 @@ public interface FrontlineFeignServiceClient
     @PostMapping(value = "/frontline/tiny/article/find_article_label_sum")
     Result findArticleLabelSum(@RequestParam(name = "labelId") Long labelId);
 
+
+    /**
+     *
+     *
+     * 评论
+     *
+     */
+
+
+
+    /**
+     * 保存文章的评论
+     * @param comments
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/comments/saveComments")
+    Result saveComments(@RequestBody XiaoxiaoComments comments);
 }

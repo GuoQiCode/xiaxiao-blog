@@ -129,4 +129,14 @@ public class FrontlinePageController
         return "blog-label";
     }
 
+    @GetMapping(value = "/technique_sharing")
+    public String techniqueSharing(){
+        return "techniqueSharing";
+    }
+
+    @GetMapping(value = "/my_photo")
+    public String myPhoto(){
+        return "my-photo";
+    }
+
 }

@@ -4,16 +4,16 @@ package com.xiaoxiao.pojo;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 public class XiaoxiaoComments  implements Serializable
 {
-
-  private long commentId;
-  private long userId;
-  private long articleId;
-  private long commentLikeCount;
-  private java.sql.Timestamp commentDate;
+  private Long commentId;
+  private Long userId;
+  private Long articleId;
+  private Long commentLikeCount;
+  private Date commentDate;
   private String commentContent;
-  private long parentCommentId;
+  private Long parentCommentId;
 }
