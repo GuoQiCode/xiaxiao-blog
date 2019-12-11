@@ -6,7 +6,7 @@ spring:
   datasource:
     username: root
     password: 159302
-    url: jdbc:mysql://localhost:3306/xiaoxiao_borker?characterEncoding=UTF-8
+    url: jdbc:mysql://dk-xiaoxiao.com:9178/xiaoxiao_borker?characterEncoding=UTF-8
     sql-script-encoding: UTF-8
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
@@ -27,7 +27,7 @@ logging:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:9999/eureka/
+      defaultZone: http://dk-xiaoxiao.com:9999/eureka/
 
 ribbon:
   ConnectTimeout: 30000

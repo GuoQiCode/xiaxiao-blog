@@ -6,7 +6,7 @@ spring:
     #配置 redis
   redis:
    database: 1
-   host: 192.168.92.145
+   host: dk-xiaoxiao.com
    port: 6379
    jedis:
      pool:
@@ -20,7 +20,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:9999/eureka/
+      defaultZone: http://dk-xiaoxiao.com:9999/eureka/
 #配置超时时间
 ribbon:
   ConnectTimeout: 30000

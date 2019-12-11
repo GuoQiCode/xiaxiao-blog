@@ -122,8 +122,8 @@ public class FrontlineArticleController
      * @return
      */
     @PostMapping(value = "/find_article_archive")
-    public Result findArticleArchive(){
+    public Result findArticleArchive()
+    {
         return this.frontlineArticleService.findArticleArchive();
     }
-
 }
