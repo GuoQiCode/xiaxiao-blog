@@ -103,5 +103,21 @@ public class FrontlineTinyArticleController
     }
 
 
+    @ApiOperation(value = "根据标签查询文章",response = Result.class,notes = "根据标签查询文章")
+    @PostMapping(value = "/find_article_by_label_id")
+    public Result findArticleByLabelId(@RequestParam(name = "labelId") Long labelId,
+                                       @RequestParam(name = "page",defaultValue = "1") Integer page,
+                                       @RequestParam(name = "rows",defaultValue = "10") Integer rows)
+    {
+        return this.frontlineTinyArticleService.findArticleByLabelId(labelId,page,rows);
+    }
+
+
+
+    @ApiOperation(value = "获取分类文章的个数")
+    @PostMapping(value = "/find_article_by_sort_sum")
+    public Result findArticleBySortSum(@RequestParam(name = "sortId") Long sortId){
+        return this.frontlineTinyArticleService.findArticleBySortSum(sortId);
+    }
 
 }

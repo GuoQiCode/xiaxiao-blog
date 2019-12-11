@@ -102,7 +102,23 @@ public class UserServiceImpl implements UserService
                 if(users.getUserHobby() != null && users.getUserHobby() != ""){
                     this.insertUserHobby(users.getUserId(),users.getUserHobby().split(","));
                 }
-                this.client.updateUserToRedis(users);
+
+                try
+                {
+                    /**
+                     * 修改我的个人信息
+                     */
+                    this.client.updateUserToRedis(users);
+
+                    /**
+                     * 删除展示我的信息的缓存
+                     */
+                    this.client.deleteShowMe();
+                } catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
                 return Result.ok(StatusCode.OK, this.MARKED_WORDS_SUCCESS);
             }
         } catch (Exception e)
@@ -121,7 +137,13 @@ public class UserServiceImpl implements UserService
          *
          * 删除原先的爱好
          */
-        this.userHobbyMapper.delete(userId);
+        try
+        {
+            this.userHobbyMapper.delete(userId);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
         /**
          * 插入最新的爱好

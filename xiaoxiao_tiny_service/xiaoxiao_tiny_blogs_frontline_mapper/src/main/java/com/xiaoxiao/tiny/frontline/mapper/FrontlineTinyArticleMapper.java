@@ -2,6 +2,7 @@ package com.xiaoxiao.tiny.frontline.mapper;
 
 import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
+import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -105,4 +106,22 @@ public interface FrontlineTinyArticleMapper
      */
     @Select("select  b.article_id,b.article_title,date_format(b.article_date,'%m-%d') as year,b.article_type  from xiaoxiao_articles as b where date_format(b.article_date,'%Y') = #{year}")
     List<XiaoxiaoArticleVo> findArticleOfYear(@Param("year") String year);
+
+    /**
+     * 查询标签文章
+     * @param labelId
+     * @return
+     */
+    @Select("select a.*,c.user_nickname,c.user_profile_photo from xiaoxiao_articles as a,xiaoxiao_set_artitle_label as b,xiaoxiao_users as c where a.article_id = b.article_id and c.user_id = a.user_id and b.label_id = #{labelId}")
+    List<XiaoxiaoArticleVo> findArticleByLabelId(@Param("labelId") Long labelId);
+
+
+    /**
+     * 获取分类文章的个数
+     * @param sortId
+     * @return
+     */
+    @Select("select b.sort_name,count(b.sort_id) sum from xiaoxiao_articles as a,xiaoxiao_sorts as b where a.article_bk_sorts_id = b.sort_id group by b.sort_id having b.sort_id = #{sortId}")
+    XiaoxiaoSortsVo findArticleBySortSum(@Param("sortId") Long sortId);
+
 }

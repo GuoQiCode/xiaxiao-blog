@@ -2,12 +2,12 @@
 <html lang="en">
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="_fragments :: head(~{::title})">
-    <title>标签</title>
+    <title>分类博文</title>
 </head>
 <body>
 <body>
-<script th:src="@{/js/tags.js}"></script>
 
+<script th:src="@{/js/blog-type.js}"></script>
 
 <!--导航-->
 <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace="_fragments :: nav">
@@ -20,18 +20,13 @@
       <div class="ui top attached segment">
         <div class="ui middle aligned two column grid">
           <div class="column">
-            <h3 class="ui teal header">标签</h3>
+              <h3 class="ui teal header">关于<span id="sortName"></span>类文章</h3>
           </div>
           <div class="right aligned column">
               <!--含有标签数据-->
-            共 <h2 class="ui orange header m-inline-block m-text-thin" id="sum"></h2> 个
+            共 <h2 class="ui orange header m-inline-block m-text-thin" id="sum">12</h2> 篇
           </div>
         </div>
-      </div>
-
-        <!--标签-->
-      <div class="ui attached segment m-padded-tb-large" id="label">
-
       </div>
 
         <!--博客内容-->
@@ -41,17 +36,12 @@
 
 
       </div>
-
-
         <div class="ui bottom attached segment">
             <div th:include="admin/_page.html"></div>
             <script type="text/javascript">
                 function currentPage(currentPage){
-                    if(labelId != null){
-                        find_article_by_label(labelId,currentPage)
-                    }else {
-                        find_all_article(currentPage)
-                    }
+                    sortId =  UrlParam.paramValues("sortId");
+                    find_article_by_sort(sortId[0],currentPage)
                 }
                 $("#pager").zPager({
                     totalData: totalRows,

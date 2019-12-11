@@ -5,6 +5,7 @@ import com.xiaoxiao.service.RedisUserService;
 import com.xiaoxiao.utils.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -91,6 +92,12 @@ public class RedisUserController
     @PostMapping(value = "/insert_show_me_to_redis")
     public void insertShowMeToRedis(@RequestBody XiaoxiaoUsers users){
         this.redisUserService.insertShowMeToRedis(users);
+    }
+
+    @ApiOperation(value = "删除缓存中展示我的信息",notes = "删除缓存中展示我的信息")
+    @PostMapping(value = "/delete_show_Me")
+    public void deleteShowMe(){
+        this.redisUserService.deleteShowMe();
     }
 
     @ApiOperation(value = "获取缓存首页关于我的信息",notes = "获取缓存首页关于我的信息")

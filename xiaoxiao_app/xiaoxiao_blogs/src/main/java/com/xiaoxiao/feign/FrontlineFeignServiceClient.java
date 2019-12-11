@@ -186,4 +186,27 @@ public interface FrontlineFeignServiceClient
      */
     @PostMapping(value = "/frontline/tiny/label/find_article_label_name")
     Result findArticleLabelName(@RequestParam("articleId") Long articleId);
+
+
+    /**
+     * 获取标签文章
+     * @param labelId
+     * @param page
+     * @param rows
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/article/find_article_by_label_id")
+    Result findArticleByLabelId(@RequestParam(value = "labelId") Long labelId,
+                                @RequestParam(name = "page",defaultValue = "1")Integer page,
+                                @RequestParam(name = "rows",defaultValue = "10")Integer rows);
+
+
+    /**
+     * 获取分类文章的个数
+     * @param sortId
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/article/find_article_by_sort_sum")
+    Result findArticleBySortSum(@RequestParam("sortId") Long sortId);
+
 }

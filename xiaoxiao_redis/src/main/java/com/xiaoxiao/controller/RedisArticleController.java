@@ -2,6 +2,7 @@ package com.xiaoxiao.controller;
 
 import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
+import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import com.xiaoxiao.service.RedisArticleService;
 import com.xiaoxiao.utils.PageResult;
 import com.xiaoxiao.utils.Result;
@@ -12,6 +13,7 @@ import jdk.nashorn.internal.objects.annotations.Optimistic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.awt.*;
 import java.util.List;
 import java.util.Map;
@@ -194,5 +196,50 @@ public class RedisArticleController
     public void deleteArticleArchive(){
         this.redisArticleService.deleteArticleArchive();
     }
+
+
+
+    @ApiOperation(value = "缓存标签文章数据",notes = "缓存标签文章数据")
+    @PostMapping(value = "/insert_article_by_label_id")
+    public void insertArticleByLabelId(@RequestBody PageResult result,@RequestParam(name = "labelId") Long labelId){
+        this.redisArticleService.insertArticleByLabelId(result,labelId);
+    }
+
+
+    @ApiOperation(value = "获取根据标签缓存的文章",response = PageResult.class,notes = "获取根据标签缓存的文章")
+    @PostMapping(value = "/get_article_by_label_id")
+    public PageResult getArticleByLabelId(@RequestParam(name = "labelId") Long labelId){
+        return this.redisArticleService.getArticleByLabelId(labelId);
+    }
+
+
+    @ApiOperation(value = "删除缓存标签文章",notes = "删除缓存标签文章")
+    @PostMapping(value = "/delete_article_by_label_id")
+    public void deleteArticleByLabelId(@RequestParam(name = "labelId") Long labelId){
+        this.redisArticleService.deleteArticleByLabelId(labelId);
+    }
+
+
+
+    @ApiOperation(value = "缓存指定分类文章个数")
+    @PostMapping(value = "/insertArticleSortSum")
+    public void insertArticleSortSum(@RequestParam(name = "sortId") Long sortId,
+                                     @RequestBody XiaoxiaoSortsVo sortsVo){
+        this.redisArticleService.insertArticleSortSum(sortId,sortsVo);
+    }
+
+
+    @ApiOperation(value = "获取指定分类文章的个数",response = XiaoxiaoSortsVo.class,notes = "获取指定分类文章的个数")
+    @PostMapping(value = "/getArticleSortSum")
+    public XiaoxiaoSortsVo getArticleSortSum(@RequestParam(name = "sortId") Long sortId){
+        return this.redisArticleService.getArticleSortSum(sortId);
+    }
+
+    @ApiOperation(value = "删除的指定分类文章的个数",notes = "删除的指定分类文章的个数")
+    @PostMapping(value = "/deleteArticleSortSum")
+    public void deleteArticleSortSum(@RequestParam(name = "sortId") Long sortId){
+        this.redisArticleService.deleteArticleSortSum(sortId);
+    }
+
 
 }

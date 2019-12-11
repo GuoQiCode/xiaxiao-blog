@@ -1,7 +1,7 @@
 package com.xiaoxiao.service;
 
-import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
+import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import com.xiaoxiao.utils.PageResult;
 
 import java.util.List;
@@ -79,5 +79,30 @@ public interface RedisArticleService
 
     void deleteArticleArchive();
 
+    void insertArticleByLabelId(PageResult result, Long labelId);
 
+    void deleteArticleByLabelId(Long labelId);
+
+    PageResult getArticleByLabelId(Long labelId);
+
+    /**
+     * 缓存指定分类文章个数
+     * @param sortId 分类ID
+     * @param sortsVo
+     */
+    void insertArticleSortSum(Long sortId, XiaoxiaoSortsVo sortsVo);
+
+    /**
+     * 获取指定分类文章的个数
+      * @param sortId
+     * @return
+     */
+    XiaoxiaoSortsVo getArticleSortSum(Long sortId);
+
+
+    /**
+     * 删除的指定分类文章的个数
+     * @param sortId
+     */
+    void deleteArticleSortSum(Long sortId);
 }

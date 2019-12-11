@@ -1,7 +1,7 @@
 package com.xiaoxiao.service.backend.impl;
 
-import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
+import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import com.xiaoxiao.service.RedisArticleService;
 import com.xiaoxiao.utils.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.awt.font.TextHitInfo;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -76,6 +75,8 @@ public class RedisArticleServiceImpl implements RedisArticleService
     @Value("${ARCHIVE_BLOG}")
     private String ARCHIVE_BLOG;
 
+    @Value("${SORT_ARTICLE_SUM}")
+    private String SORT_ARTICLE_SUM;
 
 
     @Autowired
@@ -268,5 +269,58 @@ public class RedisArticleServiceImpl implements RedisArticleService
     public void deleteArticleArchive()
     {
         this.redisTemplate.delete(this.ARCHIVE_BLOG);
+    }
+
+
+    /**
+     * 插入
+     * @param result
+     * @param labelId
+     */
+    @Override
+    public void insertArticleByLabelId(PageResult result, Long labelId)
+    {
+        this.redisTemplate.opsForValue().set(String.valueOf(labelId), result,1,TimeUnit.DAYS);
+    }
+
+    /**
+     * 删除
+     * @param labelId
+     */
+    @Override
+    public void deleteArticleByLabelId(Long labelId)
+    {
+        this.redisTemplate.delete(String.valueOf(labelId));
+    }
+
+    /**
+     *获取
+     * @param labelId
+     * @return
+     */
+    @Override
+    public PageResult getArticleByLabelId(Long labelId)
+    {
+        return (PageResult) this.redisTemplate.opsForValue().get(String.valueOf(labelId));
+    }
+
+    @Override
+    public void insertArticleSortSum(Long sortId, XiaoxiaoSortsVo sortsVo)
+    {
+        this.redisTemplate.opsForValue().set(SORT_ARTICLE_SUM+sortId,sortsVo,1,TimeUnit.DAYS);
+    }
+
+
+
+    @Override
+    public XiaoxiaoSortsVo getArticleSortSum(Long sortId)
+    {
+        return (XiaoxiaoSortsVo) this.redisTemplate.opsForValue().get(this.SORT_ARTICLE_SUM+sortId);
+    }
+
+    @Override
+    public void deleteArticleSortSum(Long sortId)
+    {
+        this.redisTemplate.delete(this.SORT_ARTICLE_SUM+sortId);
     }
 }

@@ -51,6 +51,10 @@ public class FrontlineUserServiceImpl implements FrontlineUserService
     private FrontlineFeignServiceClient client;
 
 
+    /**
+     * 展示我的个人信息
+     * @return
+     */
     @Override
     public Result showMe()
     {

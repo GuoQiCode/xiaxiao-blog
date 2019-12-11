@@ -114,6 +114,14 @@ public class FrontlinePageController
     }
 
 
+    /**
+     * 根据分类展示文章
+     * @return
+     */
+    @GetMapping(value = "/blog_type")
+    public String blogType(){
+        return "blog-type";
+    }
 
 
 }

@@ -52,4 +52,7 @@ public interface FrontlineArticleService
 
     Result findArticleArchive();
 
+    Result findArticleByLabelId(Long labelId, Integer page, Integer rows);
+
+    Result findArticleBySortSum(Long sortId);
 }

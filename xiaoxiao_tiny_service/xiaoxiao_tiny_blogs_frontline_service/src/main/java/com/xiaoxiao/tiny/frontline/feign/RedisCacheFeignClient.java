@@ -313,6 +313,42 @@ public interface RedisCacheFeignClient
     XiaoxiaoLabelVo getLabelCount();
 
 
+    /**
+     * 插入标签文章数据
+     * @param result
+     * @param labelId
+     */
+    @PostMapping(value = "/redis_article_service/insert_article_by_label_id")
+     void insertArticleByLabelId(@RequestBody PageResult result,@RequestParam(name = "labelId") Long labelId);
+
+
+    /**
+     * 获取标签文章数据
+     * @param labelId
+     * @return
+     */
+    @PostMapping(value = "/redis_article_service/get_article_by_label_id")
+     PageResult getArticleByLabelId(@RequestParam(name = "labelId") Long labelId);
+
+
+    /**
+     *缓存指定分类文章个数
+     * @param sortId
+     * @param sortsVo
+     */
+    @PostMapping(value = "/redis_article_service/insertArticleSortSum")
+     void insertArticleSortSum(@RequestParam(name = "sortId") Long sortId,
+                                     @RequestBody XiaoxiaoSortsVo sortsVo);
+
+
+    /**
+     * 获取指定分类文章的个数
+     * @param sortId
+     * @return
+     */
+    @PostMapping(value = "/redis_article_service/getArticleSortSum")
+    XiaoxiaoSortsVo getArticleSortSum(@RequestParam(name = "sortId") Long sortId);
+
 
 }
 

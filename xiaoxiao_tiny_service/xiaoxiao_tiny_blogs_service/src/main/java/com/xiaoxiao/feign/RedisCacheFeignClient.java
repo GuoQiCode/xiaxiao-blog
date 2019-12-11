@@ -147,4 +147,10 @@ public interface RedisCacheFeignClient
     void deleteIndexArticle();
 
 
+    /**
+     *删除展示我的信息的缓存
+     */
+    @PostMapping(value = "/redis_service/delete_show_Me")
+     void deleteShowMe();
+
 }

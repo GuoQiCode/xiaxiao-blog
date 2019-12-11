@@ -121,7 +121,7 @@ public class RedisUserServiceImpl implements RedisUserService
     @Override
     public void insertShowMeToRedis(XiaoxiaoUsers users)
     {
-        this.redisTemplate.opsForValue().set(this.SHOW_ME, users);
+        this.redisTemplate.opsForValue().set(this.SHOW_ME, users,7,TimeUnit.DAYS);
     }
 
 
@@ -133,5 +133,15 @@ public class RedisUserServiceImpl implements RedisUserService
     public XiaoxiaoUsers getShowMeToRedis()
     {
         return (XiaoxiaoUsers) this.redisTemplate.opsForValue().get(this.SHOW_ME);
+    }
+
+
+    /**
+     *删除展示我的信息
+     */
+    @Override
+    public void deleteShowMe()
+    {
+        this.redisTemplate.delete(this.SHOW_ME);
     }
 }

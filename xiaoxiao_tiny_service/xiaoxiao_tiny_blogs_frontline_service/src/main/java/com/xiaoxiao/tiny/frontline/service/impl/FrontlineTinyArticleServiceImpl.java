@@ -2,8 +2,10 @@ package com.xiaoxiao.tiny.frontline.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sun.org.apache.bcel.internal.generic.LADD;
 import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
+import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import com.xiaoxiao.tiny.frontline.feign.RedisCacheFeignClient;
 import com.xiaoxiao.tiny.frontline.mapper.FrontlineTinyArticleMapper;
 import com.xiaoxiao.tiny.frontline.service.FrontlineTinyArticleService;
@@ -12,6 +14,7 @@ import com.xiaoxiao.utils.MarkdownUtils;
 import com.xiaoxiao.utils.PageResult;
 import com.xiaoxiao.utils.Result;
 import com.xiaoxiao.utils.StatusCode;
+import org.hibernate.validator.internal.constraintvalidators.bv.time.futureorpresent.FutureOrPresentValidatorForLocalTime;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -310,6 +313,75 @@ public class FrontlineTinyArticleServiceImpl implements FrontlineTinyArticleServ
                 e.printStackTrace();
             }
             return Result.ok(StatusCode.OK,true,this.MARKED_WORDS_SUCCESS,map);
+        }
+        return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
+    }
+
+
+    /**
+     *根据标签查询文章
+     * @param labelId
+     * @param page
+     * @param rows
+     * @return
+     */
+    @Override
+    public Result findArticleByLabelId(Long labelId, Integer page, Integer rows)
+    {
+        try
+        {
+            PageResult result = this.client.getArticleByLabelId(labelId);
+            if(result != null && result.getResult().size() > 0){
+                return Result.ok(StatusCode.OK, true,this.MARKED_WORDS_SUCCESS,result);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        PageHelper.startPage(page, rows);
+        List<XiaoxiaoArticleVo> articleByLabelId = this.frontlineTinyArticleMapper.findArticleByLabelId(labelId);
+        PageResult result = PageUtils.getResult(new PageInfo<XiaoxiaoArticleVo>(articleByLabelId), page);
+        if(result != null && result.getResult().size() > 0){
+            try
+            {
+                this.client.insertArticleByLabelId(result, labelId);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            return Result.ok(StatusCode.OK, true,this.MARKED_WORDS_SUCCESS,result);
+        }
+        return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
+    }
+
+
+
+
+
+    @Override
+    public Result findArticleBySortSum(Long sortId)
+    {
+        try
+        {
+            XiaoxiaoSortsVo articleSortSum = this.client.getArticleSortSum(sortId);
+            if(articleSortSum != null){
+                return Result.ok(StatusCode.OK, true,this.MARKED_WORDS_SUCCESS,articleSortSum);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        XiaoxiaoSortsVo articleBySortSum = this.frontlineTinyArticleMapper.findArticleBySortSum(sortId);
+        if(articleBySortSum != null){
+            try
+            {
+                this.client.insertArticleSortSum(sortId, articleBySortSum);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return Result.ok(StatusCode.OK,true,this.MARKED_WORDS_SUCCESS,articleBySortSum);
         }
         return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
     }

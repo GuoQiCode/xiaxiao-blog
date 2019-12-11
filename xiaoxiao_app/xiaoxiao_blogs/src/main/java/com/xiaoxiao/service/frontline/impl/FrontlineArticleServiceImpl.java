@@ -122,4 +122,30 @@ public class FrontlineArticleServiceImpl implements FrontlineArticleService
     {
         return this.frontlineFeignServiceClient.findArticleOfYear();
     }
+
+
+    /**
+     *
+     * @param labelId
+     * @param page
+     * @param rows
+     * @return
+     */
+    @Override
+    public Result findArticleByLabelId(Long labelId, Integer page, Integer rows)
+    {
+        return this.frontlineFeignServiceClient.findArticleByLabelId(labelId,page,rows);
+    }
+
+
+    /**
+     *
+     * @param sortId
+     * @return
+     */
+    @Override
+    public Result findArticleBySortSum(Long sortId)
+    {
+        return this.frontlineFeignServiceClient.findArticleBySortSum(sortId);
+    }
 }

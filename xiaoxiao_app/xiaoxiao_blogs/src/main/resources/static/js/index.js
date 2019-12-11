@@ -35,8 +35,7 @@ function findAllSorts() {
         success: (data) => {
             const result = data.data
             result.forEach((item) => {
-                const {sortName} = item;
-                $("#sort").append(`<a href= '' class='item'>${sortName}<div class='ui teal basic left pointing label'>${item.sum}</div></a>`)
+                $("#sort").append(`<a href= '/blog_type?sortId=${item.sortId}' class='item'>${item.sortName}<div class='ui teal basic left pointing label'>${item.sum}</div></a>`)
             })
         }
     })
@@ -78,7 +77,7 @@ function indexArticle(currentPage) {
             totalPage = data.data.totalPages
             pageSize = data.data.pageSize
             $("#content").html("")
-            splice(data.data.result)
+            splice(data.data)
         }
     })
 }
@@ -95,7 +94,7 @@ function findIndexLabelArticle() {
         success:(data)=>{
           data.data.result.forEach((item)=>{
               $("#labelArticle").append(`
-                         <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
+                         <a href="/blog_type" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
                             ${item.labelName}
                             <div class="detail">${item.sum}</div>
                          </a>
@@ -121,9 +120,9 @@ function get_article_by_id(articleId) {
 }
 
 
-/**
+/*
+*
  * 拼接首页字符串
- */
 function splice(data) {
     data.forEach((item)=>{
         $("#content").append(`
@@ -165,5 +164,6 @@ function splice(data) {
     `)
     })
 }
+*/
 
 

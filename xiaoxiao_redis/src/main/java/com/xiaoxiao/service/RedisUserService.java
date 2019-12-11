@@ -52,5 +52,6 @@ public interface RedisUserService
 
     XiaoxiaoUsers getShowMeToRedis();
 
+    void deleteShowMe();
 
 }

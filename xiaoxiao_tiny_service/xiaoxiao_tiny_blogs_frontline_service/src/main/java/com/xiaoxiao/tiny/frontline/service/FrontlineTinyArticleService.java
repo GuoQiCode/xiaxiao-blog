@@ -52,4 +52,8 @@ public interface FrontlineTinyArticleService
 
     Result findArticleOfYear();
 
+    Result findArticleByLabelId(Long labelId, Integer page, Integer rows);
+
+    Result findArticleBySortSum(Long sortId);
+
 }

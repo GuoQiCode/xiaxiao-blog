@@ -69,14 +69,28 @@ public class UserSSOServiceImpl implements UserSSOService
         /**
          * 先去redis中获取用户用户的信息
          */
-        Object userToRedis = this.redisFeignServiceClient.getUserToRedis(token);
+        Object userToRedis = null;
+        try
+        {
+            userToRedis = this.redisFeignServiceClient.getUserToRedis(token);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         if(userToRedis != null){
             return Result.ok(StatusCode.OK,token,userToRedis);
         }
         /**
          * redis中没有去请求登录服务
          */
-        Result login = this.userFeignServiceClient.login(userName, password);
+        Result login = null;
+        try
+        {
+            login = this.userFeignServiceClient.login(userName, password);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         if(login.getData() != null){
             String token1 = UUID.randomUUID().toString();
             /**
@@ -96,7 +110,13 @@ public class UserSSOServiceImpl implements UserSSOService
     @Override
     public void loginOut(String token)
     {
-        this.redisFeignServiceClient.loginOut(token);
+        try
+        {
+            this.redisFeignServiceClient.loginOut(token);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
 
@@ -108,7 +128,14 @@ public class UserSSOServiceImpl implements UserSSOService
     @Override
     public Result showMe(String token)
     {
-        Object userToRedis = this.redisFeignServiceClient.getUserToRedis(token);
+        Object userToRedis = null;
+        try
+        {
+            userToRedis = this.redisFeignServiceClient.getUserToRedis(token);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         if(userToRedis != null){
             return Result.ok(StatusCode.OK, userToRedis);
         }

@@ -31,17 +31,17 @@ function find_index_article() {
     })
 }
 
-/**
+/*
+*
  * 拼接首页字符串
- */
 function splice(data) {
-    /**
+    /!**
      * 最大条数
-     */
+     *!/
     $("#articleSum").text(data.totalRows)
-    /**
+    /!**
      * 置空中间内容
-     */
+     *!/
     $("#content").html("")
     data.result.forEach((item)=>{
         $("#content").append(`
@@ -83,6 +83,7 @@ function splice(data) {
     `)
     })
 }
+*/
 
 
 
