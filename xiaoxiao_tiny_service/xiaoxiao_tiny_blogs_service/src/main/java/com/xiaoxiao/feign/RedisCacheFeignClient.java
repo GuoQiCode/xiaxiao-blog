@@ -4,6 +4,7 @@ import com.xiaoxiao.pojo.XiaoxiaoAdminMessage;
 import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.XiaoxiaoMenu;
 import com.xiaoxiao.pojo.XiaoxiaoUsers;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -137,4 +138,13 @@ public interface RedisCacheFeignClient
      */
     @PostMapping(value = "/redis_service/update_user_to_redis")
     void updateUserToRedis(XiaoxiaoUsers users);
+
+
+    /**
+     * 删除文章缓存
+     */
+    @PostMapping(value = "/redis_article_service/delete_index_article")
+    void deleteIndexArticle();
+
+
 }

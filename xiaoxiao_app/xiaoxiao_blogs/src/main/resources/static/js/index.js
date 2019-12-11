@@ -157,7 +157,7 @@ function splice(data) {
 
                             <div class="five wide column">
                                 <a href="/blog_details/${item.articleId}" target="_blank">
-                                    <img src="${item.userProfilePhoto}" alt="" class="ui rounded image">
+                                    <img style="width: 150px;height: 100px" src="${item.articleBkFirstImg}" alt="" class="ui rounded image">
                                 </a>
                             </div>
                         </div>

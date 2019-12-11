@@ -199,6 +199,17 @@ public class TinyArticleServiceImpl implements TinyArticleService
     {
         if (this.artcleMapper.update(xiaoxiaoArticles) > 0)
         {
+            try
+            {
+                /**
+                 * 删除redis缓存的数据的文章的数据
+                 */
+                this.client.deleteIndexArticle();
+
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             return Result.ok(StatusCode.OK, this.MARKED_WORDS_SUCCESS);
         }
         return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
