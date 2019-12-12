@@ -1,10 +1,11 @@
-package com.xiaoxiao.service.frontline.impl;
+package com.xiaoxiao.service.backend.impl;
 
-import com.xiaoxiao.feign.FrontlineFeignServiceClient;
-import com.xiaoxiao.pojo.XiaoxiaoComments;
-import com.xiaoxiao.service.frontline.FrontlineCommentsService;
-import com.xiaoxiao.utils.Result;
+import com.xiaoxiao.service.RedisCommentsService;
+import com.xiaoxiao.utils.PageResult;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -39,28 +40,35 @@ import org.springframework.stereotype.Service;
  * 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
- * @date:2019/12/11:23:06
+ * @date:2019/12/12:16:41
  * @author:shinelon
  * @Describe:
  */
 @Service
-public class FrontlineCommentsServiceImpl implements FrontlineCommentsService
+public class RedisCommentsServiceImpl implements RedisCommentsService
 {
 
     @Autowired
-    private FrontlineFeignServiceClient client;
+    private RedisTemplate<String,Object> redisTemplate;
+
+    @Value("${COMMENT_ARTICLE}")
+    private String COMMENT_ARTICLE;
 
     @Override
-    public Result saveComments(XiaoxiaoComments comments)
+    public void insertCommentArticle(Long articleId, PageResult result)
     {
-        return this.client.saveComments(comments);
+        this.redisTemplate.opsForValue().set(this.COMMENT_ARTICLE+articleId, result);
     }
 
-
+    @Override
+    public PageResult getCommentArticle(Long articleId)
+    {
+        return (PageResult) this.redisTemplate.opsForValue().get(this.COMMENT_ARTICLE+articleId);
+    }
 
     @Override
-    public Result findComments(Long articleId, Integer page, Integer rows)
+    public void deleteCommentArticle(Long articleId)
     {
-        return this.client.findComments(articleId,page,rows);
+        this.redisTemplate.delete(this.COMMENT_ARTICLE+articleId);
     }
 }

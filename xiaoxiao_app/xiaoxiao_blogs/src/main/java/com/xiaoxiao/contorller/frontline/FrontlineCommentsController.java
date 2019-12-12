@@ -60,4 +60,19 @@ public class FrontlineCommentsController
     public Result saveComments(XiaoxiaoComments comments){
         return  this.frontlineCommentsService.saveComments(comments);
     }
+
+
+    /**
+     * 获取的文章的评论信息
+     * @param articleId
+     * @return
+     */
+    @PostMapping(value = "/findComments")
+    public Result findComments(@RequestParam(name = "articleId") Long articleId,
+                               @RequestParam(name = "page", defaultValue = "1") Integer page,
+                               @RequestParam(name = "rows", defaultValue = "10") Integer rows
+                               ){
+        return this.frontlineCommentsService.findComments(articleId,page,rows);
+    }
+
 }

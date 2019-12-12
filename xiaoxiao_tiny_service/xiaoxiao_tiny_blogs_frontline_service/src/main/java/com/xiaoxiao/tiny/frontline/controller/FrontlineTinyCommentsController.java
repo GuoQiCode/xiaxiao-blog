@@ -4,11 +4,9 @@ import com.xiaoxiao.pojo.XiaoxiaoComments;
 import com.xiaoxiao.tiny.frontline.service.FrontlineTinyCommentsService;
 import com.xiaoxiao.utils.Result;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -63,6 +61,16 @@ public class FrontlineTinyCommentsController
     public Result saveComments(@RequestBody XiaoxiaoComments comments) throws Exception
     {
         return this.frontlineTinyCommentsService.saveComments(comments);
+    }
+
+
+    @ApiOperation(value = "获取文章评论信息",response = Result.class,notes = "获取文章评论信息")
+    @PostMapping(value = "/findComments")
+    public Result findComments(@RequestParam(name = "articleId")Long articleId,
+                               @RequestParam(name = "page", defaultValue = "1") Integer page,
+                               @RequestParam(name = "rows", defaultValue = "10") Integer rows)
+    {
+        return this.frontlineTinyCommentsService.findComments(articleId,page,rows);
     }
 
 }

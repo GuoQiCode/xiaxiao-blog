@@ -237,4 +237,17 @@ public interface FrontlineFeignServiceClient
      */
     @PostMapping(value = "/frontline/tiny/comments/saveComments")
     Result saveComments(@RequestBody XiaoxiaoComments comments);
+
+
+    /**
+     * 获取文章的评论信息
+     * @param articleId
+     * @param page
+     * @param rows
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/comments/findComments")
+    Result findComments(@RequestParam(name = "articleId") Long articleId,
+                        @RequestParam(name = "page", defaultValue = "1") Integer page,
+                        @RequestParam(name = "rows", defaultValue = "10") Integer rows);
 }

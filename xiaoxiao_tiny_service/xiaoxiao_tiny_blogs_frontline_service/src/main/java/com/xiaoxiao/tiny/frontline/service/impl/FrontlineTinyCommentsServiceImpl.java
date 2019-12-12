@@ -1,16 +1,24 @@
 package com.xiaoxiao.tiny.frontline.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xiaoxiao.pojo.XiaoxiaoComments;
+import com.xiaoxiao.tiny.frontline.feign.RedisCacheFeignClient;
 import com.xiaoxiao.tiny.frontline.mapper.FrontlineTinyCommentsMapper;
 import com.xiaoxiao.tiny.frontline.service.FrontlineTinyCommentsService;
+import com.xiaoxiao.tiny.frontline.utils.PageUtils;
 import com.xiaoxiao.utils.IDUtils;
+import com.xiaoxiao.utils.PageResult;
 import com.xiaoxiao.utils.Result;
 import com.xiaoxiao.utils.StatusCode;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * _ooOoo_
@@ -63,6 +71,10 @@ public class FrontlineTinyCommentsServiceImpl implements FrontlineTinyCommentsSe
     private FrontlineTinyCommentsMapper frontlineTinyCommentsMapper;
 
 
+    @Autowired
+    private RedisCacheFeignClient client;
+
+
 
     @Override
     public Result saveComments(XiaoxiaoComments comments) throws Exception
@@ -71,8 +83,83 @@ public class FrontlineTinyCommentsServiceImpl implements FrontlineTinyCommentsSe
         comments.setCommentDate(new Date());
         int i = frontlineTinyCommentsMapper.saveComments(comments);
         if(i > 0){
+            try
+            {
+                this.client.deleteCommentArticle(comments.getArticleId());
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             return Result.ok(StatusCode.OK,this.MARKED_WORDS_SUCCESS);
         }
         return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
+    }
+
+
+
+
+
+
+    @Override
+    public Result findComments(Long articleId, Integer page, Integer rows)
+    {
+        try
+        {
+            PageResult commentArticle = this.client.getCommentArticle(articleId);
+            if(commentArticle != null && commentArticle.getResult().size() > 0){
+                return Result.ok(StatusCode.OK, true,this.MARKED_WORDS_SUCCESS,commentArticle);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        PageHelper.startPage(page, rows);
+        List<XiaoxiaoComments> all = this.frontlineTinyCommentsMapper.findAll(articleId);
+        PageResult result = PageUtils.getResult(new PageInfo<>(all), page);
+        List<XiaoxiaoComments> child = getChild(( List<XiaoxiaoComments> )result.getResult());
+        result.setResult(child);
+        if(result.getResult() != null && result.getResult().size() > 0){
+            try
+            {
+                this.client.insertCommentArticle(articleId, result);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+           return Result.ok(StatusCode.OK, result);
+        }
+        return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
+    }
+
+
+    /**
+     * 获取子评论
+     * @param comments  查询的全部评论
+     */
+    public List<XiaoxiaoComments>  getChild(List<XiaoxiaoComments> comments){
+        List<XiaoxiaoComments> result = new ArrayList<>();
+        if(comments == null || comments.size() < 0){
+            return comments;
+        }else {
+
+            for (XiaoxiaoComments c : comments)
+            {
+                if(c.getParentCommentId() == -1){
+                    /**
+                     * 有子节点
+                     */
+                    List<XiaoxiaoComments> childComments = this.frontlineTinyCommentsMapper.findChildComments(c.getCommentId());
+                    c.setList(childComments);
+                    result.add(c);
+                }else {
+                    /**
+                     * 无子节点
+                     */
+                    result.add(c);
+                    continue;
+                }
+            }
+        }
+        return result;
     }
 }

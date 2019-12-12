@@ -45,7 +45,18 @@ public interface FrontlineTinyCommentsService
     /**
      * 保存评论
      * @param comments
+     * @throws Exception 异常信息
      * @return
      */
     Result saveComments(XiaoxiaoComments comments) throws Exception;
+
+
+    /**
+     * 获取评论
+     * @param articleId
+     * @param page
+     * @param rows
+     * @return
+     */
+    Result findComments(Long articleId, Integer page, Integer rows);
 }

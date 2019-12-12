@@ -94,86 +94,36 @@
       </div>
       <div  class="ui bottom attached segment">
         <!--留言区域列表-->
+
         <div id="comment-container" class="ui teal segment">
-            <!--<div th:fragment="commentList">
-                <div class="ui threaded comments" style="max-width: 100%">
-                    <h3 class="ui dividing header">评论</h3>
-                    <div class="comment">
-                        <a class="avatar">
-                            <i class=' spy icon'></i>
-                        </a>
-                        <div class="content">
-                            <a class="author">Matt</a>
-                            <div class="metadata">
-                                <span class="date">Today at 5:42PM</span>
-                            </div>
-                            <div class="text">
-                                How artistic!
-                            </div>
-                            <div class="actions">
-                                <a class="reply" data-commentid="1" data-commentnickname="Matt"  onclick="reply(this)">回复</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <a class="avatar">
-                            <i class='spy icon'></i>
-                        </a>
-                        <div class="content">
-                            <a class="author">Elliot Fu</a>
-                            <div class="metadata">
-                                <span class="date">Yesterday at 12:30AM</span>
-                            </div>
-                            <div class="text">
-                                <p>This has been very useful for my research. Thanks as well!</p>
-                            </div>
-                            <div class="actions">
-                                <a class="reply">回复</a>
-                            </div>
-                        </div>
-                        <div class="comments">
-                            <div class="comment">
-                                <a class="avatar">
-                                    <i class=' spy icon'></i>
-                                </a>
-                                <div class="content">
-                                    <a class="author">Jenny Hess</a>
-                                    <div class="metadata">
-                                        <span class="date">Just now</span>
-                                    </div>
-                                    <div class="text">
-                                        Elliot you are always so right :)
-                                    </div>
-                                    <div class="actions">
-                                        <a class="reply">回复</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <a class="avatar">
-                            <i class=' spy icon'></i>
-                        </a>
-                        <div class="content">
-                            <a class="author">Joe Henderson</a>
-                            <div class="metadata">
-                                <span class="date">5 days ago</span>
-                            </div>
-                            <div class="text">
-                                Dude, this is awesome. Thanks so much
-                            </div>
-                            <div class="actions">
-                                <a class="reply">回复</a>
-                            </div>
-                        </div>
-                    </div>
+            <div th:fragment="commentList">
+                <h3 class="ui dividing header" >评论</h3>
+                <div class="ui threaded comments" id="comments" style="max-width: 100%">
+                    <span>还没有评论哟~小主动动小手~</span>
                 </div>
             </div>
-            </div>-->
+            </div>
+
+          <div class="ui bottom attached segment">
+              <div th:include="admin/_page.html"></div>
+              <script type="text/javascript">
+                  function currentPage(currentPage){
+                      find_comments(currentPage,window.location.href.split("/")[4])
+                  }
+                  $("#pager").zPager({
+                      totalData: totalRows,
+                      pageData: pageSize,
+                      pageCount: totalPage,
+                      htmlBox: $('#wraper'),
+                      btnShow: true,
+                      ajaxSetData: false,
+                  });
+              </script>
+          </div>
+
         <div id="comment-form" class="ui form">
             <input type="hidden" name="articleId" th:value="${article.articleId}">
-            <input type="hidden" name="parentCommentId" value="0">
+            <input type="hidden" name="parentCommentId" value="-1">
           <div class="field">
             <textarea name="content" placeholder="请输入评论信息..."></textarea>
           </div>
@@ -265,7 +215,6 @@
       $('#commentpost-btn').click(function () {
           var boo = $('.ui.form').form('validate form');
           if (boo) {
-              console.log('校验成功');
               postData();
           } else {
               console.log('校验失败');
@@ -285,13 +234,18 @@
                   "articleId" : $("[name='articleId']").val(),
                   "nickname": $("[name='nickname']").val(),
                   "email"   : $("[name='email']").val(),
-                  "commentContent" : $("[name='content']").val()
+                  "commentContent" : $("[name='content']").val(),
+                  "commentsNickname":$("[name='commentsNickname']").val()
               },
               dataType:"json",
               success:(data)=>{
                   if(data.code = 20000){
                       alert(data.message)
                       clearContent()
+                      /**
+                       * 在此获取评论信息
+                       */
+                      find_comments(1,window.location.href.split("/")[4])
                   }else {
                       alert(data.message)
                   }
@@ -300,29 +254,23 @@
           })
       }
 
-   /*   function postData() {
-          $("#comment-container").load("/frontline/comments/save",{
-              "parentCommentId" : $("[name='parentCommentId']").val(),
-              "articleId" : $("[name='articleId']").val(),
-              "nickname": $("[name='nickname']").val(),
-              "email"   : $("[name='email']").val(),
-              "content" : $("[name='content']").val()
-          },function (responseTxt, statusTxt, xhr) {
-                /!*$(window).scrollTo($('#comment-container'),500);*!/
-              clearContent();
-          });
-      }
-      !**
-       * 回复
-       * @param obj
-       *!/
+
+      let realy  = 1
+
       function reply(obj) {
-          var commentId = $(obj).data('commentid');
-          var commentNickname = $(obj).data('commentnickname');
+
+          let commentId = $(obj).data('commentid');
+          let commentNickname = $(obj).data('commentnickname');
           $("[name='content']").attr("placeholder", "@"+commentNickname).focus();
-          $("[name='pparentCommentId']").val(commentId);
-          //$(window).scrollTo($('#comment-form'),500);
-      }*/
+          $("[name='parentCommentId']").val(commentId);
+          if(realy == 1){
+              $("[name = 'parentCommentId']").after(`<input type="hidden" name="commentsNickname" value="${commentNickname}">`)
+              realy++
+          }else{
+              $("[name='commentsNickname']").val(commentNickname);
+          }
+          $(window).scrollTo($('#comment-form'),500);
+      }
 
 
       /**

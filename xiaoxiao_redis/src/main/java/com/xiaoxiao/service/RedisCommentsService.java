@@ -1,7 +1,6 @@
-package com.xiaoxiao.service.frontline;
+package com.xiaoxiao.service;
 
-import com.xiaoxiao.pojo.XiaoxiaoComments;
-import com.xiaoxiao.utils.Result;
+import com.xiaoxiao.utils.PageResult;
 
 /**
  * _ooOoo_
@@ -35,27 +34,33 @@ import com.xiaoxiao.utils.Result;
  * 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
- * @date:2019/12/11:23:05
+ * @date:2019/12/12:16:34
  * @author:shinelon
  * @Describe:
  */
-public interface FrontlineCommentsService
+public interface RedisCommentsService
 {
 
     /**
-     * 保存评论
-     * @param comments
-     * @return
+     *缓存文章的品论
+     * @param articleId
+     * @param result
      */
-    Result saveComments(XiaoxiaoComments comments);
+    void insertCommentArticle(Long articleId, PageResult result);
 
 
     /**
-     * 获取文章的评论信息
+     * 获取文章的评论
      * @param articleId
-     * @param page
-     * @param rows
      * @return
      */
-    Result findComments(Long articleId, Integer page, Integer rows);
+    PageResult getCommentArticle(Long articleId);
+
+
+    /**
+     * 删除文章评论缓存
+     * @param articleId
+     */
+    void deleteCommentArticle(Long articleId);
+
 }

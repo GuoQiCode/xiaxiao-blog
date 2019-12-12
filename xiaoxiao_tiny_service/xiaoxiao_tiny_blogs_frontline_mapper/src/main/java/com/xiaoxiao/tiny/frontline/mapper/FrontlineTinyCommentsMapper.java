@@ -4,7 +4,10 @@ import com.xiaoxiao.pojo.XiaoxiaoComments;
 import com.xiaoxiao.tiny.frontline.provider.CommentsProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * _ooOoo_
@@ -52,4 +55,23 @@ public interface FrontlineTinyCommentsMapper
      */
     @InsertProvider(type = CommentsProvider.class,method = "saveComments")
     int saveComments(@Param("comments") XiaoxiaoComments comments);
+
+
+    /**
+     * 查询指定文章的评论
+     * @param articleId
+     * @return
+     */
+    @Select("select * from xiaoxiao_comments as a where a.article_id = #{articleId} and a.parent_comment_id = -1 order by a.comment_date desc")
+    List<XiaoxiaoComments> findAll(@Param("articleId")Long articleId);
+
+
+    /**
+     * 获取的子评论
+     * @param parentId
+     * @return
+     */
+    @Select("select * from xiaoxiao_comments as a where a.parent_comment_id = #{parentId} order by a.comment_date desc")
+    List<XiaoxiaoComments> findChildComments(@Param("parentId") Long parentId);
+
 }

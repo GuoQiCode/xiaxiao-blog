@@ -51,8 +51,8 @@ public class CommentsProvider
                 if(comments.getCommentId() != null){
                     VALUES("comment_id", "#{comments.commentId}");
                 }
-                if(comments.getUserId() != null){
-                    VALUES("user_id", "#{comments.userId}");
+                if(comments.getNickname() != null && comments.getNickname() != ""){
+                    VALUES("nickname", "#{comments.nickname}");
                 }
                 if(comments.getArticleId() != null){
                     VALUES("article_id", "#{comments.articleId}");
@@ -68,6 +68,12 @@ public class CommentsProvider
                 }
                 if(comments.getParentCommentId() != null){
                     VALUES("parent_comment_id", "#{comments.parentCommentId}");
+                }
+                if(comments.getCommentsNickname() != null && comments.getCommentsNickname() != ""){
+                    VALUES("comments_nickname", "#{comments.commentsNickname}");
+                }
+                if(comments.getEmail() != null && comments.getEmail() != ""){
+                    VALUES("email", "#{comments.email}");
                 }
             }
         }.toString();

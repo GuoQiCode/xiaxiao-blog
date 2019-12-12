@@ -318,4 +318,30 @@ public interface RedisCacheFeignClient {
     @PostMapping(value = "/redis_article_service/getArticleLabelSum")
     XiaoxiaoLabelVo getArticleLabelSum(@RequestParam(name = "labelId") Long labelId);
 
+    /**
+     * 插入文章评论缓存
+     * 
+     * @param articleId
+     * @param result
+     */
+    @PostMapping(value = "/redis_comments_service/insertCommentArticle")
+    void insertCommentArticle(@RequestParam("articleId") Long articleId, @RequestBody PageResult result);
+
+    /**
+     * 获取文章评论
+     * 
+     * @param articleId
+     * @return
+     */
+    @PostMapping(value = "/redis_comments_service/getCommentArticle")
+    PageResult getCommentArticle(@RequestParam("articleId") Long articleId);
+
+    /**
+     * 删除文章评论
+     * 
+     * @param articleI
+     */
+    @PostMapping(value = "/redis_comments_service/deleteCommentArticle")
+    void deleteCommentArticle(@RequestParam("articleId") Long articleI);
+
 }
