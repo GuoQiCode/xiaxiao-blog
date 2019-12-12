@@ -11,8 +11,22 @@ $(function () {
      */
     find_index_article()
 
-})
+    /**
+     *
+     */
+    find_article_sum()
 
+})
+function find_article_sum() {
+    $.ajax("/frontline/article/find_article_sum",{
+        dataType: "json",
+        type: "POST",
+        timeout: 5000,
+        success:(data)=>{
+            $("#sum").text(data.data)
+        }
+    })
+}
 
 /**
  * 查询推荐文章
@@ -30,62 +44,6 @@ function find_index_article() {
         }
     })
 }
-
-/*
-*
- * 拼接首页字符串
-function splice(data) {
-    /!**
-     * 最大条数
-     *!/
-    $("#articleSum").text(data.totalRows)
-    /!**
-     * 置空中间内容
-     *!/
-    $("#content").html("")
-    data.result.forEach((item)=>{
-        $("#content").append(`
-            <div class="ui padded vertical segment m-padded-tb-large">
-                        <div class="ui mobile reversed stackable grid">
-                            <div class="eleven wide column">
-                                <h3 class="ui header">${item.articleTitle}</h3>
-                                <p class="m-text">${item.articleDesc}</p>
-                                <div class="ui grid">
-                                    <div class="eleven wide column">
-                                        <div class="ui mini horizontal link list">
-                                            <div class="item">
-                                                <img src="${item.userProfilePhoto}" alt=""
-                                                     class="ui avatar image">
-                                                <div class="content"><a href="#" class="header">${item.userNickname}</a></div>
-                                            </div>
-                                            <div class="item">
-                                                <i class="calendar icon"></i> ${item.articleDate}
-                                            </div>
-                                            <div class="item">
-                                                <i class="eye icon"></i> ${item.articleViews}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="right aligned five wide column">
-                                        <a href="/blog_details/${item.articleId}" target="_blank"
-                                           class="ui teal basic label m-padded-tiny m-text-thin">详情查看</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="five wide column">
-                                <a href="/blog_details/${item.articleId}" target="_blank">
-                                    <img style="width: 150px;height: 100px" src="${item.articleBkFirstImg}" alt="" class="ui rounded image">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-    `)
-    })
-}
-*/
-
-
 
 /**
  * 请求全部的分类
@@ -135,6 +93,7 @@ function find_article_by_sorts(currentPage,sortID) {
             totalRows = data.data.totalRows
             totalPage = data.data.totalPages
             pageSize = data.data.pageSize
+
             splice(data.data)
         }
     })
