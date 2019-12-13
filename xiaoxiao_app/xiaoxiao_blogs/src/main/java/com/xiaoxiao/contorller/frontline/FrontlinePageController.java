@@ -139,4 +139,9 @@ public class FrontlinePageController
         return "my-photo";
     }
 
+    @GetMapping(value = "/search")
+    public String search(){
+        return "search";
+    }
+
 }

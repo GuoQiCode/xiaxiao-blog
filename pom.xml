@@ -12,6 +12,7 @@
         <module>xiaoxiao_tiny_service</module>
         <module>xiaoxiao_sso</module>
         <module>xiaoxiao_redis</module>
+        <module>xiaoxiao_search</module>
     </modules>
     <packaging>pom</packaging>
     <parent>
@@ -69,8 +70,6 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-spring-boot-starter-version}</version>
             </dependency>
-
-
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -103,4 +102,12 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

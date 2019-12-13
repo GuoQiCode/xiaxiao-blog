@@ -38,6 +38,9 @@ public class Result
     private Object data;
 
 
+    public static final String  MARKED_WORDS_FAULT = "操作失败";
+
+    public static final String MARKED_WORDS_SUCCESS = "操作成功";
 
 
     /**

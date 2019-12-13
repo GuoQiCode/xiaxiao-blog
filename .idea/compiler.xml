@@ -10,6 +10,7 @@
         <module name="xiaoxiao_tiny_blogs_frontline_service" />
         <module name="xiaoxiao_tiny_blogs_pojo" />
         <module name="xiaoxiao_redis" />
+        <module name="xiaoxiao_search" />
         <module name="xiaoxiao_sso" />
         <module name="xiaoxiao_common" />
         <module name="xiaoxiao_tiny_blogs_service" />
@@ -29,6 +30,7 @@
       <module name="xiaoxiao_blogs_web" options="-parameters" />
       <module name="xiaoxiao_common" options="-parameters" />
       <module name="xiaoxiao_redis" options="-parameters" />
+      <module name="xiaoxiao_search" options="-parameters" />
       <module name="xiaoxiao_sso" options="-parameters" />
       <module name="xiaoxiao_tiny_blogs_frontline_mapper" options="-parameters" />
       <module name="xiaoxiao_tiny_blogs_frontline_service" options="-parameters" />

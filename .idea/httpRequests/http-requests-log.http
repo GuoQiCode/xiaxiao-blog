@@ -1,3 +1,75 @@
+POST http://localhost:9995/search_service/search_article?query=雪花算法
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-13T032034.200.json
+
+###
+
+POST http://localhost:9995/search_service/search_article?query=雪花算法
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-13T031909.200.json
+
+###
+
+POST http://localhost:9995/search_service/search_article?query=你好
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-13T031425.200.json
+
+###
+
+POST http://localhost:9995/search_service/importArticleToSolr?articleId=5
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-13T025456.200.json
+
+###
+
+POST http://localhost:9995/search_service/importArticleToSolr?articleId=5
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-13T025322.200.json
+
+###
+
+POST http://localhost:9995/search_service/importArticleToSolr?articleId=5
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-13T025127.200.json
+
+###
+
+POST http://localhost:9995/search_service/importArticleToSolr?articleId=5
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-13T024902.200.json
+
+###
+
+POST http://localhost:9995/search_service/importArticleToSolr?articleId=5
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-13T024646.200.json
+
+###
+
+POST http://localhost:9995/search_service/importArticleToSolr?articleId=5
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-13T024516.500.json
+
+###
+
 POST http://localhost:10020/frontline/tiny/comments/findComments?articleId=5
 Accept: */*
 Cache-Control: no-cache

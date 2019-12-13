@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <title>标签</title>
+</head>
+<body>
+<body>
+
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace="_fragments :: nav">
+</nav>
+<!--博客内容-->
+
+<div class="m-container left-0  m-padded-tb-big">
+    <h3 class="ui block header">
+        文章搜索
+    </h3>
+    <div class="ui top attached teal segment" id="content">
+
+    </div>
+</div>
+<div class="m-container-small m-padded-tb-big left-auto">
+    <div class="ui bottom attached segment">
+        <div th:include="admin/_page.html"></div>
+        <script type="text/javascript">
+            function currentPage(currentPage) {
+
+            }
+            $("#pager").zPager({
+                totalData: totalRows,
+                pageData: pageSize,
+                pageCount: totalPage,
+                htmlBox: $('#wraper'),
+                btnShow: true,
+                ajaxSetData: false,
+            });
+        </script>
+    </div>
+</div>
+</div>
+</div>
+
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+</script>
+</body>
+</html>
