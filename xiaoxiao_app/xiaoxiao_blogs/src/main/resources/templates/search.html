@@ -12,6 +12,7 @@
 </nav>
 <!--博客内容-->
 
+<script th:src="@{/js/search.js}"></script>
 <div class="m-container left-0  m-padded-tb-big">
     <h3 class="ui block header">
         文章搜索
@@ -25,7 +26,12 @@
         <div th:include="admin/_page.html"></div>
         <script type="text/javascript">
             function currentPage(currentPage) {
-
+                let query =   UrlParam.paramValues("query")
+                if(query[0] == null || query[0 == ""]){
+                    search_artcile(currentPage,"*:*")
+                }else {
+                    search_artcile(currentPage,query[0])
+                }
             }
             $("#pager").zPager({
                 totalData: totalRows,

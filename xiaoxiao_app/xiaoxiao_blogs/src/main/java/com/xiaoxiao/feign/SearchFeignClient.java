@@ -1,5 +1,10 @@
 package com.xiaoxiao.feign;
 
+import com.xiaoxiao.utils.Result;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 /**
  * _ooOoo_
  * o8888888o
@@ -36,6 +41,19 @@ package com.xiaoxiao.feign;
  * @author:shinelon
  * @Describe:
  */
-public class SearchFeignClient
+@FeignClient("xiaoxiao-search")
+public interface SearchFeignClient
 {
+
+    /**
+     * 检索文章
+     * @param query
+     * @param page
+     * @param rows
+     * @return
+     */
+    @PostMapping(value = "/search_service/search_article")
+    Result searchArticle(@RequestParam(name = "query") String query,
+                         @RequestParam(name = "page",defaultValue = "1")Long page,
+                         @RequestParam(name = "rows",defaultValue = "10")Integer rows);
 }

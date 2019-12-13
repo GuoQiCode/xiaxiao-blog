@@ -1,9 +1,11 @@
 package com.xiaoxiao.service.frontline.impl;
 
 import com.xiaoxiao.feign.FrontlineFeignServiceClient;
+import com.xiaoxiao.feign.SearchFeignClient;
 import com.xiaoxiao.service.frontline.FrontlineArticleService;
 import com.xiaoxiao.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -48,6 +50,9 @@ public class FrontlineArticleServiceImpl implements FrontlineArticleService
 
     @Autowired
     private FrontlineFeignServiceClient frontlineFeignServiceClient;
+
+    @Autowired
+    private SearchFeignClient searchFeignClient;
 
 
     /**
@@ -153,5 +158,14 @@ public class FrontlineArticleServiceImpl implements FrontlineArticleService
     public Result findArticleLabelSum(Long labelId)
     {
         return this.frontlineFeignServiceClient.findArticleLabelSum(labelId);
+    }
+
+
+
+
+    @Override
+    public Result searchArticle(String query, Long page, Integer rows)
+    {
+        return searchFeignClient.searchArticle(query, page, rows);
     }
 }

@@ -46,7 +46,7 @@ public class SolrController {
      * @return
      */
     @PostMapping(value = "/search_article")
-    public Result searchArticle(String query,
+    public Result searchArticle(@RequestParam(name = "query") String query,
                                 @RequestParam(name = "page",defaultValue = "1")Long page,
                                 @RequestParam(name = "rows",defaultValue = "10")Integer rows ){
         return this.articleSolrService.searchArticle(query,page,rows);

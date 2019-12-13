@@ -7,7 +7,7 @@ $(function () {
 
 
 /**
- * 获取全部的文章
+ * 获取全部的文章个数
  */
 function articleSum() {
     $.ajax("/frontline/article/find_article_sum", {

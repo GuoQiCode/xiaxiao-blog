@@ -62,4 +62,14 @@ public interface FrontlineArticleService
      * @return
      */
     Result findArticleLabelSum(Long labelId);
+
+
+    /**
+     * 检索文章
+     * @param query
+     * @param page
+     * @param rows
+     * @return
+     */
+    Result searchArticle(String query, Long page, Integer rows);
 }

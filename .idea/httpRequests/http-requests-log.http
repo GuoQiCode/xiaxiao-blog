@@ -1,3 +1,19 @@
+POST http://localhost:8080/frontline/article/searchArticle?query=*:*
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-13T034036.200.json
+
+###
+
+POST http://localhost:8080/frontline/article/searchArticle?query=雪花算法
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-13T032935.200.json
+
+###
+
 POST http://localhost:9995/search_service/search_article?query=雪花算法
 Accept: */*
 Cache-Control: no-cache

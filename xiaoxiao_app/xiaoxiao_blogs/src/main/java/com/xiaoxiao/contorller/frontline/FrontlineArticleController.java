@@ -130,4 +130,15 @@ public class FrontlineArticleController {
         return this.frontlineArticleService.findArticleLabelSum(labelId);
     }
 
+
+    /**
+     * 检索文章
+     * @return
+     */
+    @PostMapping(value = "/searchArticle")
+    public Result searchArticle(@RequestParam(name = "query") String query,
+                                @RequestParam(name = "page",defaultValue = "1")Long page,
+                                @RequestParam(name = "rows",defaultValue = "10")Integer rows){
+        return this.frontlineArticleService.searchArticle(query,page,rows);
+    }
 }
