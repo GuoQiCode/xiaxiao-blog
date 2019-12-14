@@ -88,7 +88,7 @@ function find_article_by_sorts(currentPage,sortID) {
         dataType: 'JSON',
         type:'POST',
         data:{'sortId':sortId,'page':currentPage},
-        timeout:3000,
+        timeout:5000,
         success:(data)=>{
             totalRows = data.data.totalRows
             totalPage = data.data.totalPages

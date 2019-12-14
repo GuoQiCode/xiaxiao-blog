@@ -57,4 +57,20 @@ public interface ArticleSolrService
      * @return
      */
     Result searchArticle(String query, Long page, Integer rows);
+
+
+    /**
+     * 插入到solr
+     * @param articleId
+     * @throws Exception
+     */
+    void insertArticleToSolr(Long articleId)throws  Exception;
+
+
+    /**
+     * 删除
+     * @param articleId
+     * @throws Exception
+     */
+    void deleteArticleToSolr(Long articleId) throws Exception;
 }

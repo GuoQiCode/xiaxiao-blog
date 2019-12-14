@@ -3,6 +3,7 @@ package com.xiaoxiao.search.controller;
 import com.xiaoxiao.search.service.ArticleSolrService;
 import com.xiaoxiao.utils.Result;
 import com.xiaoxiao.utils.StatusCode;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,4 +55,26 @@ public class SolrController {
         }
         return Result.error(StatusCode.ERROR,true,Result.MARKED_WORDS_FAULT,null);
     }
+
+
+    /**
+     * 插入一个新的文章到的solr中
+     */
+    @PostMapping(value = "/insertArticleToSolr")
+    public void insertArticleToSolr(@RequestParam(name = "articleId")Long articleId) throws Exception
+    {
+        this.articleSolrService.insertArticleToSolr(articleId);
+    }
+
+
+    /**
+     * 删除solr中的文章
+     * @param articleId
+     */
+    @PostMapping(value = "/deleteArticleToSolr")
+    public void deleteArticleToSolr(@Param("articleId") Long articleId) throws Exception
+    {
+        this.articleSolrService.deleteArticleToSolr(articleId);
+    }
+
 }

@@ -12,7 +12,7 @@ $(function () {
 function aboutMe() {
     $.ajax("/admin/show_me",{
         dataType: 'json',
-        timeout: 3000,
+        timeout: 5000,
         type: 'get',
         success:(data)=>{
             $("#userSignature").text(data.data.userSignature)
@@ -37,7 +37,7 @@ function user_hobby() {
   let userId = sessionStorage.getItem("userId");
     $.ajax("/admin/hobby/find_user_hobby",{
         dataType: 'json',
-        timeout: 3000,
+        timeout: 5000,
         data:{'userId':userId},
         type: 'POST',
         success:(data)=>{
@@ -65,7 +65,7 @@ function joint(data) {
 function find_all_label() {
     $.ajax("/admin/label/find_all_label",{
         dataType: 'json',
-        timeout: 3000,
+        timeout: 5000,
         type: 'get',
         success:(data)=>{
             jointLabel(data)
@@ -91,7 +91,7 @@ function jointLabel(data) {
 function submit() {
     $.ajax("/admin/update",{
         dataType: 'json',
-        timeout: 3000,
+        timeout: 5000,
         type: 'POST',
         data:$("#form").serialize(),
         success:(data)=>{
@@ -108,7 +108,7 @@ function submit() {
 function find_all_hobby() {
     $.ajax("/admin/hobby/find_all_hobby",{
         dataType: 'json',
-        timeout: 3000,
+        timeout: 5000,
         type: 'POST',
         success:(data)=>{
             jointHobby(data.data)

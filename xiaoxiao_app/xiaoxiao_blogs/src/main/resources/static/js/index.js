@@ -13,7 +13,7 @@ function articleSum() {
     $.ajax("/frontline/article/find_article_sum", {
         dataType: 'JSON',
         type: 'POST',
-        timeout: 3000,
+        timeout: 5000,
         success: (data) => {
             $("#articleSum").text(data.data)
         }
@@ -28,7 +28,7 @@ function findAllSorts() {
     $.ajax("/frontline/sorts/find_all_sorts", {
         dataType: 'JSON',
         type: 'POST',
-        timeout: 3000,
+        timeout: 5000,
         success: (data) => {
             const result = data.data
             result.forEach((item) => {
@@ -46,7 +46,7 @@ function findArticleNewRecommend() {
     $.ajax("/frontline/article/find_article_new_recommend", {
         dataType: 'JSON',
         type: 'POST',
-        timeout: 3000,
+        timeout: 5000,
         success: (data) => {
             const result = data.data.result
             result.forEach((item) => {
@@ -67,7 +67,7 @@ function indexArticle(currentPage) {
     $.ajax("/frontline/article/find_index_article?page=" + currentPage, {
         dataType: 'JSON',
         type: 'POST',
-        timeout: 3000,
+        timeout: 5000,
         success: (data) => {
             totalRows = data.data.totalRows
             totalPage = data.data.totalPages
@@ -86,7 +86,7 @@ function findIndexLabelArticle() {
     $.ajax("/frontline/label/find_index_label_article", {
         dataType: 'JSON',
         type: 'POST',
-        timeout: 3000,
+        timeout: 5000,
         success: (data) => {
             data.data.result.forEach((item) => {
                 $("#labelArticle").append(`

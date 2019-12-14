@@ -15,7 +15,7 @@ function find_article_by_sort(sortId,currentPage) {
         dataType: 'JSON',
         type:'POST',
         data:{'sortId':sortId,'page':currentPage},
-        timeout:3000,
+        timeout:5000,
         success:(data)=>{
             totalRows = data.data.totalRows
             totalPage = data.data.totalPages
@@ -34,7 +34,7 @@ function find_article_sort_sum() {
         dataType: 'JSON',
         type:'POST',
         data:{'sortId':sortId[0]},
-        timeout:3000,
+        timeout:5000,
         success:(data)=>{
             $("#sortName").text(data.data.sortName)
             $("#sum").text(data.data.sum)

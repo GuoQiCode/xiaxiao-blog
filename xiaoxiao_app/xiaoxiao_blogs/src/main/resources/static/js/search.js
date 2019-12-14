@@ -4,15 +4,12 @@ function search_artcile(currentPage,query) {
         dataType: 'JSON',
         type: 'POST',
         data:{'page':currentPage,"query":query},
-        timeout: 3000,
+        timeout: 5000,
         success: (data) => {
             totalRows = data.data.totalRows
             totalPage = data.data.totalPages
             pageSize = data.data.pageSize
-            $("#content").html("")
-            if(data.data == null){
-                alert(data.code)
-            }else {
+            if(data.code = 20000 && data.data !=null && data.data.length > 0){
                 searchSplit(data)
             }
         }

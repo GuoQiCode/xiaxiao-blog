@@ -58,6 +58,15 @@ public class FrontlinePageController
      */
     @GetMapping(value = "/")
     public String index(){
+        return "techniqueSharing";
+    }
+
+    /**
+     * 博客首页
+     * @return
+     */
+    @GetMapping(value = "/page")
+    public String page(){
         return "page";
     }
 

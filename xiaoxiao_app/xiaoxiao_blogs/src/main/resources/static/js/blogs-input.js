@@ -84,7 +84,7 @@ function submit() {
         $.ajax({
             dataType: 'json',
             data: $("#from").serialize(),
-            timeout: 3000,
+            timeout: 5000,
             type: 'POST',
             url: "/admin/article/insert",
             success: function (data) {
@@ -102,7 +102,7 @@ function submit() {
         $.ajax({
             dataType: 'json',
             data: $("#from").serialize(),
-            timeout: 3000,
+            timeout: 5000,
             type: 'POST',
             url: "/admin/article/update",
             success: function (data) {

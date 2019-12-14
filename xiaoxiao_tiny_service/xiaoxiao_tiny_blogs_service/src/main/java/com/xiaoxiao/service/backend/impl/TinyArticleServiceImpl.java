@@ -3,6 +3,7 @@ package com.xiaoxiao.service.backend.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xiaoxiao.feign.RedisCacheFeignClient;
+import com.xiaoxiao.feign.SearchFeignClient;
 import com.xiaoxiao.mapper.ArtcleMapper;
 import com.xiaoxiao.mapper.SetArticleLabelMapper;
 import com.xiaoxiao.pojo.XiaoxiaoArticles;
@@ -69,6 +70,9 @@ public class TinyArticleServiceImpl implements TinyArticleService
     @Autowired
     private RedisCacheFeignClient client;
 
+    @Autowired
+    private SearchFeignClient searchFeignClient;
+
     @Value("${MARKED_WORDS_SUCCESS}")
     private String MARKED_WORDS_SUCCESS;
 
@@ -107,6 +111,45 @@ public class TinyArticleServiceImpl implements TinyArticleService
     {
         if (this.artcleMapper.delete(articleId) > 0)
         {
+            try
+            {
+                /**
+                 * 删除solr数据
+                 */
+                this.searchFeignClient.deleteArticleToSolr(articleId);
+
+                /**
+                 * 删除首页总文章个数缓存
+                 */
+                this.client.deleteArticleSumToRedis();
+                /**
+                 * 删除首页标签文章个数
+                 */
+                this.client.deleteIndexArticleLabel();
+
+                /**
+                 * 删除文章分类个数
+                 */
+                this.client.deleteIndexSortsAllToRedis();
+
+                /**
+                 * 删除首页文章缓存
+                 */
+                this.client.deleteIndexArticle();
+                /**
+                 * 删除文章和标签的中间变数据
+                 */
+                this.setArticleLabelMapper.deleteArticleLabelByArticleId(articleId);
+
+                /**
+                 * 删除文章标签总数
+                 */
+                this.client.deleteLabelCount();
+
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             return Result.ok(StatusCode.OK, this.MARKED_WORDS_SUCCESS);
         }
         return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
@@ -166,6 +209,18 @@ public class TinyArticleServiceImpl implements TinyArticleService
                  */
                 this.client.deleteIndexSortsAllToRedis();
 
+                /**
+                 * 将此文章加入到的solr中
+                 */
+                this.searchFeignClient.insertArticleToSolr(xiaoxiaoArticles.getArticleId());
+
+                /**
+                 * 删除首页文章缓存
+                 */
+                this.client.deleteIndexArticle();
+
+
+
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -205,6 +260,9 @@ public class TinyArticleServiceImpl implements TinyArticleService
                  * 删除redis缓存的数据的文章的数据
                  */
                 this.client.deleteIndexArticle();
+
+
+
 
             } catch (Exception e)
             {

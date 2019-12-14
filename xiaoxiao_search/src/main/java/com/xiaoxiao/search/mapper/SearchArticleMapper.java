@@ -1,6 +1,7 @@
 package com.xiaoxiao.search.mapper;
 
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -51,4 +52,26 @@ public interface SearchArticleMapper
      */
     @Select("select a.article_id,a.article_recommend,a.user_id,a.article_title,a.article_views,a.article_comment_count,a.article_date,a.article_like_count,a.article_bk_first_img,a.article_bk_sorts_id,a.article_bk_first_img,a.article_desc,a.article_type,b.user_nickname,b.user_profile_photo from xiaoxiao_articles as a,xiaoxiao_users as b where a.user_id = b.user_id")
     List<XiaoxiaoArticleVo> findAllArticle();
+
+
+    /**
+     * 查询一个文章
+     * @param articleId
+     * @return
+     */
+    @Select("select a.article_id," +
+            "a.article_recommend," +
+            "a.user_id,a.article_title" +
+            ",a.article_views," +
+            "a.article_comment_count," +
+            "a.article_date," +
+            "a.article_like_count," +
+            "a.article_bk_first_img," +
+            "a.article_bk_sorts_id," +
+            "a.article_bk_first_img," +
+            "a.article_desc,a.article_type," +
+            "b.user_nickname,b.user_profile_photo " +
+            "from xiaoxiao_articles as a,xiaoxiao_users as b " +
+            "where a.user_id = b.user_id and a.article_id = #{articleId}")
+    List<XiaoxiaoArticleVo> findArticleById(@Param("articleId")Long articleId);
 }

@@ -30,7 +30,7 @@ function find_comments(currentPage,articleId) {
     $.ajax("/frontline/comments/findComments", {
         dataType: "json",
         type: "POST",
-        timeout: 3000,
+        timeout: 5000,
         data: {'articleId':articleId,'page':currentPage},
         success: (data) => {
             if(data.code == 20000){

@@ -19,7 +19,7 @@ function article_sum() {
         {
             dataType: 'JSON',
             type: 'POST',
-            timeout: 3000,
+            timeout: 5000,
             success:(data)=>{
                 $("#sum").text(data.data)
             }
@@ -34,7 +34,7 @@ function find_article_archive() {
     $.ajax("/frontline/article/find_article_archive",{
         dataType: 'JSON',
         type: 'POST',
-        timeout: 3000,
+        timeout: 5000,
         success:(data)=>{
             for(const key in data.data){
                 $("#content").after(

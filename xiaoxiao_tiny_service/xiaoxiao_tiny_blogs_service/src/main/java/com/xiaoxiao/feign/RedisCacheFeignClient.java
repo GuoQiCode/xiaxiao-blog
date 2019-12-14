@@ -153,4 +153,12 @@ public interface RedisCacheFeignClient
     @PostMapping(value = "/redis_service/delete_show_Me")
      void deleteShowMe();
 
+
+    /**
+     * 删除标签文章总数
+     */
+    @PostMapping(value = "/redis_label_service/delete_label_count")
+     void deleteLabelCount();
+
+
 }

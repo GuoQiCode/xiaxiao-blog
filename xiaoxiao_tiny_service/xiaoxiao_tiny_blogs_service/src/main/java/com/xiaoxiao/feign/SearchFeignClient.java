@@ -1,12 +1,9 @@
-package com.xiaoxiao.mapper;
+package com.xiaoxiao.feign;
 
-import com.xiaoxiao.pojo.XiaoxiaoSetArtitleLabel;
-import com.xiaoxiao.provider.SetArticleLabelProvider;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultType;
-import org.springframework.stereotype.Repository;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * _ooOoo_
@@ -40,22 +37,29 @@ import org.springframework.stereotype.Repository;
  * 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
- * @date:2019/12/3:13:57
+ * @date:2019/12/14:14:38
  * @author:shinelon
  * @Describe:
  */
-@Repository
-public interface SetArticleLabelMapper
+@FeignClient("xiaoxiao-search")
+public interface SearchFeignClient
 {
 
-    @InsertProvider(type = SetArticleLabelProvider.class,method = "insert")
-    int insert(@Param("articleLabel")XiaoxiaoSetArtitleLabel artitleLabel);
+    /**
+     * 插入一个的文章到solr中
+     *
+     * @param articleId
+     */
+    @PostMapping(value = "/search_service/insertArticleToSolr")
+    void insertArticleToSolr(@RequestParam("articleId") Long articleId);
 
 
     /**
-     * 删除文章标签数据
+     * 删除solr内的数据
+     *
      * @param articleId
      */
-    @Delete("delete from xiaoxiao_set_artitle_label where article_id = #{articleId}")
-    void deleteArticleLabelByArticleId(@Param("articleId") Long articleId);
+    @PostMapping(value = "/search_service/deleteArticleToSolr")
+    void deleteArticleToSolr(@Param("articleId") Long articleId);
+
 }

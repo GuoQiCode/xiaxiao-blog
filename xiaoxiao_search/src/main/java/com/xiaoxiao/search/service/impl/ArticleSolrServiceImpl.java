@@ -6,15 +6,14 @@ import com.xiaoxiao.search.pojo.SolrArticleDocument;
 import com.xiaoxiao.search.service.ArticleSolrService;
 import com.xiaoxiao.utils.Result;
 import com.xiaoxiao.utils.StatusCode;
+import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrInputDocument;
+import org.apache.solr.common.params.CollectionParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.solr.core.SolrTemplate;
-import org.springframework.data.solr.core.query.Criteria;
-import org.springframework.data.solr.core.query.HighlightOptions;
-import org.springframework.data.solr.core.query.HighlightQuery;
-import org.springframework.data.solr.core.query.SimpleHighlightQuery;
+import org.springframework.data.solr.core.query.*;
 import org.springframework.data.solr.core.query.result.HighlightEntry;
 import org.springframework.data.solr.core.query.result.HighlightPage;
 import org.springframework.stereotype.Service;
@@ -79,29 +78,9 @@ public class ArticleSolrServiceImpl implements ArticleSolrService
     public Result importArticleToSolr()
     {
         List<XiaoxiaoArticleVo> allArticle = this.articleMapper.findAllArticle();
-
         try
         {
-            for (XiaoxiaoArticleVo x:allArticle
-                 )
-            {
-                    SolrInputDocument document = new SolrInputDocument();
-                    document.setField("article_id", x.getArticleId());
-                    document.setField("user_id", x.getUserId());
-                    document.setField("article_views", x.getArticleViews());
-                    document.setField("article_comment_count", x.getArticleCommentCount());
-                    document.setField("article_date", x.getArticleDate());
-                    document.setField("article_like_count", x.getArticleLikeCount());
-                    document.setField("article_bk_sorts_id", x.getArticleBkSortsId());
-                    document.setField("article_bk_first_img", x.getArticleBkFirstImg());
-                    document.setField("article_recommend", x.getArticleRecommend());
-                    document.setField("user_profile_photo", x.getUserProfilePhoto());
-                    document.setField("user_nickname", x.getUserNickname());
-                    document.setField("article_title", x.getArticleTitle());
-                    document.setField("article_desc", x.getArticleDesc());
-                    document.setField("article_type", x.getArticleType());
-                    this.solrTemplate.saveDocument(core, document);
-            }
+            insertToSolr(allArticle);
             return Result.ok(StatusCode.OK,Result.MARKED_WORDS_SUCCESS);
         } catch (Exception e)
         {
@@ -111,6 +90,34 @@ public class ArticleSolrServiceImpl implements ArticleSolrService
     }
 
 
+    public void insertToSolr(List<XiaoxiaoArticleVo> list){
+        try
+        {
+            for (XiaoxiaoArticleVo x:list
+            )
+            {
+                SolrInputDocument document = new SolrInputDocument();
+                document.setField("article_id", x.getArticleId());
+                document.setField("user_id", x.getUserId());
+                document.setField("article_views", x.getArticleViews());
+                document.setField("article_comment_count", x.getArticleCommentCount());
+                document.setField("article_date", x.getArticleDate());
+                document.setField("article_like_count", x.getArticleLikeCount());
+                document.setField("article_bk_sorts_id", x.getArticleBkSortsId());
+                document.setField("article_bk_first_img", x.getArticleBkFirstImg());
+                document.setField("article_recommend", x.getArticleRecommend());
+                document.setField("user_profile_photo", x.getUserProfilePhoto());
+                document.setField("user_nickname", x.getUserNickname());
+                document.setField("article_title", x.getArticleTitle());
+                document.setField("article_desc", x.getArticleDesc());
+                document.setField("article_type", x.getArticleType());
+                this.solrTemplate.saveDocument(core, document).wait(10000);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 
 
@@ -160,4 +167,27 @@ public class ArticleSolrServiceImpl implements ArticleSolrService
         }
         return Result.error(StatusCode.ERROR, Result.MARKED_WORDS_FAULT);
     }
+
+
+
+    @Override
+    public void insertArticleToSolr(Long articleId) throws Exception
+    {
+        List<XiaoxiaoArticleVo> articleById = this.articleMapper.findArticleById(articleId);
+        insertToSolr(articleById);
+        this.solrTemplate.commit(this.core);
+    }
+
+
+    @Override
+    public void deleteArticleToSolr(Long articleId) throws Exception
+    {
+        Criteria criteria = new Criteria("article_id");
+        criteria.is(articleId);
+        this.solrTemplate.delete(this.core,new SimpleQuery(criteria));
+        this.solrTemplate.commit(this.core);
+    }
 }
+
+
+

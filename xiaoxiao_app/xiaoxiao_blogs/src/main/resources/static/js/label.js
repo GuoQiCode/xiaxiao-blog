@@ -59,7 +59,7 @@ function showPopup(data, f) {
         $.ajax("/admin/label/find_label_by_id?labelId=" + data, {
             dataType: 'JSON',
             type: "GET",
-            timeout: 3000,
+            timeout: 5000,
             success: (data) => {
                 $("#labelId").val(data.data.labelId)
                 $("#labelName").val(data.data.labelName)
@@ -88,7 +88,7 @@ function del(labelId) {
     $.ajax("/admin/label/delete?labelId="+labelId,{
         dataType: 'JSON',
         type: "GET",
-        timeout: 3000,
+        timeout: 5000,
         success:(data) =>{
             if (data.code == 20000) {
                 findAll(1)
@@ -112,7 +112,7 @@ function submit() {
         $.ajax({
             dataType: 'json',
             data: $("#form").serialize(),
-            timeout: 3000,
+            timeout: 5000,
             type: 'POST',
             url: "/admin/label/update",
             success: function (data) {
@@ -131,7 +131,7 @@ function submit() {
         $.ajax("/admin/label/insert", {
             dataType: 'json',
             data: $("#form").serialize(),
-            timeout: 3000,
+            timeout: 5000,
             type: 'POST',
             success: (data) => {
                 if (data.code == 20000) {
