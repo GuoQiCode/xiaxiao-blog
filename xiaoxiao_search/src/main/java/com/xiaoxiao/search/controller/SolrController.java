@@ -49,6 +49,9 @@ public class SolrController {
     public Result searchArticle(@RequestParam(name = "query") String query,
                                 @RequestParam(name = "page",defaultValue = "1")Long page,
                                 @RequestParam(name = "rows",defaultValue = "10")Integer rows ){
-        return this.articleSolrService.searchArticle(query,page,rows);
+        if(query != null && query != ""){
+            return this.articleSolrService.searchArticle(query,page,rows);
+        }
+        return Result.error(StatusCode.ERROR,true,Result.MARKED_WORDS_FAULT,null);
     }
 }

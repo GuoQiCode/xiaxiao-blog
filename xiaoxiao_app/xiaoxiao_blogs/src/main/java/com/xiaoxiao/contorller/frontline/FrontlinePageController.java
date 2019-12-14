@@ -144,4 +144,9 @@ public class FrontlinePageController
         return "search";
     }
 
+    @GetMapping(value = "/show")
+    public String show(){
+        return "slideshow";
+    }
+
 }

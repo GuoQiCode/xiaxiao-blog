@@ -10,8 +10,8 @@ function search_artcile(currentPage,query) {
             totalPage = data.data.totalPages
             pageSize = data.data.pageSize
             $("#content").html("")
-            if(data.data == null || data.data.length <= 0){
-                $("#content").html(`<span>没有您查找的数据呢~抱歉呢......</span>`)
+            if(data.data == null){
+                alert(data.code)
             }else {
                 searchSplit(data)
             }

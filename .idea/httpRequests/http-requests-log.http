@@ -1,3 +1,35 @@
+POST http://localhost:9995/search_service/importArticleToSolr?query=*:*
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-14T010752.200.json
+
+###
+
+POST http://localhost:9995/search_service/importArticleToSolr?query=*:*
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-14T010250.200.json
+
+###
+
+POST http://localhost:9995/search_service/importArticleToSolr?query=*:*
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-14T010121.200.json
+
+###
+
+POST http://localhost:9995/search_service/importArticleToSolr?query=*:*
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-14T125933.200.json
+
+###
+
 POST http://localhost:8080/frontline/article/searchArticle?query=*:*
 Accept: */*
 Cache-Control: no-cache

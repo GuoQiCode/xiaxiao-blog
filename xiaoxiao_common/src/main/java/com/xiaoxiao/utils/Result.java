@@ -150,5 +150,8 @@ public class Result
     }
 
 
-
+    public static Result error(int error, boolean b, String markedWordsFault, Object o)
+    {
+        return new Result(error,b,markedWordsFault,o);
+    }
 }

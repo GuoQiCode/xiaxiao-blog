@@ -2,10 +2,171 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="_fragments :: head(~{::title})">
     <title>技术分享</title>
+
 </head>
 <body>
+<link rel="stylesheet" th:href="@{/css/share.css}">
+<link th:href="@{css/slideStyle.css}" rel="stylesheet">
 <!--导航-->
+<script th:src="@{lib/jquery-slideShow.js}"></script>
 <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace="_fragments :: nav">
 </nav>
+<!--首页轮播图-->
+<div >
+    <div id="text" class="share">
+        <!-- 盒子-->
+</div>
+
+    <!--内容-->
+    <div class="content">
+        <div style="width: 1170px;height: 138.8px;margin: 0 auto">
+            <h2>热门推荐</h2>
+            <p>
+                很想给你写封信,告诉你这里的天气.
+                <br>昨夜的那场电影,还有我的心情.
+            </p>
+
+        </div>
+
+        <div class="recommend">
+            <div class="card">
+                <div class="ui card">
+                    <div class="img">
+                        <img class="img" src="/images/avatar/large/stevie.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">Stevie Feliciano</a>
+                        <div class="meta">
+                            <span class="date">Joined in 2014</span>
+                        </div>
+                        <div class="description">
+                            Stevie Feliciano is a library scientist living in New York City. She likes to spend her time reading, running, and writing.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="ui card">
+                    <div class="img">
+                        <img class="img" src="/images/avatar/large/stevie.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">Stevie Feliciano</a>
+                        <div class="meta">
+                            <span class="date">Joined in 2014</span>
+                        </div>
+                        <div class="description">
+                            Stevie Feliciano is a library scientist living in New York City. She likes to spend her time reading, running, and writing.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="ui card">
+                    <div class="img">
+                        <img class="img" src="/images/avatar/large/stevie.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">Stevie Feliciano</a>
+                        <div class="meta">
+                            <span class="date">Joined in 2014</span>
+                        </div>
+                        <div class="description">
+                            Stevie Feliciano is a library scientist living in New York City. She likes to spend her time reading, running, and writing.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="ui card">
+                    <div class="img">
+                        <img class="img" src="/images/avatar/large/stevie.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">Stevie Feliciano</a>
+                        <div class="meta">
+                            <span class="date">Joined in 2014</span>
+                        </div>
+                        <div class="description">
+                            Stevie Feliciano is a library scientist living in New York City. She likes to spend her time reading, running, and writing.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var image=["images/1.png","images/2.png","images/3.png","images/4.png"];
+        $("#text").slide({images:image,//必选
+            autoPlay:true,
+            // height:200,//可指定轮播图高度
+            interval:6000});
+    </script>
+</div>
+
+
+<div class="about">
+    <div style="text-align: center;margin:0 auto">
+        <ul class="list">
+            <li>
+                <a class="ui inverted black  button"style="width: 198px;text-align: center;margin: 0 auto" >关于</a>
+            </li>
+            <li>
+                <a class="ui inverted black  button"style="width: 198px;text-align: center;margin: 0 auto">友情链接</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="hobby">
+    <div style="margin:0 auto;height: 100px;width: 80%;padding: 110px;text-align: center">
+        <div>
+            <h1>次元使者</h1>
+            <p>爱好游戏，动漫。闲来无事喜欢在一些不健康的场所虚度光阴，撸起代码就会废寝忘食。</p>
+        </div>
+    </div>
+</div>
+
+<!--底部footer-->
+<footer class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img src="../static/images/wechat.jpg" class="ui rounded image" alt="" style="width: 110px">
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced " >最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>
+                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>
+                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced ">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item m-text-thin">Email：lirenmi@163.com</a>
+                    <a href="#" class="item m-text-thin">QQ：865729312</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced ">Blog</h4>
+                <p class="m-text-thin m-text-spaced m-opacity-mini">这是我的个人博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2016 - 2017 Lirenmi Designed by Lirenmi</p>
+    </div>
+</footer>
 </body>
 </html>
