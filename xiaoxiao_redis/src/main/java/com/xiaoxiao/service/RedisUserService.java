@@ -54,4 +54,5 @@ public interface RedisUserService
 
     void deleteShowMe();
 
+    void deleteUserToRedis(String token);
 }

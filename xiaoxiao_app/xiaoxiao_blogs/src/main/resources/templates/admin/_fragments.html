@@ -31,6 +31,7 @@
                     $("#userNickname").text(result.userNickname)
                     $("#userSignature").text(result.userSignature)
                     $("#userId").val(result.userId)
+                    $("#user_id").text(result.userId)
                     $("img[class = 'ui avatar image']").prop("src", data.data.userProfilePhoto)
                     /*
                     * 将用户ID存储在本地浏览框器数据库*/
@@ -80,6 +81,7 @@
                 <div class="ui black buttons">
                     <div class="ui button">
                             <div class="text">
+                                <span hidden="hidden" id="user_id"></span>
                                 <img class="ui avatar image" src="">
                                 <span id="userNickname"></span>
                             </div>

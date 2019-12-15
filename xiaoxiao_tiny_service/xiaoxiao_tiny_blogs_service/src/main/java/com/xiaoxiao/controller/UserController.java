@@ -70,4 +70,12 @@ public class UserController
     public Result update(@RequestBody XiaoxiaoUsers users){
         return this.userService.update(users);
     }
+
+
+
+    @ApiOperation(value = "修改密码",response = Result.class,notes = "修改密码")
+    @PostMapping(value = "/updatePassword")
+    public Result updatePassword(@RequestBody XiaoxiaoUsers users,@RequestParam(name = "token")String token) throws Exception{
+        return this.userService.updatePassword(users,token);
+    }
 }

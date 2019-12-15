@@ -41,5 +41,21 @@ import com.xiaoxiao.utils.Result;
  */
 public interface UserFeignService
 {
+
+    /**
+     * 修改信息
+     * @param users
+     * @return
+     */
     Result update(XiaoxiaoUsers users);
+
+
+    /**
+     * 修改密码
+     * @param users
+     * @param token
+     * @return
+     */
+    Result updatePassword(XiaoxiaoUsers users, String token);
+
 }

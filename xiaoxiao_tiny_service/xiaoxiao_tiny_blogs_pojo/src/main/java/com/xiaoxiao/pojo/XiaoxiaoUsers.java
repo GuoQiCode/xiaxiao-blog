@@ -30,4 +30,6 @@ public class XiaoxiaoUsers
      * 二维码
      */
     private String userQrCode;
+
+
 }

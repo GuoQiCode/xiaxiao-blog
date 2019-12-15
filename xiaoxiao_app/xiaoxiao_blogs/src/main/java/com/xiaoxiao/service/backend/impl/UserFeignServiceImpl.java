@@ -60,4 +60,11 @@ public class UserFeignServiceImpl implements UserFeignService
     {
         return this.client.update(users);
     }
+
+
+    @Override
+    public Result updatePassword(XiaoxiaoUsers users, String token)
+    {
+        return this.client.updatePassword(users,token);
+    }
 }

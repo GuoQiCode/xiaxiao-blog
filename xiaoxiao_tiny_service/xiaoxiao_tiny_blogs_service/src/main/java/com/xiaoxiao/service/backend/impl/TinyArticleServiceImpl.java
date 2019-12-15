@@ -146,6 +146,25 @@ public class TinyArticleServiceImpl implements TinyArticleService
                  */
                 this.client.deleteLabelCount();
 
+                /**
+                 * 删除分类文章缓存
+                 */
+                 XiaoxiaoArticles xiaoxiaoArticles= (XiaoxiaoArticles)this.findArticleById(articleId).getData();
+                 this.client.deleteBlogsBySortsToRedis(xiaoxiaoArticles.getArticleBkSortsId());
+
+                /**
+                 * 删除标签缓存
+                 */
+                this.client.deleteArticleSortSum(xiaoxiaoArticles.getArticleBkSortsId());
+
+                /**
+                 * 删除标签缓存数据
+                 */
+                for (String s: xiaoxiaoArticles.getArticleLabel().split(",")
+                )
+                {
+                    this.client.deleteArticleByLabelId(Long.parseLong(s));
+                }
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -219,6 +238,24 @@ public class TinyArticleServiceImpl implements TinyArticleService
                  */
                 this.client.deleteIndexArticle();
 
+                /**
+                 * 删除Sort文章缓存
+                 */
+                this.client.deleteBlogsBySortsToRedis(xiaoxiaoArticles.getArticleBkSortsId());
+
+                /**
+                 * 删除标签缓存
+                 */
+                this.client.deleteArticleSortSum(xiaoxiaoArticles.getArticleBkSortsId());
+
+                /**
+                 * 删除标签缓存数据
+                 */
+                for (String s: split
+                     )
+                {
+                    this.client.deleteArticleByLabelId(Long.parseLong(s));
+                }
 
 
             } catch (Exception e)
@@ -261,7 +298,10 @@ public class TinyArticleServiceImpl implements TinyArticleService
                  */
                 this.client.deleteIndexArticle();
 
-
+                /**
+                 * 删除Sort文章缓存
+                 */
+                this.client.deleteBlogsBySortsToRedis(xiaoxiaoArticles.getArticleBkSortsId());
 
 
             } catch (Exception e)

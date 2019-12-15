@@ -11,6 +11,8 @@ function search_artcile(currentPage,query) {
             pageSize = data.data.pageSize
             if(data.code = 20000 && data.data !=null && data.data.length > 0){
                 searchSplit(data)
+            }else {
+                $("#page").html("")
             }
         }
     })

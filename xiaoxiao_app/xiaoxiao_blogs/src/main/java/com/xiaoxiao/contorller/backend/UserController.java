@@ -146,4 +146,16 @@ public class UserController
         return this.userFeignService.update(users);
     }
 
+
+    /**
+     * 修改密码
+     * @return
+     */
+    @PostMapping(value = "/updatePassword")
+    @ResponseBody
+    public Result updatePassword(XiaoxiaoUsers users,HttpServletRequest request){
+        String token = CookieUtils.getCookieValue(request, COOKIE_NAME, "utf-8");
+        return this.userFeignService.updatePassword(users,token);
+    }
+
 }

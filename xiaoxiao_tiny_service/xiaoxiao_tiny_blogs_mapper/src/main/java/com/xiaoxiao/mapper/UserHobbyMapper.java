@@ -1,10 +1,9 @@
 package com.xiaoxiao.mapper;
 
 import com.xiaoxiao.pojo.XiaoxiaoUserHobby;
+import com.xiaoxiao.pojo.XiaoxiaoUsers;
 import com.xiaoxiao.provider.UserHobbyProvider;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -52,4 +51,12 @@ public interface UserHobbyMapper
     @InsertProvider(type = UserHobbyProvider.class,method = "insert")
     int insert(@Param("hobby") XiaoxiaoUserHobby hobby);
 
+
+    /**
+     * 修改密码
+     * @param users
+     * @return
+     */
+    @Update("update xiaoxiao_users as a set a.user_password = #{users.userPassword} where a.user_id = #{users.userId}")
+    int updatePassword(@Param("users") XiaoxiaoUsers users);
 }

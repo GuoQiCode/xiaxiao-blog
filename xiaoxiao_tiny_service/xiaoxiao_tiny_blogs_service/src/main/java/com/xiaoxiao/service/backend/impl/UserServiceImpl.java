@@ -6,6 +6,7 @@ import com.xiaoxiao.mapper.UserMapper;
 import com.xiaoxiao.pojo.XiaoxiaoUserHobby;
 import com.xiaoxiao.pojo.XiaoxiaoUsers;
 import com.xiaoxiao.service.backend.UserService;
+import com.xiaoxiao.utils.MD5Utils;
 import com.xiaoxiao.utils.Result;
 import com.xiaoxiao.utils.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,6 +128,31 @@ public class UserServiceImpl implements UserService
         }
         return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
     }
+
+
+
+    @Override
+    public Result updatePassword(XiaoxiaoUsers users, String token)
+    {
+        users.setUserPassword(MD5Utils.createMD5(users.getUserPassword()));
+        if(this.userHobbyMapper.updatePassword(users) > 0){
+            try
+            {
+                /**
+                 * 删除用户信息
+                 */
+                this.client.deleteUserToRedis(token);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return Result.ok(StatusCode.OK, this.MARKED_WORDS_SUCCESS);
+        }
+        return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
+    }
+
+
+
 
 
     /**

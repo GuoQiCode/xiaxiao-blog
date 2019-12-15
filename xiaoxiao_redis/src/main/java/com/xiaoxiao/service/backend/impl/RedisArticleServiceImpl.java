@@ -82,6 +82,9 @@ public class RedisArticleServiceImpl implements RedisArticleService
     @Value("${ARTICLE_LABEL_SUM}")
     private String ARTICLE_LABEL_SUM;
 
+    @Value("${SORTS_ARTICLE}")
+    private String SORTS_ARTICLE;
+
 
     @Autowired
     private RedisTemplate<String,Object> redisTemplate;
@@ -185,6 +188,8 @@ public class RedisArticleServiceImpl implements RedisArticleService
     }
 
 
+
+
     /**
      * 缓存分类文章
      * @param articleVos
@@ -193,7 +198,7 @@ public class RedisArticleServiceImpl implements RedisArticleService
     @Override
     public void insertBlogsBySortsToRedis(PageResult articleVos, Long sortId)
     {
-        this.redisTemplate.opsForValue().set(String.valueOf(sortId), articleVos,6,TimeUnit.HOURS);
+        this.redisTemplate.opsForValue().set(this.SORTS_ARTICLE+sortId, articleVos,6,TimeUnit.HOURS);
     }
 
 
@@ -205,7 +210,7 @@ public class RedisArticleServiceImpl implements RedisArticleService
     @Override
     public PageResult getBlogsBySortsToRedis(Long sortId)
     {
-        return (PageResult) this.redisTemplate.opsForValue().get(String.valueOf(sortId));
+        return (PageResult) this.redisTemplate.opsForValue().get(this.SORTS_ARTICLE+sortId);
     }
 
 
@@ -216,7 +221,7 @@ public class RedisArticleServiceImpl implements RedisArticleService
     @Override
     public void deleteBlogsBySortsToRedis(Long sortId)
     {
-        this.redisTemplate.delete(String.valueOf(sortId));
+        this.redisTemplate.delete(this.SORTS_ARTICLE+sortId);
     }
 
 

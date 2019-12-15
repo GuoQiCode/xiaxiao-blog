@@ -14,16 +14,13 @@
 
 <script th:src="@{/js/search.js}"></script>
 <div class="m-container left-0  m-padded-tb-big">
-    <h3 class="ui block header">
-        文章搜索
-    </h3>
     <div class="ui top attached teal segment small" id="content">
         <div style="text-align: center">
             <span>亲爱的，没有找到你要的呢，对不起呢~</span>
         </div>
     </div>
 </div>
-<div class="m-container-small m-padded-tb-big left-auto">
+<div id="page" class="m-container-small m-padded-tb-big left-auto">
     <div class="ui bottom attached segment" style="height: 60px">
         <div th:include="admin/_page.html"></div>
         <script type="text/javascript">

@@ -144,4 +144,10 @@ public class RedisUserServiceImpl implements RedisUserService
     {
         this.redisTemplate.delete(this.SHOW_ME);
     }
+
+    @Override
+    public void deleteUserToRedis(String token)
+    {
+        this.redisTemplate.delete(this.USER_REDIS_ID+token);
+    }
 }

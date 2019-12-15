@@ -128,4 +128,14 @@ public class PageController
         return "me-blog";
     }
 
+
+    /**
+     * 跳转到修改密码的页面
+     * @return
+     */
+    @GetMapping(value = "/admin/update_password")
+    public String updatePassword(){
+        return "admin/update-password";
+    }
+
 }

@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.ConditionalOnRepositoryType;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -60,6 +61,7 @@ public class RedisUserController
      * @param users
      * @param token
      */
+    @ApiOperation(value = "保存用户信息")
     @PostMapping(value = "/insert_user_to_redis")
     public void insertUserToRedis(@RequestBody XiaoxiaoUsers users,String token){
         this.redisUserService.insertUserToRedis(users,token);
@@ -67,6 +69,7 @@ public class RedisUserController
 
 
 
+    @ApiOperation(value = "获取用户登录信息",response = Object.class,notes = "获取用户登录信息")
     @PostMapping(value = "/get_user_to_redis")
     public Object getUserToRedis(String token){
         return this.redisUserService.getUserToRedis(token);
@@ -78,6 +81,13 @@ public class RedisUserController
     @ApiOperation(value = "登出",notes = "登出")
     public void loginOut(String token){
         this.redisUserService.loginOut(token);
+    }
+
+    @ApiOperation(value = "删除用户的登录信息")
+    @PostMapping(value = "/deleteUserToRedis")
+    public void deleteUserToRedis(@RequestParam(name = "token") String token)
+    {
+        this.redisUserService.deleteUserToRedis(token);
     }
 
 

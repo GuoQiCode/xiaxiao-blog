@@ -373,4 +373,12 @@ public interface BlogsFeignServiceClient
     Result update(@RequestBody XiaoxiaoUsers users);
 
 
+    /**
+     * 修改密码
+     * @param users
+     * @param token
+     * @return
+     */
+    @PostMapping(value = "/tiny_user_admin/updatePassword")
+    Result updatePassword(@RequestBody XiaoxiaoUsers users, @RequestParam(name = "token") String token);
 }
