@@ -254,7 +254,7 @@ public class FrontlineTinyArticleServiceImpl implements FrontlineTinyArticleServ
              */
             Integer articleView = this.client.getArticleView(articleId);
             if(articleView != null && articleView > 0){
-                this.client.insertArticleView(articleView++,articleId);
+                this.client.insertArticleView(++articleView,articleId);
             }else {
                 this.client.insertArticleView(1, articleId);
             }
