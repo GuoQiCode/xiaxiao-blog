@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * _ooOoo_
@@ -46,6 +47,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableEurekaClient
 @MapperScan("com.xiaoxiao.tiny.frontline.mapper")
 @EnableFeignClients
+@EnableScheduling
 public class FrontlineTinyApp
 {
     public static void main(String[] args)

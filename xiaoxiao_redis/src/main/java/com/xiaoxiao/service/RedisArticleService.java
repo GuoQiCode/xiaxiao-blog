@@ -128,4 +128,28 @@ public interface RedisArticleService
      * @param labelVo
      */
     void insertArticleLabelSum(Long labelId, XiaoxiaoLabelVo labelVo);
+
+
+    /**
+     * 插入文章浏览量
+     * @param views
+     * @param articleId
+     */
+    void insertArticleView(Integer views, Long articleId);
+
+
+    /**
+     * 获取文章浏览量
+     * @return
+     * @param articleId
+     */
+    Integer getArticleView(Long articleId);
+
+
+    /**
+     * 获取浏览量数据
+     * @return
+     */
+    Map<Object, Object> getArticleView();
+
 }

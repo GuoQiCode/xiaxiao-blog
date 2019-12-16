@@ -85,6 +85,9 @@ public class RedisArticleServiceImpl implements RedisArticleService
     @Value("${SORTS_ARTICLE}")
     private String SORTS_ARTICLE;
 
+    @Value("${ARTICLE_VIEWS}")
+    private String ARTICLE_VIEWS;
+
 
     @Autowired
     private RedisTemplate<String,Object> redisTemplate;
@@ -357,5 +360,26 @@ public class RedisArticleServiceImpl implements RedisArticleService
     public void insertArticleLabelSum(Long labelId, XiaoxiaoLabelVo labelVo)
     {
         this.redisTemplate.opsForValue().set(ARTICLE_LABEL_SUM+labelId, labelVo,6,TimeUnit.HOURS);
+    }
+
+
+
+    @Override
+    public void insertArticleView(Integer views, Long articleId)
+    {
+        this.redisTemplate.opsForHash().put(this.ARTICLE_VIEWS, articleId, views);
+    }
+
+
+    @Override
+    public Integer getArticleView(Long articleId)
+    {
+        return (Integer) this.redisTemplate.opsForHash().get(this.ARTICLE_VIEWS, articleId);
+    }
+
+    @Override
+    public Map<Object, Object> getArticleView()
+    {
+        return  this.redisTemplate.opsForHash().entries(this.ARTICLE_VIEWS);
     }
 }

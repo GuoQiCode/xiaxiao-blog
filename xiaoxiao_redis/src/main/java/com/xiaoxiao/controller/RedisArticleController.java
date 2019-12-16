@@ -9,13 +9,9 @@ import com.xiaoxiao.utils.PageResult;
 import com.xiaoxiao.utils.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
-import jdk.nashorn.internal.objects.annotations.Optimistic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
@@ -260,6 +256,32 @@ public class RedisArticleController
     @PostMapping(value = "/deleteArticleLabelSum")
     public void deleteArticleLabelSum(@RequestParam(name = "labelId") Long labelId){
         this.redisArticleService.deleteArticleLabelSum(labelId);
+    }
+
+
+
+    @ApiOperation(value = "插入文章浏览量数据")
+    @PostMapping(value = "/insertArticleView")
+    public void insertArticleView(@RequestParam(name = "views") Integer views,
+                                  @RequestParam(name = "articleId") Long articleId)
+    {
+        this.redisArticleService.insertArticleView(views,articleId);
+    }
+
+    @PostMapping(value = "getArticleView")
+    public Integer getArticleView(@RequestParam(name = "articleId") Long articleId){
+        return this.redisArticleService.getArticleView(articleId);
+    }
+
+
+    /**
+     * 获取存储的浏览量的数据
+     * @return
+     */
+    @ApiOperation(value = "获取存储的浏览量的数据",response = Map.class,notes = "获取存储的浏览量的数据")
+    @PostMapping(value = "/getView")
+    public Map<Object, Object> getArticleView(){
+        return this.redisArticleService.getArticleView();
     }
 
 }

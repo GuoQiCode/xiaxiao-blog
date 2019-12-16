@@ -6,6 +6,7 @@ import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -113,7 +114,7 @@ public interface FrontlineTinyArticleMapper
      * @param year
      * @return
      */
-    @Select("select  b.article_id,b.article_title,date_format(b.article_date,'%m-%d') as year,b.article_type  from xiaoxiao_articles as b where date_format(b.article_date,'%Y') = #{year}")
+    @Select("select  b.article_id,b.article_title,date_format(b.article_date,'%m-%d') as year,b.article_type  from xiaoxiao_articles as b where date_format(b.article_date,'%Y') = #{year} order by  year desc")
     List<XiaoxiaoArticleVo> findArticleOfYear(@Param("year") String year);
 
     /**
@@ -143,4 +144,11 @@ public interface FrontlineTinyArticleMapper
     XiaoxiaoLabelVo findArticleLabelSum(@Param("labelId") Long labelId);
 
 
+    /**
+     * 修改文章的浏览量
+     * @param x
+     * @param o
+     */
+    @Update("update xiaoxiao_articles as a set a.article_views = #{o} where  a.article_id = #{x} ")
+    void updateArticleViews(@Param("x") Object x, @Param("o") Object o);
 }

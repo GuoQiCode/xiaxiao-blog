@@ -249,6 +249,21 @@ public class FrontlineTinyArticleServiceImpl implements FrontlineTinyArticleServ
     {
         try
         {
+            /**
+             * 插入浏览量
+             */
+            Integer articleView = this.client.getArticleView(articleId);
+            if(articleView != null && articleView > 0){
+                this.client.insertArticleView(articleView++,articleId);
+            }else {
+                this.client.insertArticleView(1, articleId);
+            }
+
+
+
+            /**
+             * 获取缓存的数据
+             */
             XiaoxiaoArticleVo articleById = this.client.getArticleById(articleId);
             if(articleById != null){
                 return Result.ok(StatusCode.OK,true,this.MARKED_WORDS_SUCCESS,articleById );
