@@ -137,6 +137,11 @@ public class TinyArticleServiceImpl implements TinyArticleService
             this.client.deleteIndexArticle();
 
             /**
+             * 删除归档数据
+             */
+            this.client.deleteArticleArchive();
+
+            /**
              * 删除文章标签总数
              */
             this.client.deleteLabelCount();
@@ -256,6 +261,11 @@ public class TinyArticleServiceImpl implements TinyArticleService
                  * 删除标签缓存
                  */
                 this.client.deleteArticleSortSum(xiaoxiaoArticles.getArticleBkSortsId());
+
+                /**
+                 * 删除归档数据
+                 */
+                this.client.deleteArticleArchive();
 
                 /**
                  * 删除标签缓存数据

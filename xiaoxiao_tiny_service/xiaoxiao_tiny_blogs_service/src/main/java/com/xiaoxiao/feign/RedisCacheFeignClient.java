@@ -164,4 +164,11 @@ public interface RedisCacheFeignClient {
     @PostMapping(value = "/redis_service/deleteUserToRedis")
     void deleteUserToRedis(@RequestParam(name = "token") String token);
 
+
+    /**
+     * 删除归档数据
+     */
+    @PostMapping(value = "/redis_article_service/delete_article_archive")
+    void deleteArticleArchive();
+
 }
