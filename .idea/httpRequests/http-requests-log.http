@@ -1,3 +1,37 @@
+POST http://localhost:8080/frontline/technique/sharing/gainTechniqueSharingArticle?articleId=157640635883647
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T103131.200.json
+
+###
+
+POST http://localhost:8080/frontline/technique/sharing/gainTechniqueSharingArticle?articleId=157640635883647
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T100754.200.json
+
+###
+
+POST http://localhost:9995/search_service/deleteArticleToSolr?articleId=157640635883647
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:9995/search_service/deleteArticleToSolr?articleId=157640587921597
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:9998/redis_article_service/delete_index_article?articleId=157631591954110
+Accept: */*
+Cache-Control: no-cache
+
+###
+
 POST http://localhost:9995/search_service/deleteArticleToSolr?articleId=157631591954110
 Accept: */*
 Cache-Control: no-cache
@@ -347,46 +381,6 @@ Accept: */*
 Cache-Control: no-cache
 
 <> 2019-12-09T080044.200.html
-
-###
-
-POST http://localhost:8080/frontline/article/find_blog_by_id?token=43ee1d30-0abc-4abe-810d-60d27899cb88&token=bc944943-1385-4246-b7d1-b91ac5064717&token=fcf22a25-0fc6-4ea5-a36e-f4bffb530b29&articleId=157537212747450
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-09T080019.200.html
-
-###
-
-POST http://localhost:8080/frontline/article/find_blog_by_id?token=43ee1d30-0abc-4abe-810d-60d27899cb88&token=bc944943-1385-4246-b7d1-b91ac5064717&token=fcf22a25-0fc6-4ea5-a36e-f4bffb530b29&articleId=157537212747450
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-06T061125.200.json
-
-###
-
-POST http://localhost:8080/frontline/label/find_all_label?token=43ee1d30-0abc-4abe-810d-60d27899cb88&token=bc944943-1385-4246-b7d1-b91ac5064717&token=fcf22a25-0fc6-4ea5-a36e-f4bffb530b29
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-05T065705.200.json
-
-###
-
-POST http://localhost:8080/frontline/label/find_all_label?token=43ee1d30-0abc-4abe-810d-60d27899cb88&token=bc944943-1385-4246-b7d1-b91ac5064717&token=fcf22a25-0fc6-4ea5-a36e-f4bffb530b29
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-05T065519.200.html
-
-###
-
-POST http://localhost:8080/frontline/hobby/find_me_hobby?token=43ee1d30-0abc-4abe-810d-60d27899cb88&token=bc944943-1385-4246-b7d1-b91ac5064717&token=fcf22a25-0fc6-4ea5-a36e-f4bffb530b29
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-05T062959.200.json
 
 ###
 

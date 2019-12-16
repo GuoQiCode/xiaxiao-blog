@@ -234,7 +234,7 @@ public interface RedisCacheFeignClient {
 
     /**
      * 缓存归档日志信息
-     * 
+     *
      * @param map
      */
     @PostMapping(value = "/redis_article_service/insert_article_archive")
@@ -242,7 +242,7 @@ public interface RedisCacheFeignClient {
 
     /**
      * 获取缓存的归档日志
-     * 
+     *
      * @return
      */
     @PostMapping(value = "/redis_article_service/get_article_archive")
@@ -250,7 +250,7 @@ public interface RedisCacheFeignClient {
 
     /**
      * 插入文章的总数
-     * 
+     *
      * @param xiaoxiaoLabelVo
      */
     @PostMapping(value = "/redis_label_service/insert_label_count")
@@ -258,7 +258,7 @@ public interface RedisCacheFeignClient {
 
     /**
      * 获取文章的总数
-     * 
+     *
      * @return
      */
     @PostMapping(value = "/redis_label_service/get_label_count")
@@ -266,7 +266,7 @@ public interface RedisCacheFeignClient {
 
     /**
      * 插入标签文章数据
-     * 
+     *
      * @param result
      * @param labelId
      */
@@ -275,7 +275,7 @@ public interface RedisCacheFeignClient {
 
     /**
      * 获取标签文章数据
-     * 
+     *
      * @param labelId
      * @return
      */
@@ -284,7 +284,7 @@ public interface RedisCacheFeignClient {
 
     /**
      * 缓存指定分类文章个数
-     * 
+     *
      * @param sortId
      * @param sortsVo
      */
@@ -293,7 +293,7 @@ public interface RedisCacheFeignClient {
 
     /**
      * 获取指定分类文章的个数
-     * 
+     *
      * @param sortId
      * @return
      */
@@ -302,7 +302,7 @@ public interface RedisCacheFeignClient {
 
     /**
      * 缓存标签文章的个数
-     * 
+     *
      * @param labelId
      * @param labelVo
      */
@@ -311,7 +311,7 @@ public interface RedisCacheFeignClient {
 
     /**
      * 获取文章标签个数
-     * 
+     *
      * @param labelId
      * @return
      */
@@ -320,7 +320,7 @@ public interface RedisCacheFeignClient {
 
     /**
      * 插入文章评论缓存
-     * 
+     *
      * @param articleId
      * @param result
      */
@@ -329,7 +329,7 @@ public interface RedisCacheFeignClient {
 
     /**
      * 获取文章评论
-     * 
+     *
      * @param articleId
      * @return
      */
@@ -338,10 +338,27 @@ public interface RedisCacheFeignClient {
 
     /**
      * 删除文章评论
-     * 
+     *
      * @param articleI
      */
     @PostMapping(value = "/redis_comments_service/deleteCommentArticle")
     void deleteCommentArticle(@RequestParam("articleId") Long articleI);
+
+
+    /**
+     *插入首页缓存推荐文章数据
+     * @param result
+     */
+    @PostMapping(value = "/redis_technique_sharing/insertTechniqueSharingArticle")
+     void insertTechniqueSharingArticle(@RequestBody PageResult result);
+
+
+    /**
+     *获取首页缓存推荐文章数据
+     * @return
+     */
+    @PostMapping(value = "/redis_technique_sharing/getTechniqueSharingArticle")
+    PageResult getTechniqueSharingArticle();
+
 
 }

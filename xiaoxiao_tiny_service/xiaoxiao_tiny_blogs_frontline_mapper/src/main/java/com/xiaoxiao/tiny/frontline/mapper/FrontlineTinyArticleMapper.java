@@ -66,6 +66,14 @@ public interface FrontlineTinyArticleMapper
 
 
     /**
+     * 获取首页推荐文章
+     * @return
+     */
+    @Select("SELECT a.article_title,a.article_id,a.article_bk_first_img,a.article_date,a.article_desc FROM xiaoxiao_articles a WHERE a.article_recommend ='on' ORDER BY a.article_date DESC")
+    List<XiaoxiaoArticles> gainTechniqueSharingArticleRecommend();
+
+
+    /**
      * 查询首页文章
      * @return
      */

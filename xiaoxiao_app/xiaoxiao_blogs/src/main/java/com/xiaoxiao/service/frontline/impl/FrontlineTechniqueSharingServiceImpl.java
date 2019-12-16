@@ -1,9 +1,10 @@
-package com.xiaoxiao.feign;
+package com.xiaoxiao.service.frontline.impl;
 
-import org.apache.ibatis.annotations.Param;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.xiaoxiao.feign.FrontlineFeignServiceClient;
+import com.xiaoxiao.service.frontline.FrontlineTechniqueSharingService;
+import com.xiaoxiao.utils.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * _ooOoo_
@@ -37,29 +38,23 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
- * @date:2019/12/14:14:38
+ * @date:2019/12/16:09:50
  * @author:shinelon
  * @Describe:
  */
-@FeignClient("xiaoxiao-search")
-public interface SearchFeignClient
+@Service
+@SuppressWarnings("all")
+public class FrontlineTechniqueSharingServiceImpl implements FrontlineTechniqueSharingService
 {
 
-    /**
-     * 插入一个的文章到solr中
-     *
-     * @param articleId
-     */
-    @PostMapping(value = "/search_service/insertArticleToSolr")
-    void insertArticleToSolr(@RequestParam("articleId") Long articleId);
+    @Autowired
+    private FrontlineFeignServiceClient client;
 
 
-    /**
-     * 删除solr内的数据
-     *
-     * @param articleId
-     */
-    @PostMapping(value = "/search_service/deleteArticleToSolr")
-    void deleteArticleToSolr(@RequestParam("articleId") Long articleId);
 
+    @Override
+    public Result gainTechniqueSharingArticle(Integer page, Integer rows)
+    {
+        return this.client.gainTechniqueSharingArticle(page,rows);
+    }
 }

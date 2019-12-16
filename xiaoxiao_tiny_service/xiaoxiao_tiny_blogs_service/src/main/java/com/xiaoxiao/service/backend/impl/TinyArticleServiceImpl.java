@@ -109,66 +109,89 @@ public class TinyArticleServiceImpl implements TinyArticleService
     @Override
     public Result delete(Long articleId)
     {
+        try
+        {
+            /**
+             * 删除solr数据
+             */
+            this.searchFeignClient.deleteArticleToSolr(articleId);
+
+            /**
+             * 删除首页总文章个数缓存
+             */
+            this.client.deleteArticleSumToRedis();
+
+            /**
+             * 删除首页标签文章个数
+             */
+            this.client.deleteIndexArticleLabel();
+
+            /**
+             * 删除文章分类个数
+             */
+            this.client.deleteIndexSortsAllToRedis();
+
+            /**
+             * 删除首页文章缓存
+             */
+            this.client.deleteIndexArticle();
+
+            /**
+             * 删除文章标签总数
+             */
+            this.client.deleteLabelCount();
+
+            /**
+             * 删除推荐文章
+             */
+            this.client.deleteArticleNewRecommend();
+
+            /**
+             * 删除分类文章缓存
+             */
+            XiaoxiaoArticles xiaoxiaoArticles= (XiaoxiaoArticles)this.findArticleById(articleId).getData();
+            this.client.deleteBlogsBySortsToRedis(xiaoxiaoArticles.getArticleBkSortsId());
+
+            /**
+             * 删除标签缓存
+             */
+            this.client.deleteArticleSortSum(xiaoxiaoArticles.getArticleBkSortsId());
+
+            /**
+             * 删除标签缓存数据
+             *
+             * 1.获取文章的所有标签数据
+             * 2.删除标签文章缓存
+             * 3.删除标签文章总数
+             */
+            List<XiaoxiaoSetArtitleLabel> articleLabel = this.setArticleLabelMapper.findArticleLabel(articleId);
+            for (XiaoxiaoSetArtitleLabel x:articleLabel
+                 )
+            {
+                /**
+                 * 1.删除文章标签缓存
+                 */
+                 this.client.deleteArticleLabelSum(x.getLabelId());
+
+                /**
+                 * 2.删除文章标签总数
+                 */
+                this.client.deleteArticleByLabelId(x.getLabelId());
+            }
+
+            /**
+             * 3.
+             * 删除中间表数据
+             */
+            this.setArticleLabelMapper.deleteArticleLabelByArticleId(articleId);
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         if (this.artcleMapper.delete(articleId) > 0)
         {
-            try
-            {
-                /**
-                 * 删除solr数据
-                 */
-                this.searchFeignClient.deleteArticleToSolr(articleId);
-
-                /**
-                 * 删除首页总文章个数缓存
-                 */
-                this.client.deleteArticleSumToRedis();
-                /**
-                 * 删除首页标签文章个数
-                 */
-                this.client.deleteIndexArticleLabel();
-
-                /**
-                 * 删除文章分类个数
-                 */
-                this.client.deleteIndexSortsAllToRedis();
-
-                /**
-                 * 删除首页文章缓存
-                 */
-                this.client.deleteIndexArticle();
-                /**
-                 * 删除文章和标签的中间变数据
-                 */
-                this.setArticleLabelMapper.deleteArticleLabelByArticleId(articleId);
-
-                /**
-                 * 删除文章标签总数
-                 */
-                this.client.deleteLabelCount();
-
-                /**
-                 * 删除分类文章缓存
-                 */
-                 XiaoxiaoArticles xiaoxiaoArticles= (XiaoxiaoArticles)this.findArticleById(articleId).getData();
-                 this.client.deleteBlogsBySortsToRedis(xiaoxiaoArticles.getArticleBkSortsId());
-
-                /**
-                 * 删除标签缓存
-                 */
-                this.client.deleteArticleSortSum(xiaoxiaoArticles.getArticleBkSortsId());
-
-                /**
-                 * 删除标签缓存数据
-                 */
-                for (String s: xiaoxiaoArticles.getArticleLabel().split(",")
-                )
-                {
-                    this.client.deleteArticleByLabelId(Long.parseLong(s));
-                }
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-            }
             return Result.ok(StatusCode.OK, this.MARKED_WORDS_SUCCESS);
         }
         return Result.error(StatusCode.ERROR, this.MARKED_WORDS_FAULT);
@@ -215,20 +238,6 @@ public class TinyArticleServiceImpl implements TinyArticleService
             try
             {
                 /**
-                 * 删除首页总文章个数缓存
-                 */
-                this.client.deleteArticleSumToRedis();
-                /**
-                 * 珊瑚首页标签文章个数
-                 */
-                this.client.deleteIndexArticleLabel();
-
-                /**
-                 * 删除文章分类个数
-                 */
-                this.client.deleteIndexSortsAllToRedis();
-
-                /**
                  * 将此文章加入到的solr中
                  */
                 this.searchFeignClient.insertArticleToSolr(xiaoxiaoArticles.getArticleId());
@@ -252,11 +261,35 @@ public class TinyArticleServiceImpl implements TinyArticleService
                  * 删除标签缓存数据
                  */
                 for (String s: split
-                     )
+                )
                 {
+
+                    /**
+                     *删除标签文章个数
+                     */
+                    this.client.deleteArticleLabelSum(Long.parseLong(s));
+
+                    /**
+                     * 删除
+                     */
                     this.client.deleteArticleByLabelId(Long.parseLong(s));
                 }
+                /**
+                 * 删除首页总文章个数缓存
+                 */
+                this.client.deleteArticleSumToRedis();
+                /**
+                 * 珊瑚首页标签文章个数
+                 */
+                this.client.deleteIndexArticleLabel();
 
+
+
+
+                /**
+                 * 删除文章分类个数
+                 */
+                this.client.deleteIndexSortsAllToRedis();
 
             } catch (Exception e)
             {

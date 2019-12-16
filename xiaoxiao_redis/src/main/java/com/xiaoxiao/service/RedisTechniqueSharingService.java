@@ -1,9 +1,6 @@
-package com.xiaoxiao.feign;
+package com.xiaoxiao.service;
 
-import org.apache.ibatis.annotations.Param;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.xiaoxiao.utils.PageResult;
 
 /**
  * _ooOoo_
@@ -37,29 +34,29 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
- * @date:2019/12/14:14:38
+ * @date:2019/12/16:10:17
  * @author:shinelon
  * @Describe:
  */
-@FeignClient("xiaoxiao-search")
-public interface SearchFeignClient
+public interface RedisTechniqueSharingService
 {
 
     /**
-     * 插入一个的文章到solr中
-     *
-     * @param articleId
+     * 缓存首页文章
+     * @param result
      */
-    @PostMapping(value = "/search_service/insertArticleToSolr")
-    void insertArticleToSolr(@RequestParam("articleId") Long articleId);
+    void insertTechniqueSharingArticle(PageResult result);
+
+    /**
+     * 获取首页缓存文章
+     * @return
+     */
+    PageResult getTechniqueSharingArticle();
 
 
     /**
-     * 删除solr内的数据
-     *
-     * @param articleId
+     * 删除首页缓存文章
      */
-    @PostMapping(value = "/search_service/deleteArticleToSolr")
-    void deleteArticleToSolr(@RequestParam("articleId") Long articleId);
+    void deleteTechniqueSharingArticle();
 
 }

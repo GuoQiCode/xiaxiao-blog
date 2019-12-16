@@ -2,11 +2,10 @@ package com.xiaoxiao.mapper;
 
 import com.xiaoxiao.pojo.XiaoxiaoSetArtitleLabel;
 import com.xiaoxiao.provider.SetArticleLabelProvider;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultType;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * _ooOoo_
@@ -48,6 +47,11 @@ import org.springframework.stereotype.Repository;
 public interface SetArticleLabelMapper
 {
 
+    /**
+     *插入文章标签关联表
+     * @param artitleLabel
+     * @return
+     */
     @InsertProvider(type = SetArticleLabelProvider.class,method = "insert")
     int insert(@Param("articleLabel")XiaoxiaoSetArtitleLabel artitleLabel);
 
@@ -58,4 +62,13 @@ public interface SetArticleLabelMapper
      */
     @Delete("delete from xiaoxiao_set_artitle_label where article_id = #{articleId}")
     void deleteArticleLabelByArticleId(@Param("articleId") Long articleId);
+
+
+    /**
+     * 获取文章的所有标签
+     * @param articleId
+     * @return
+     */
+    @Select("select * from xiaoxiao_set_artitle_label as a where a.article_id = #{articleId}")
+    List<XiaoxiaoSetArtitleLabel> findArticleLabel(@Param("articleId")Long articleId);
 }

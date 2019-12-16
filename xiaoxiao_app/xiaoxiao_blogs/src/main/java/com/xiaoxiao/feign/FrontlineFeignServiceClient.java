@@ -250,4 +250,15 @@ public interface FrontlineFeignServiceClient
     Result findComments(@RequestParam(name = "articleId") Long articleId,
                         @RequestParam(name = "page", defaultValue = "1") Integer page,
                         @RequestParam(name = "rows", defaultValue = "10") Integer rows);
+
+
+    /**
+     * 获取首页推荐文章
+     * @param page
+     * @param rows
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/technique/sharing/gainTechniqueSharingArticle")
+    Result gainTechniqueSharingArticle(@RequestParam(name = "page",defaultValue = "1")Integer page,
+                                       @RequestParam(name = "rows",defaultValue = "4")Integer rows);
 }

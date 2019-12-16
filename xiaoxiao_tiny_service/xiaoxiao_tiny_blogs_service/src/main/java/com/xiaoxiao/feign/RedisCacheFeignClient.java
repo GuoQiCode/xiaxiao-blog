@@ -13,11 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 /**
- * _ooOoo_ o8888888o 88" . "88 (| -_- |) O\ = /O ____/`---'\____ .' \\| |// `. / \\||| : |||// \ / _||||| -:- |||||- \ |
- * | \\\ - /// | | | \_| ''\---/'' | | \ .-\__ `-` ___/-. / ___`. .' /--.--\ `. . __ ."" '< `.___\_<|>_/___.' >'"". | |
- * : `- \`.;`\ _ /`;.`/ - ` : | | \ \ `-. \_ __\ /__ _/ .-` / / ======`-.____`-.___\_____/___.-`____.-'====== `=---='
- * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 佛祖保佑 永无BUG 佛曰: 写字楼里写字间，写字间里程序员； 程序人员写程序，又拿程序换酒钱。 酒醒只在网上坐，酒醉还来网下眠；
- * 酒醉酒醒日复日，网上网下年复年。 但愿老死电脑间，不愿鞠躬老板前； 奔驰宝马贵者趣，公交自行程序员。 别人笑我忒疯癫，我笑自己命太贱； 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
  * @date:2019/12/2:09:48
@@ -128,7 +123,7 @@ public interface RedisCacheFeignClient {
      *
      * @param sortId
      */
-    @PostMapping(value = "/redis_article_service/get_blogs_by_sorts_to_redis")
+    @PostMapping(value = "/redis_article_service/delete_blogs_by_sorts_to_redis")
     void deleteBlogsBySortsToRedis(@RequestParam(name = "sortId") Long sortId);
 
     /**
@@ -144,9 +139,23 @@ public interface RedisCacheFeignClient {
      * 
      * @param labelId
      */
-    @PostMapping(value = "/redis_article_service/get_article_by_label_id")
+    @PostMapping(value = "/redis_article_service/delete_article_by_label_id")
     void deleteArticleByLabelId(@RequestParam(name = "labelId") Long labelId);
 
+
+    /**
+     * 删除推荐文章数据
+     */
+    @PostMapping(value = "/redis_article_service/delete_article_new_recommend")
+     void deleteArticleNewRecommend();
+
+
+    /**
+     * 删除标签文章个数缓存
+     * @param labelId
+     */
+    @PostMapping(value = "/redis_article_service/deleteArticleLabelSum")
+     void deleteArticleLabelSum(@RequestParam(name = "labelId") Long labelId);
     /**
      * 删除用户信息
      * 
