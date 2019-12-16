@@ -45,7 +45,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface UserFeignServiceClient
 {
 
-    @PostMapping(value = "/tiny_user_admin/login")
+    /**
+     * 用户登录
+     * @param userName
+     * @param password
+     * @return
+     */
+    @PostMapping(value = "/admin/tiny_user_admin/login")
     Result login(@RequestParam(name = "userName") String userName, @RequestParam(name = "password") String password);
 
 }

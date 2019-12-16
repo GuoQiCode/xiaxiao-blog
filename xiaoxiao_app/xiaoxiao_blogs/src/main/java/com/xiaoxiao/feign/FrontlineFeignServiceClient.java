@@ -261,4 +261,15 @@ public interface FrontlineFeignServiceClient
     @PostMapping(value = "/frontline/tiny/technique/sharing/gainTechniqueSharingArticle")
     Result gainTechniqueSharingArticle(@RequestParam(name = "page",defaultValue = "1")Integer page,
                                        @RequestParam(name = "rows",defaultValue = "4")Integer rows);
+
+
+    /**
+     * 查询首页广告位数据
+     * @param page
+     * @param rows
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/advertising/findAdvertisingAll")
+    Result findAdvertisingAll(@RequestParam(name = "page",defaultValue = "1")Integer page,
+                              @RequestParam(name = "rows",defaultValue = "5")Integer rows);
 }

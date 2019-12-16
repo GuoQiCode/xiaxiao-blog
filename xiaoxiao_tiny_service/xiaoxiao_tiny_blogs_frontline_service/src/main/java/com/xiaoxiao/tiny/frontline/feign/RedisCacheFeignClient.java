@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
-
+ * 
  * @project_name:xiaoxiao_final_blogs
  * @date:2019/12/2:09:48
  * @author:shinelon
@@ -364,22 +364,39 @@ public interface RedisCacheFeignClient {
      */
     @PostMapping(value = "/redis_article_service/insertArticleView")
     void insertArticleView(@RequestParam(name = "views") Integer views,
-                           @RequestParam(name = "articleId") Long articleId);
+        @RequestParam(name = "articleId") Long articleId);
 
     /**
      * 获取文章浏览量
+     * 
      * @param articleId
      * @return
      */
     @PostMapping(value = "/redis_article_service/getArticleView")
-    Integer getArticleView( @RequestParam(name = "articleId") Long articleId);
-
+    Integer getArticleView(@RequestParam(name = "articleId") Long articleId);
 
     /**
      * 获取全部的浏览数据
+     * 
      * @return
      */
     @PostMapping(value = "/redis_article_service/getView")
-    Map<Object,Object> getArticleView();
+    Map<Object, Object> getArticleView();
+
+    /**
+     * 缓存首页广告信息
+     * 
+     * @param list
+     */
+    @PostMapping(value = "/redis_advertising_service/insertAdvertisingToRedis")
+    void insertAdvertisingToRedis(@RequestBody List<XiaoxiaoAdvertising> list);
+
+    /**
+     * 获取首页文章缓存
+     * 
+     * @return
+     */
+    @PostMapping(value = "/redis_advertising_service/getAdvertisingToRedis")
+    List<XiaoxiaoAdvertising> getAdvertisingToRedis();
 
 }

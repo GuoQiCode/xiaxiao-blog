@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="admin/_fragments :: head(~{::title})">
-    <title>分类管理</title>
+    <title>首页广告管理</title>
 </head>
 <body>
 
@@ -13,33 +13,33 @@
 <!--菜单-->
 <div class="ui attached pointing menu" th:replace="admin/_fragments :: menu">
 </div>
-
+<script th:src="@{/js/advertising.js}"></script>
 <!--中间内容-->
 <div class="m-container-big m-padded-tb-big">
     <div class="ui container">
-        <script th:src="@{/js/sorts.js}"></script>
+
         <table class="ui celled table">
             <thead>
             <tr>
-                <th></th>
                 <th>序号</th>
-                <th>分类名称</th>
-                <th>分类别名</th>
-                <th>分类描述</th>
+                <th>描述</th>
+                <th>跳转地址</th>
+                <th>当前等级</th>
+                <th>备注</th>
                 <th>操作</th>
             </tr>
             </thead>
-            <tbody id="sorts">
+            <tbody id="advertising">
 
             </tbody>
             <tfoot>
             <tr>
-                <th colspan="6">
+                <th colspan="8">
                     <div th:include="admin/_page.html"></div>
                 </th>
                 <script type="text/javascript">
                     function currentPage(currentPage){
-                        findAll(currentPage)
+                        find_all(currentPage)
                     }
                     $("#pager").zPager({
                         totalData: totalRows,
@@ -66,18 +66,26 @@
         分类管理
     </div>
     <div class="content">
-        <input id="sortId" name="sortId" hidden="hidden" value=""/>
+        <input name="advertisingId" hidden="hidden" value=""/>
         <div class="field">
-            <label>分类名称</label>
-            <input placeholder="请输入分类名称...." name="sortName" id="sortName" type="text" value="">
+            <label>广告图片地址</label>
+            <input placeholder="请输入广告图片地址...." name="advertisingImg" type="text" value="">
         </div>
         <div class="field">
-            <label>分类别名</label>
-            <input placeholder="请输入分类别名...." name="sortAlias" id="sortAlias" type="text" value="">
+            <label>广告描述</label>
+            <input placeholder="请输入广告描述" name="advertisingAlt"  type="text" value="">
         </div>
         <div class="field">
-            <label>分类详情</label>
-            <input placeholder="请输入分类详情...." name="sortDescription" id="sortDescription" type="text" value="">
+            <label>广告URL</label>
+            <input placeholder="输入广告url...." name="advertisingUrl"  type="text" value="">
+        </div>
+        <div class="field">
+            <label>广告等级</label>
+            <input placeholder="广告等级....." name="advertisingLevel"  type="text" value="">
+        </div>
+        <div class="field">
+            <label>广告备注</label>
+            <input placeholder="请输入广告备注...." name="advertisingRemark"  type="text" value="">
         </div>
     </div>
     <div class="actions">

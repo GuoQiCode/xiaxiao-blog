@@ -45,7 +45,7 @@ import org.springframework.web.bind.annotation.*;
  * @Describe:
  */
 @RestController
-@RequestMapping(value = "/tiny_service_label")
+@RequestMapping(value = "/admin/tiny_service_label")
 @CrossOrigin(origins = {"*"},maxAge = 3600)
 @Api(value = "标签接口")
 public class TinyLabelController

@@ -50,7 +50,7 @@ public interface BlogsFeignServiceClient
     /**
      * 菜单
      */
-    @GetMapping(value = "/tiny_service_menu/find_all_menu")
+    @GetMapping(value = "/admin/tiny_service_menu/find_all_menu")
     Result findAllMenu();
 
 
@@ -64,13 +64,13 @@ public interface BlogsFeignServiceClient
      * @param rows
      * @return
      */
-    @GetMapping(value = "/tiny_service_sort/find_all_sorts")
+    @GetMapping(value = "/admin/tiny_service_sort/find_all_sorts")
     Result findAllSorts(@RequestParam(name = "page",defaultValue = "1") Integer page,
                         @RequestParam(name = "rows",defaultValue = "10") Integer rows);
 
 
 
-    @GetMapping(value = "/tiny_service_sort/find_all")
+    @GetMapping(value = "/admin/tiny_service_sort/find_all")
     Result findAll(@RequestParam(name = "page",defaultValue = "1") Integer page,
                         @RequestParam(name = "rows",defaultValue = "10") Integer rows);
 
@@ -80,7 +80,7 @@ public interface BlogsFeignServiceClient
      * @param sortId
      * @return
      */
-    @GetMapping(value = "/tiny_service_sort/delete")
+    @GetMapping(value = "/admin/tiny_service_sort/delete")
     Result delete(@RequestParam(name = "sortId") Long sortId);
 
 
@@ -89,7 +89,7 @@ public interface BlogsFeignServiceClient
      * @param sortId
      * @return
      */
-    @GetMapping(value = "/tiny_service_sort/find_sort_by_id")
+    @GetMapping(value = "/admin/tiny_service_sort/find_sort_by_id")
     Result findSortById(@RequestParam(name = "sortId") Long sortId);
 
 
@@ -98,7 +98,7 @@ public interface BlogsFeignServiceClient
      * @param sorts
      * @return
      */
-    @PostMapping(value = "/tiny_service_sort/update")
+    @PostMapping(value = "/admin/tiny_service_sort/update")
     Result update(@RequestBody XiaoxiaoSorts sorts);
 
 
@@ -107,7 +107,7 @@ public interface BlogsFeignServiceClient
      * @param sorts
      * @return
      */
-    @PostMapping(value = "/tiny_service_sort/insert")
+    @PostMapping(value = "/admin/tiny_service_sort/insert")
     Result insert(@RequestBody XiaoxiaoSorts sorts);
 
 
@@ -125,7 +125,7 @@ public interface BlogsFeignServiceClient
      * @param rows
      * @return
      */
-    @GetMapping(value = "/tiny_service_label/find_all_label")
+    @GetMapping(value = "/admin/tiny_service_label/find_all_label")
     Result findAllLabel(@RequestParam(name = "page",defaultValue = "1",required = false)Integer page,
                         @RequestParam(name = "rows",defaultValue = "10",required = false)Integer rows);
 
@@ -135,7 +135,7 @@ public interface BlogsFeignServiceClient
      * @param labels
      * @return
      */
-    @GetMapping(value = "/tiny_service_label/update")
+    @GetMapping(value = "/admin/tiny_service_label/update")
     Result update(@RequestBody XiaoxiaoLabels labels);
 
 
@@ -144,7 +144,7 @@ public interface BlogsFeignServiceClient
      * @param labelId
      * @return
      */
-    @GetMapping(value = "/tiny_service_label/find_label_by_id")
+    @GetMapping(value = "/admin/tiny_service_label/find_label_by_id")
     Result findLabelById(@RequestParam(name = "labelId") Long labelId);
 
 
@@ -153,7 +153,7 @@ public interface BlogsFeignServiceClient
      * @param labelId
      * @return
      */
-    @GetMapping(value = "/tiny_service_label/delete")
+    @GetMapping(value = "/admin/tiny_service_label/delete")
     Result deleteLabelsById(@RequestParam(name = "labelId") Long labelId);
 
     /**
@@ -161,7 +161,7 @@ public interface BlogsFeignServiceClient
      * @param labels
      * @return
      */
-    @PostMapping(value = "/tiny_service_label/insert")
+    @PostMapping(value = "/admin/tiny_service_label/insert")
     Result insert(@RequestBody XiaoxiaoLabels labels);
 
 
@@ -176,7 +176,7 @@ public interface BlogsFeignServiceClient
      * @param rows
      * @return
      */
-    @GetMapping(value = "/tiny_article_service/find_all_article")
+    @GetMapping(value = "/admin/tiny_article_service/find_all_article")
     Result findAllArticle(@RequestParam(name = "page",defaultValue = "1") Integer page,
                           @RequestParam(name = "rows",defaultValue = "10")Integer rows);
 
@@ -187,7 +187,7 @@ public interface BlogsFeignServiceClient
      * @param articleId
      * @return
      */
-    @GetMapping(value = "/tiny_article_service/delete")
+    @GetMapping(value = "/admin/tiny_article_service/delete")
     Result deleteArticle(@RequestParam(name = "articleId") Long articleId);
 
 
@@ -196,7 +196,7 @@ public interface BlogsFeignServiceClient
      * @param articleId
      * @return
      */
-    @GetMapping(value = "/tiny_article_service/find_article_by_id")
+    @GetMapping(value = "/admin/tiny_article_service/find_article_by_id")
     Result findArticleById(@RequestParam(name = "articleId") Long articleId);
 
 
@@ -205,7 +205,7 @@ public interface BlogsFeignServiceClient
      * @param xiaoxiaoArticles
      * @return
      */
-    @PostMapping(value = "/tiny_article_service/insert")
+    @PostMapping(value = "/admin/tiny_article_service/insert")
     Result insert(@RequestBody XiaoxiaoArticles xiaoxiaoArticles);
 
 
@@ -214,7 +214,7 @@ public interface BlogsFeignServiceClient
      * @param xiaoxiaoArticles
      * @return
      */
-    @PostMapping(value = "/tiny_article_service/update")
+    @PostMapping(value = "/admin/tiny_article_service/update")
     Result update(@RequestBody XiaoxiaoArticles xiaoxiaoArticles);
 
 
@@ -225,7 +225,7 @@ public interface BlogsFeignServiceClient
      * @param xiaoxiaoArticles
      * @return
      */
-    @PostMapping(value = "/tiny_article_service/find_article_by_title_or_sorts")
+    @PostMapping(value = "/admin/tiny_article_service/find_article_by_title_or_sorts")
     Result findArticleByTitleOrSorts(@RequestParam(name = "page",defaultValue = "1",required = false)Integer page,
                                      @RequestParam(name = "rows",defaultValue = "10",required = false)Integer rows,
                                      @RequestBody XiaoxiaoArticles xiaoxiaoArticles);
@@ -237,7 +237,7 @@ public interface BlogsFeignServiceClient
      * @param articleRecommend
      * @return
      */
-    @GetMapping(value = "/tiny_article_service/update_recommend")
+    @GetMapping(value = "/admin/tiny_article_service/update_recommend")
     Result updateRecommend(@RequestParam(name = "articleId") Long articleId,
                            @RequestParam(name = "articleRecommend") String articleRecommend);
 
@@ -255,7 +255,7 @@ public interface BlogsFeignServiceClient
      * @param img
      * @return
      */
-    @PostMapping(value = "/tiny_img_service/insert")
+    @PostMapping(value = "/admin/tiny_img_service/insert")
     Result insert(@RequestBody XiaoxiaoImg img);
 
 
@@ -270,7 +270,7 @@ public interface BlogsFeignServiceClient
      *查询全部的后台管理菜单
      * @return
      */
-    @PostMapping(value = "/tiny_admin_manager_service/find_all_manager")
+    @PostMapping(value = "/admin/tiny_admin_manager_service/find_all_manager")
     Result findAllAdminManager();
 
 
@@ -280,7 +280,7 @@ public interface BlogsFeignServiceClient
      * @param rows
      * @return
      */
-    @PostMapping(value = "/tiny_admin_manager_service/find_manager_all")
+    @PostMapping(value = "/admin/tiny_admin_manager_service/find_manager_all")
     Result findAllManager(@RequestParam(name = "page",defaultValue = "1") Integer page,
                           @RequestParam(name = "rows",defaultValue = "10") Integer rows);
 
@@ -290,7 +290,7 @@ public interface BlogsFeignServiceClient
      * @param message
      * @return
      */
-    @PostMapping(value = "/tiny_admin_manager_service/insert")
+    @PostMapping(value = "/admin/tiny_admin_manager_service/insert")
     Result insert(@RequestBody XiaoxiaoAdminMessage message);
 
 
@@ -299,7 +299,7 @@ public interface BlogsFeignServiceClient
      * @param adminId
      * @return
      */
-    @PostMapping(value = "/tiny_admin_manager_service/delete")
+    @PostMapping(value = "/admin/tiny_admin_manager_service/delete")
     Result deleteAdminManager(@RequestParam(name = "adminId") String adminId);
 
 
@@ -308,7 +308,7 @@ public interface BlogsFeignServiceClient
      * @param adminId
      * @return
      */
-    @PostMapping(value = "/tiny_admin_manager_service/find_admin_manager_by_id")
+    @PostMapping(value = "/admin/tiny_admin_manager_service/find_admin_manager_by_id")
     Result findAdminManagerById(@RequestParam("adminId") Long adminId);
 
 
@@ -324,7 +324,7 @@ public interface BlogsFeignServiceClient
      * @param rows
      * @return
      */
-    @PostMapping(value = "/tiny_admin_hobby_service/find_all")
+    @PostMapping(value = "/admin/tiny_admin_hobby_service/find_all")
     Result findAllHobby(@RequestParam(name = "page",defaultValue = "1") Integer page,
                         @RequestParam(name = "rows",defaultValue = "10") Integer rows);
 
@@ -334,7 +334,7 @@ public interface BlogsFeignServiceClient
      * @param hobbyId
      * @return
      */
-    @PostMapping(value = "/tiny_admin_hobby_service/delete_hobby_by_id")
+    @PostMapping(value = "/admin/tiny_admin_hobby_service/delete_hobby_by_id")
     Result deleteHobbyById(@RequestParam(name = "hobbyId") String hobbyId);
 
     /**
@@ -342,7 +342,7 @@ public interface BlogsFeignServiceClient
      * @param userId
      * @return
      */
-    @PostMapping(value = "/tiny_admin_hobby_service/find_user_hobby")
+    @PostMapping(value = "/admin/tiny_admin_hobby_service/find_user_hobby")
     Result findUserHobby(@RequestParam(name = "userId") Long userId);
 
     /**
@@ -350,7 +350,7 @@ public interface BlogsFeignServiceClient
      * @param hobby
      * @return
      */
-    @PostMapping(value = "/tiny_admin_hobby_service/insert")
+    @PostMapping(value = "/admin/tiny_admin_hobby_service/insert")
     Result insert(@RequestBody XiaoxiaoHobby hobby);
 
 
@@ -358,7 +358,7 @@ public interface BlogsFeignServiceClient
      *
      * @return
      */
-    @PostMapping(value = "/tiny_admin_hobby_service/find_all_hobby")
+    @PostMapping(value = "/admin/tiny_admin_hobby_service/find_all_hobby")
     Result findAllHobby();
 
 
@@ -369,8 +369,9 @@ public interface BlogsFeignServiceClient
      * @param users
      * @return
      */
-    @PostMapping(value = "/tiny_user_admin/update")
+    @PostMapping(value = "/admin/tiny_user_admin/update")
     Result update(@RequestBody XiaoxiaoUsers users);
+
 
 
     /**
@@ -379,6 +380,51 @@ public interface BlogsFeignServiceClient
      * @param token
      * @return
      */
-    @PostMapping(value = "/tiny_user_admin/updatePassword")
+    @PostMapping(value = "/admin/tiny_user_admin/updatePassword")
     Result updatePassword(@RequestBody XiaoxiaoUsers users, @RequestParam(name = "token") String token);
+
+
+    /**
+     *查询全部的广告数据
+     * @param page
+     * @param rows
+     * @return
+     */
+    @PostMapping(value = "/admin/backend_advertising/findAllAdvertising")
+    Result findAllAdvertising(@RequestParam(name = "page",defaultValue = "1") Integer page,
+                              @RequestParam(name = "rows",defaultValue = "10") Integer rows);
+
+    /**
+     * 删除广告数据
+     * @param advertisingId
+     * @return
+     */
+    @PostMapping(value = "/admin/backend_advertising/deleteAdvertising")
+    Result deleteAdvertising(@RequestParam(name = "advertisingId") String advertisingId);
+
+    /**
+     * 根据ID获取
+     * @param advertisingId
+     * @return
+     */
+    @PostMapping(value = "/admin/backend_advertising/findAdvertisingById")
+    Result findAdvertisingById(@RequestParam(name = "advertisingId") String advertisingId);
+
+    /**
+     * 插入
+     * @param advertising
+     * @return
+     */
+    @PostMapping(value = "/admin/backend_advertising/insert")
+    Result insert(@RequestBody XiaoxiaoAdvertising advertising);
+
+
+    /**
+     * 修改
+     * @param advertising
+     * @return
+     */
+    @PostMapping(value = "/admin/backend_advertising/update")
+    Result update(@RequestBody XiaoxiaoAdvertising advertising);
+
 }

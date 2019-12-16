@@ -1,14 +1,6 @@
-package com.xiaoxiao.controller;
+package com.xiaoxiao.service.frontline;
 
-import com.xiaoxiao.service.backend.MenuService;
 import com.xiaoxiao.utils.Result;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * _ooOoo_
@@ -41,27 +33,18 @@ import org.springframework.web.bind.annotation.RestController;
  * 别人笑我忒疯癫，我笑自己命太贱；
  * 不见满街漂亮妹，哪个归得程序员？
  *
- * @project_name:xiaoxiao_blogs
- * @date:2019/11/26:17:17
+ * @project_name:xiaoxiao_final_blogs
+ * @date:2019/12/16:17:53
  * @author:shinelon
  * @Describe:
  */
-@RestController
-@RequestMapping(value = "/admin/tiny_service_menu")
-@Api(value = "菜单")
-@CrossOrigin(origins = {"*"},maxAge = 3600)
-public class MenuController
+public interface FrontlineAdvertisingService
 {
-
-    @Autowired
-    private MenuService menuService;
-
-
-    @GetMapping(value = "/find_all_menu")
-    @ApiOperation(value = "查询菜单", response = Result.class, notes = "查询菜单")
-    public Result findAllMenu()
-    {
-        return this.menuService.findAllMenu();
-    }
-
+    /**
+     * 查询首页广告位
+     * @param page
+     * @param rows
+     * @return
+     */
+    Result findAdvertisingAll(Integer page, Integer rows);
 }

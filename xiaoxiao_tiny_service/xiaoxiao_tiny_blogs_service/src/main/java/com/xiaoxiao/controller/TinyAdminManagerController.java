@@ -44,7 +44,7 @@ import org.springframework.web.bind.annotation.*;
  * @Describe:
  */
 @RestController
-@RequestMapping(value = "/tiny_admin_manager_service")
+@RequestMapping(value = "/admin/tiny_admin_manager_service")
 public class TinyAdminManagerController
 {
 

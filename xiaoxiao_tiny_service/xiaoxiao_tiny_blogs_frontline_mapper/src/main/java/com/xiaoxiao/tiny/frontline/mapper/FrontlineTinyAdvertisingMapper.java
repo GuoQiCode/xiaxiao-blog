@@ -1,14 +1,10 @@
-package com.xiaoxiao.controller;
+package com.xiaoxiao.tiny.frontline.mapper;
 
-import com.xiaoxiao.service.backend.MenuService;
-import com.xiaoxiao.utils.Result;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.xiaoxiao.pojo.XiaoxiaoAdvertising;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * _ooOoo_
@@ -41,27 +37,20 @@ import org.springframework.web.bind.annotation.RestController;
  * 别人笑我忒疯癫，我笑自己命太贱；
  * 不见满街漂亮妹，哪个归得程序员？
  *
- * @project_name:xiaoxiao_blogs
- * @date:2019/11/26:17:17
+ * @project_name:xiaoxiao_final_blogs
+ * @date:2019/12/16:18:01
  * @author:shinelon
  * @Describe:
  */
-@RestController
-@RequestMapping(value = "/admin/tiny_service_menu")
-@Api(value = "菜单")
-@CrossOrigin(origins = {"*"},maxAge = 3600)
-public class MenuController
+@Repository
+public interface FrontlineTinyAdvertisingMapper
 {
 
-    @Autowired
-    private MenuService menuService;
-
-
-    @GetMapping(value = "/find_all_menu")
-    @ApiOperation(value = "查询菜单", response = Result.class, notes = "查询菜单")
-    public Result findAllMenu()
-    {
-        return this.menuService.findAllMenu();
-    }
+    /**
+     * 查询首页广告位置数据优先级在1的
+     * @return
+     */
+    @Select("select * from xiaoxiao_advertising as a where a.advertising_level = '1'")
+    List<XiaoxiaoAdvertising> findAdvertisingAll();
 
 }

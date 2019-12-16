@@ -45,7 +45,7 @@ import org.springframework.web.bind.annotation.*;
  * @Describe:
  */
 @RestController
-@RequestMapping(value = "/tiny_img_service")
+@RequestMapping(value = "/admin/tiny_img_service")
 @Api(value = "图片接口")
 public class TinyImgController
 {

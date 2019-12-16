@@ -45,7 +45,7 @@ import org.springframework.web.bind.annotation.*;
  * @Describe:文章服务
  */
 @RestController
-@RequestMapping(value = "/tiny_article_service")
+@RequestMapping(value = "/admin/tiny_article_service")
 @CrossOrigin(origins = {"*"}, maxAge = 3600)
 @Api(value = "文章接口")
 public class TinyArticleController

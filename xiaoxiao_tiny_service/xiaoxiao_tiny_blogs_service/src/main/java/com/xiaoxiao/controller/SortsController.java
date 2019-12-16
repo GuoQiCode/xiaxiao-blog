@@ -45,7 +45,7 @@ import org.springframework.web.bind.annotation.*;
  * @Describe:头部菜单
  */
 @RestController
-@RequestMapping(value = "/tiny_service_sort")
+@RequestMapping(value = "/admin/tiny_service_sort")
 @CrossOrigin(origins = {"*"},maxAge = 3600)
 @Api(value = "分类接口")
 public class SortsController

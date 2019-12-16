@@ -46,7 +46,7 @@ import org.springframework.web.bind.annotation.*;
  * @Describe:
  */
 @RestController
-@RequestMapping(value = "/tiny_user_admin")
+@RequestMapping(value = "/admin/tiny_user_admin")
 @CrossOrigin(origins = {"*"},maxAge = 3600)
 @Api(value = "用户接口")
 public class UserController

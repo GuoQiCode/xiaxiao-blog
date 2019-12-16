@@ -1,14 +1,7 @@
-package com.xiaoxiao.controller;
+package com.xiaoxiao.service.backend;
 
-import com.xiaoxiao.service.backend.MenuService;
+import com.xiaoxiao.pojo.XiaoxiaoAdvertising;
 import com.xiaoxiao.utils.Result;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * _ooOoo_
@@ -41,27 +34,51 @@ import org.springframework.web.bind.annotation.RestController;
  * 别人笑我忒疯癫，我笑自己命太贱；
  * 不见满街漂亮妹，哪个归得程序员？
  *
- * @project_name:xiaoxiao_blogs
- * @date:2019/11/26:17:17
+ * @project_name:xiaoxiao_final_blogs
+ * @date:2019/12/16:18:31
  * @author:shinelon
  * @Describe:
  */
-@RestController
-@RequestMapping(value = "/admin/tiny_service_menu")
-@Api(value = "菜单")
-@CrossOrigin(origins = {"*"},maxAge = 3600)
-public class MenuController
+public interface AdvertisingService
 {
 
-    @Autowired
-    private MenuService menuService;
+    /**
+     * 查询全部
+     * @param page
+     * @param rows
+     * @return
+     */
+    Result findAllAdvertising(Integer page, Integer rows);
 
 
-    @GetMapping(value = "/find_all_menu")
-    @ApiOperation(value = "查询菜单", response = Result.class, notes = "查询菜单")
-    public Result findAllMenu()
-    {
-        return this.menuService.findAllMenu();
-    }
+    /**
+     * 删除
+     * @param advertisingId
+     * @return
+     */
+    Result deleteAdvertising(String advertisingId);
 
+
+    /**
+     * 根据ID查询
+     * @param advertisingId
+     * @return
+     */
+    Result findAdvertisingById(String advertisingId);
+
+
+    /**
+     * 插入
+     * @param advertising
+     * @return
+     */
+    Result insert(XiaoxiaoAdvertising advertising);
+
+
+    /**
+     * 修改
+     * @param advertising
+     * @return
+     */
+    Result update(XiaoxiaoAdvertising advertising);
 }

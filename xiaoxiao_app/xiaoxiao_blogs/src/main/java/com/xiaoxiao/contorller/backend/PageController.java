@@ -138,4 +138,9 @@ public class PageController
         return "admin/update-password";
     }
 
+    @GetMapping(value = "/admin/advertising")
+    public String advertising(){
+        return "admin/advertising";
+    }
+
 }
