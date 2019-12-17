@@ -1,10 +1,7 @@
-package com.xiaoxiao.feign;
+package com.xiaoxiao.component;
 
-import com.xiaoxiao.component.SearchTinyFallback;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.xiaoxiao.feign.SearchFeignClient;
+import org.springframework.stereotype.Component;
 
 /**
  * _ooOoo_
@@ -38,29 +35,22 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
- * @date:2019/12/14:14:38
+ * @date:2019/12/17:10:58
  * @author:shinelon
  * @Describe:
  */
-@FeignClient(name = "xiaoxiao-search",fallback = SearchTinyFallback.class)
-public interface SearchFeignClient
+@Component
+public class SearchTinyFallback implements SearchFeignClient
 {
+    @Override
+    public void insertArticleToSolr(Long articleId)
+    {
 
-    /**
-     * 插入一个的文章到solr中
-     *
-     * @param articleId
-     */
-    @PostMapping(value = "/search_service/insertArticleToSolr")
-    void insertArticleToSolr(@RequestParam("articleId") Long articleId);
+    }
 
+    @Override
+    public void deleteArticleToSolr(Long articleId)
+    {
 
-    /**
-     * 删除solr内的数据
-     *
-     * @param articleId
-     */
-    @PostMapping(value = "/search_service/deleteArticleToSolr")
-    void deleteArticleToSolr(@RequestParam("articleId") Long articleId);
-
+    }
 }

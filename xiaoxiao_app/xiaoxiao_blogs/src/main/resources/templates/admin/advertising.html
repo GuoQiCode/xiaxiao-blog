@@ -9,11 +9,12 @@
 <!--导航-->
 <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace="admin/_fragments :: nav">
 </nav>
-
+<link rel="stylesheet" th:href="@{/css/upload-1.css}"/>
 <!--菜单-->
 <div class="ui attached pointing menu" th:replace="admin/_fragments :: menu">
 </div>
 <script th:src="@{/js/advertising.js}"></script>
+<script th:src="@{/lib/upload-min.js}"></script>
 <!--中间内容-->
 <div class="m-container-big m-padded-tb-big">
     <div class="ui container">
@@ -37,6 +38,7 @@
                 <th colspan="8">
                     <div th:include="admin/_page.html"></div>
                 </th>
+                <a onclick="showPopup(null,2)" class="ui mini red basic button">新增</a>
                 <script type="text/javascript">
                     function currentPage(currentPage){
                         find_all(currentPage)
@@ -69,8 +71,29 @@
         <input name="advertisingId" hidden="hidden" value=""/>
         <div class="field">
             <label>广告图片地址</label>
-            <input placeholder="请输入广告图片地址...." name="advertisingImg" type="text" value="">
+            <input placeholder="请上传广告图片..." readonly="readonly"  id="callbackPath" name="advertisingImg"  type="text" value="">
+            <a id="zwb_upload" style="height: 30px;margin-top: 5px">
+                <input type="file" class="add" multiple>点击上传文件
+            </a>
         </div>
+
+        <script>
+            //配置需要引入jq 1.7.2版本以上
+            //服务器端成功返回 {state:1,path:文件保存路径}
+            //服务器端失败返回 {state:0,errmsg:错误原因}
+            //默认做了文件名不能含有中文,后端接收文件的变量名为file
+            $("#zwb_upload").bindUpload({
+                url:"/admin/advertising/upload",//上传服务器地址
+                callbackPath:"#callbackPath",//绑定上传成功后 图片地址的保存容器的id或者class 必须为input或者textarea等可以使用$(..).val()设置之的表单元素
+                // ps:值返回上传成功的 默认id为#callbackPath  保存容器为位置不限制,id需要加上#号,class需要加上.
+                // 返回格式为:
+                // 原来的文件名,服务端保存的路径|原来的文件名,服务端保存的路径|原来的文件名,服务端保存的路径|原来的文件名,服务端保存的路径....
+                num:10,//上传数量的限制 默认为空 无限制
+                type:"jpg|png|gif|svg",//上传文件类型 默认为空 无限制
+                size:3,//上传文件大小的限制,默认为5单位默认为mb
+            });
+        </script>
+
         <div class="field">
             <label>广告描述</label>
             <input placeholder="请输入广告描述" name="advertisingAlt"  type="text" value="">

@@ -4,6 +4,7 @@ import com.xiaoxiao.pojo.*;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
+import com.xiaoxiao.tiny.frontline.component.FrontlineTinyRedisFallback;
 import com.xiaoxiao.utils.PageResult;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
@@ -22,7 +23,7 @@ import java.util.Map;
  * @author:shinelon
  * @Describe:
  */
-@FeignClient("xiaoxiao-redis")
+@FeignClient(name = "xiaoxiao-redis",fallback = FrontlineTinyRedisFallback.class)
 public interface RedisCacheFeignClient {
 
     /**

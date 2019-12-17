@@ -1,5 +1,6 @@
 package com.xiaoxiao.feign;
 
+import com.xiaoxiao.component.BackendTinyBlogsFallback;
 import com.xiaoxiao.pojo.XiaoxiaoAdminMessage;
 import com.xiaoxiao.pojo.XiaoxiaoArticles;
 import com.xiaoxiao.pojo.XiaoxiaoMenu;
@@ -19,7 +20,7 @@ import java.util.List;
  * @author:shinelon
  * @Describe:
  */
-@FeignClient("xiaoxiao-redis")
+@FeignClient(name = "xiaoxiao-redis",fallback = BackendTinyBlogsFallback.class)
 public interface RedisCacheFeignClient {
 
     /**

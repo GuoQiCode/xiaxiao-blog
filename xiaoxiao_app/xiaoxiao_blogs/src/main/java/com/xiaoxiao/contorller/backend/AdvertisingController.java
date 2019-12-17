@@ -2,9 +2,13 @@ package com.xiaoxiao.contorller.backend;
 
 import com.xiaoxiao.pojo.XiaoxiaoAdvertising;
 import com.xiaoxiao.service.backend.AdvertisingService;
+import com.xiaoxiao.utils.BackendUploadResult;
 import com.xiaoxiao.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.validation.Valid;
 
 /**
  * _ooOoo_
@@ -77,6 +81,16 @@ public class AdvertisingController
     @PostMapping(value = "/update")
     public Result update(XiaoxiaoAdvertising advertising){
         return this.advertisingService.update(advertising);
+    }
+
+
+    /**
+     * 上传广告文件
+     * @return
+     */
+    @PostMapping(value = "/upload")
+    public BackendUploadResult upload(@RequestParam(name = "file") MultipartFile file){
+        return this.advertisingService.upload(file);
     }
 
 }

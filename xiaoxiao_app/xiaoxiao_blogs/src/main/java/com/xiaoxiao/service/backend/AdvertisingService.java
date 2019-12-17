@@ -1,7 +1,9 @@
 package com.xiaoxiao.service.backend;
 
 import com.xiaoxiao.pojo.XiaoxiaoAdvertising;
+import com.xiaoxiao.utils.BackendUploadResult;
 import com.xiaoxiao.utils.Result;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * _ooOoo_
@@ -81,4 +83,12 @@ public interface AdvertisingService
      * @return
      */
     Result update(XiaoxiaoAdvertising advertising);
+
+
+    /**
+     * 文件上传
+     * @param file
+     * @return
+     */
+    BackendUploadResult upload(MultipartFile file);
 }

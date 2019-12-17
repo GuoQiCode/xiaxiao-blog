@@ -3,9 +3,13 @@ package com.xiaoxiao.service.backend.impl;
 import com.xiaoxiao.feign.BlogsFeignServiceClient;
 import com.xiaoxiao.service.backend.AdvertisingService;
 import com.xiaoxiao.pojo.XiaoxiaoAdvertising;
+import com.xiaoxiao.utils.BackendUploadResult;
 import com.xiaoxiao.utils.Result;
+import com.xiaoxiao.utils.UploadOSSUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * _ooOoo_
@@ -47,6 +51,24 @@ import org.springframework.stereotype.Service;
 public class AdvertisingServiceImpl implements AdvertisingService
 {
 
+    @Value("${ENDPOINT}")
+    private String ENDPOINT;
+
+    @Value("${ACCESSKEYSECRET}")
+    private String ACCESSKEYSECRET;
+
+    @Value("${ACCESSKEYID}")
+    private String ACCESSKEYID;
+
+    @Value("${BUCKETNAME}")
+    private String BUCKETNAME;
+
+    @Value("${ADVERTISING_FILE_PATH}")
+    private String ADVERTISING_FILE_PATH;
+
+    @Value("${REQUEST_HEAD}")
+    private String REQUEST_HEAD;
+
     @Autowired
     private BlogsFeignServiceClient client;
 
@@ -78,5 +100,23 @@ public class AdvertisingServiceImpl implements AdvertisingService
     public Result update(XiaoxiaoAdvertising advertising)
     {
         return this.client.update(advertising);
+    }
+
+
+    @Override
+    public BackendUploadResult upload(MultipartFile file)
+    {
+        String  fileName = null;
+        try
+        {
+            fileName = UploadOSSUtils.upload(ENDPOINT, ACCESSKEYID, ACCESSKEYSECRET, BUCKETNAME,ADVERTISING_FILE_PATH, file.getInputStream());
+            /**
+             * 插入数据库文件
+             */
+            return BackendUploadResult.ok(1, this.REQUEST_HEAD+ADVERTISING_FILE_PATH+fileName);
+        }catch (Exception e){
+
+        }
+        return BackendUploadResult.error(0,"上传失败");
     }
 }

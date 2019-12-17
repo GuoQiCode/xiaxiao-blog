@@ -35,8 +35,9 @@ function Splicing(data) {
                                     <td>${item.labelDescription}</td>
                                     <td>
                                         <a onclick="showPopup(${item.labelId},1)"  class="ui mini teal basic button">编辑</a>
+                                          <a onclick="showPopup(null,2)" class="ui mini teal basic button">新增</a>
                                         <a onclick="del(${item.labelId})" class="ui mini red basic button">删除</a>
-                                        <a onclick="showPopup(null,2)" class="ui mini teal basic button">新增</a>
+                                       
                                     </td>
                                 </tr> `
         )

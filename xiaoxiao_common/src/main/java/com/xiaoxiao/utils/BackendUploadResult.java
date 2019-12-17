@@ -1,10 +1,8 @@
-package com.xiaoxiao.feign;
+package com.xiaoxiao.utils;
 
-import com.xiaoxiao.component.SearchTinyFallback;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * _ooOoo_
@@ -38,29 +36,35 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
- * @date:2019/12/14:14:38
+ * @date:2019/12/17:12:27
  * @author:shinelon
  * @Describe:
  */
-@FeignClient(name = "xiaoxiao-search",fallback = SearchTinyFallback.class)
-public interface SearchFeignClient
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class BackendUploadResult
 {
+    private Integer state;
+    private String path;
+    private String errmsg;
+
+    public BackendUploadResult(Integer state, String path)
+    {
+        this.state = state;
+        this.path = path;
+    }
+
 
     /**
-     * 插入一个的文章到solr中
      *
-     * @param articleId
+     * @return
      */
-    @PostMapping(value = "/search_service/insertArticleToSolr")
-    void insertArticleToSolr(@RequestParam("articleId") Long articleId);
+    public static BackendUploadResult ok(Integer state,String path){
+        return new BackendUploadResult(state, path);
+    }
 
-
-    /**
-     * 删除solr内的数据
-     *
-     * @param articleId
-     */
-    @PostMapping(value = "/search_service/deleteArticleToSolr")
-    void deleteArticleToSolr(@RequestParam("articleId") Long articleId);
-
+    public static BackendUploadResult error(Integer state,String errmsg){
+        return new BackendUploadResult(state,null,errmsg);
+    }
 }
