@@ -4,6 +4,7 @@ import com.xiaoxiao.pojo.XiaoxiaoAdvertising;
 import com.xiaoxiao.service.backend.AdvertisingService;
 import com.xiaoxiao.utils.Result;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -106,4 +107,11 @@ public class AdvertisingController
     public Result update(@RequestBody XiaoxiaoAdvertising advertising){
         return this.advertisingService.update(advertising);
     }
+
+    @ApiOperation(value = "获取首页的广告位值",response = Result.class,notes = "获取首页的广告位值")
+    @PostMapping(value = "/onto")
+    public Result onto(@RequestParam(name = "advertisingId") String advertisingId){
+        return this.advertisingService.onto(advertisingId);
+    }
+
 }

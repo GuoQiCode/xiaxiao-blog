@@ -90,4 +90,13 @@ public interface AdvertisingMapper
      */
     @UpdateProvider(type =AdvertisingProvider.class ,method = "update")
     int update(@Param("advertising") XiaoxiaoAdvertising advertising);
+
+
+    /**
+     * 修改等级
+     * @param advertisingId
+     */
+    @Update("update xiaoxiao_advertising set advertising_level = 1 where  advertising_id = #{advertisingId}")
+    int onto(@Param("advertisingId") String advertisingId);
+
 }

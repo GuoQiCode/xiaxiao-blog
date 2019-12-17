@@ -1,3 +1,27 @@
+POST http://localhost:10020/frontline/tiny/advertising/findAdvertisingAll?articleId=157640635883647
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-17T014731.200.json
+
+###
+
+POST http://localhost:10020/frontline/tiny/advertising/findAdvertisingAll?articleId=157640635883647
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-17T014349.200.json
+
+###
+
+POST http://localhost:10020/redis_article_service/frontline/tiny/advertising?articleId=157640635883647
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-17T014143.404.json
+
+###
+
 POST http://localhost:9998/redis_article_service/get_article_view?articleId=157640635883647
 Accept: */*
 Cache-Control: no-cache
@@ -361,30 +385,6 @@ Accept: */*
 Cache-Control: no-cache
 
 <> 2019-12-10T013447.200.json
-
-###
-
-POST http://localhost:10020/frontline/tiny/article/find_article_of_year
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-10T012053.200.json
-
-###
-
-POST http://localhost:10020/frontline/tiny/article/find_article_of_year
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-10T010529.200.json
-
-###
-
-POST http://localhost:10020/frontline/tiny/article/find_blog_by_id?articleId=157537212747450
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-09T081550.200.json
 
 ###
 

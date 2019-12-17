@@ -119,4 +119,10 @@ public class AdvertisingServiceImpl implements AdvertisingService
         }
         return BackendUploadResult.error(0,"上传失败");
     }
+
+    @Override
+    public Result onto(String advertisingId)
+    {
+        return this.client.onto(advertisingId);
+    }
 }

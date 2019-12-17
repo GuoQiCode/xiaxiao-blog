@@ -129,7 +129,30 @@ function joint(data) {
                                         <a onclick="showPopup(${item.advertisingId},1)"  class="ui mini teal basic button">编辑</a>
                                         <a onclick="showPopup(null,2)" class="ui mini teal basic button">新增</a>
                                         <a onclick="del(${item.advertisingId})" class="ui mini red basic button">删除</a>
+                                        <a onclick="onto(${item.advertisingId})" class="ui mini red basic button">推上大广告位置</a>
                                     </td>
                                 </tr> `)
     })
 }
+
+/**
+ * 推上广告位值
+ */
+function onto(advertisingId) {
+    $.ajax("/admin/advertising/onto",{
+        dataType:'json',
+        data:{'advertisingId':advertisingId},
+        timeout:5000,
+        type:'post',
+        success:(data)=>{
+            if(data.code == 20000){
+                alert(data.message)
+                find_all(1)
+            }else {
+                alert(data.message)
+            }
+        }
+    })
+}
+
+

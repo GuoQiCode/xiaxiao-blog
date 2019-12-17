@@ -8,6 +8,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * _ooOoo_
@@ -59,7 +60,7 @@ public class RedisAdvertisingServiceImpl implements RedisAdvertisingService
     @Override
     public void insertAdvertisingToRedis(List<XiaoxiaoAdvertising> list)
     {
-        this.redisTemplate.opsForValue().set(this.ADVERTISING, list);
+        this.redisTemplate.opsForValue().set(this.ADVERTISING, list, 30, TimeUnit.DAYS);
     }
 
     @Override

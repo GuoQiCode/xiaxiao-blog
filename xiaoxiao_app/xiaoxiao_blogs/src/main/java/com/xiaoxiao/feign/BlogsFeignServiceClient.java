@@ -427,4 +427,13 @@ public interface BlogsFeignServiceClient
     @PostMapping(value = "/admin/backend_advertising/update")
     Result update(@RequestBody XiaoxiaoAdvertising advertising);
 
+
+    /**
+     * 推上首页广告位置
+     * @param advertisingId
+     * @return
+     */
+    @PostMapping(value = "/admin/backend_advertising/onto")
+    Result onto(@RequestParam(name = "advertisingId") String advertisingId);
+
 }

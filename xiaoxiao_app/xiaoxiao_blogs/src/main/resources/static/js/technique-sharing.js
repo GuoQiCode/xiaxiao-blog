@@ -3,6 +3,11 @@ $(function () {
      * 请求首页推荐文章文章
      */
     gainTechniqueSharingArticle()
+
+    /**
+     * 请求首页广告推荐
+     */
+    findAdvertisingAll()
 })
 
 
@@ -44,5 +49,27 @@ function joint(data) {
                     </div>
                 </div>
         `)
+    })
+}
+
+/**
+ * 获取首页广告数据
+ */
+function findAdvertisingAll() {
+    $.ajax("/frontline/advertising/findAdvertisingAll",{
+        dataType:'json',
+        timeout:5000,
+        type:'post',
+        success:(data)=>{
+            if(data.code = 20000){
+                $("#text").slide({
+                    images: data.data.images,//必选
+                    autoPlay: true,
+                    href: data.data.url,
+                    // height:200,//可指定轮播图高度
+                    interval: 6000
+                });
+            }
+        }
     })
 }

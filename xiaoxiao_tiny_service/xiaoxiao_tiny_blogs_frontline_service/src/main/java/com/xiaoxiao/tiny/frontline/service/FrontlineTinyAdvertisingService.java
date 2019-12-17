@@ -49,4 +49,7 @@ public interface FrontlineTinyAdvertisingService
      * @return
      */
     Result findAdvertisingAll(Integer page, Integer rows);
+
+
+
 }

@@ -91,4 +91,13 @@ public interface AdvertisingService
      * @return
      */
     BackendUploadResult upload(MultipartFile file);
+
+
+    /**
+     * 推上首页广告位值
+     * @param advertisingId
+     * @return
+     */
+    Result onto(String advertisingId);
+
 }

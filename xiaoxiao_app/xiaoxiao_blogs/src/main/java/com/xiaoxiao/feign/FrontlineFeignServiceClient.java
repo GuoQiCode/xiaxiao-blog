@@ -271,5 +271,5 @@ public interface FrontlineFeignServiceClient
      */
     @PostMapping(value = "/frontline/tiny/advertising/findAdvertisingAll")
     Result findAdvertisingAll(@RequestParam(name = "page",defaultValue = "1")Integer page,
-                              @RequestParam(name = "rows",defaultValue = "5")Integer rows);
+                              @RequestParam(name = "rows",defaultValue = "4")Integer rows);
 }

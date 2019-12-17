@@ -58,11 +58,13 @@ public class FrontlineTinyAdvertisingController
 
 
 
-    @ApiOperation(value = "获取首页推荐文章数据")
-    @PostMapping(value = "/frontline/tiny/advertising/findAdvertisingAll")
+    @ApiOperation(value = "获取首页广告数据",response = Result.class,notes = "获取首页广告数据")
+    @PostMapping(value = "/findAdvertisingAll")
     public Result findAdvertisingAll(@RequestParam(name = "page",defaultValue = "1")Integer page,
-                              @RequestParam(name = "rows",defaultValue = "5")Integer rows){
+                              @RequestParam(name = "rows",defaultValue = "4")Integer rows){
         return this.frontlineTinyAdvertisingService.findAdvertisingAll(page,rows);
     }
+
+
 
 }

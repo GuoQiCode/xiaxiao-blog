@@ -93,4 +93,13 @@ public class AdvertisingController
         return this.advertisingService.upload(file);
     }
 
+    /**
+     * 推上模板的
+     * @param advertisingId
+     * @return
+     */
+    @PostMapping(value = "/onto")
+    public Result onto(String advertisingId){
+        return this.advertisingService.onto(advertisingId);
+    }
 }

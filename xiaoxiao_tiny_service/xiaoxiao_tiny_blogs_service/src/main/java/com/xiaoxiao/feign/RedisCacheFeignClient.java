@@ -172,4 +172,12 @@ public interface RedisCacheFeignClient {
     @PostMapping(value = "/redis_article_service/delete_article_archive")
     void deleteArticleArchive();
 
+
+    /**
+     * 删除首页广告缓存
+     */
+
+    @PostMapping(value = "/redis_advertising_service/deleteAdvertisingToRedis")
+    void deleteAdvertisingToRedis();
+
 }

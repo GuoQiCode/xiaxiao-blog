@@ -81,4 +81,12 @@ public interface AdvertisingService
      * @return
      */
     Result update(XiaoxiaoAdvertising advertising);
+
+
+    /**
+     * 推上广告位置
+     * @param advertisingId
+     * @return
+     */
+    Result onto(String advertisingId);
 }

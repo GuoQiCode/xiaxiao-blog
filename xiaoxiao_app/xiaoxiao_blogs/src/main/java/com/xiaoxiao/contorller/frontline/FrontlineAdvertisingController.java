@@ -58,7 +58,7 @@ public class FrontlineAdvertisingController
      */
     @PostMapping(value = "/findAdvertisingAll")
     public Result findAdvertisingAll(@RequestParam(name = "page",defaultValue = "1")Integer page,
-                                     @RequestParam(name = "rows",defaultValue = "5")Integer rows){
+                                     @RequestParam(name = "rows",defaultValue = "4")Integer rows){
         return this.frontlineAdvertisingService.findAdvertisingAll(page,rows);
     }
 }

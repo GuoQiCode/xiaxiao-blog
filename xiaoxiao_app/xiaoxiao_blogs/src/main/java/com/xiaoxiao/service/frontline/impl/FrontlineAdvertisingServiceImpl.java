@@ -53,6 +53,6 @@ public class FrontlineAdvertisingServiceImpl implements FrontlineAdvertisingServ
     @Override
     public Result findAdvertisingAll(Integer page, Integer rows)
     {
-        return this.client.findAdvertisingAll(page,rows);
+        return this.client.findAdvertisingAll(page, rows);
     }
 }

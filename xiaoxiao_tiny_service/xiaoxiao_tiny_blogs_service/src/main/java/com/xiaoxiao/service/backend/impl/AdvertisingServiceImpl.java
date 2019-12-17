@@ -2,6 +2,7 @@ package com.xiaoxiao.service.backend.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xiaoxiao.feign.RedisCacheFeignClient;
 import com.xiaoxiao.mapper.AdvertisingMapper;
 import com.xiaoxiao.pojo.XiaoxiaoAdvertising;
 import com.xiaoxiao.service.backend.AdvertisingService;
@@ -61,6 +62,9 @@ public class AdvertisingServiceImpl implements AdvertisingService
     @Autowired
     private AdvertisingMapper advertisingMapper;
 
+    @Autowired
+    private RedisCacheFeignClient client;
+
 
     @Override
     public Result findAllAdvertising(Integer page, Integer rows)
@@ -106,6 +110,29 @@ public class AdvertisingServiceImpl implements AdvertisingService
     public Result update(XiaoxiaoAdvertising advertising)
     {
         if(this.advertisingMapper.update(advertising) > 0){
+            return Result.ok(StatusCode.OK, Result.MARKED_WORDS_SUCCESS);
+        }
+        return Result.error(StatusCode.ERROR, Result.MARKED_WORDS_FAULT);
+    }
+
+    @Override
+    public Result onto(String advertisingId)
+    {
+        try
+        {
+            this.client.deleteAdvertisingToRedis();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        /**
+         * 判读广告位数量
+         */
+
+        if(this.advertisingMapper.findAllAdvertising().size() >= 4){
+            return Result.ok(StatusCode.OK, "对不起广告位数量最大为4个");
+        }
+        if(this.advertisingMapper.onto(advertisingId) > 0){
             return Result.ok(StatusCode.OK, Result.MARKED_WORDS_SUCCESS);
         }
         return Result.error(StatusCode.ERROR, Result.MARKED_WORDS_FAULT);
