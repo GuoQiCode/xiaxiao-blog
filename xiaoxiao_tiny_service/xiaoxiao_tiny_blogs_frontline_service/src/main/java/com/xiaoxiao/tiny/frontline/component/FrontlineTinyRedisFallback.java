@@ -111,16 +111,17 @@ public class FrontlineTinyRedisFallback implements RedisCacheFeignClient
     }
 
     @Override
-    public void insertIndexArticle(PageResult result)
+    public void insertIndexArticle(PageResult result, Integer page)
     {
 
     }
 
     @Override
-    public PageResult getIndexArticle()
+    public PageResult getIndexArticle(Integer page)
     {
         return null;
     }
+
 
     @Override
     public PageResult getBlogsBySortsToRedis(Long sortId)
@@ -312,5 +313,23 @@ public class FrontlineTinyRedisFallback implements RedisCacheFeignClient
     public List<XiaoxiaoAdvertising> getAdvertisingToRedis()
     {
         return null;
+    }
+
+    @Override
+    public void insertLeaveMessage(PageResult result, Integer page)
+    {
+
+    }
+
+    @Override
+    public PageResult getLeaveMessage(Integer page)
+    {
+        return null;
+    }
+
+    @Override
+    public void deleteLeaveMessage()
+    {
+
     }
 }

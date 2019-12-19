@@ -158,4 +158,9 @@ public class FrontlinePageController
         return "slideshow";
     }
 
+    @GetMapping(value = "/leave_message")
+    public String leaveMessage(){
+        return "leave-message";
+    }
+
 }

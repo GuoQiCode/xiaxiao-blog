@@ -128,17 +128,18 @@ public interface RedisCacheFeignClient {
      * 缓存首页博客
      *
      * @param result
+     * @param page
      */
     @PostMapping(value = "/redis_article_service/insert_index_article")
-    void insertIndexArticle(@RequestBody PageResult result);
+    void insertIndexArticle(@RequestBody PageResult result,@RequestParam(name = "page") Integer page);
 
     /**
      * 获取首页博客
-     *
+     * @param page
      * @return
      */
     @PostMapping(value = "/redis_article_service/get_index_article")
-    PageResult getIndexArticle();
+    PageResult getIndexArticle(@RequestParam(name = "page") Integer page);
 
     /**
      * 缓存分类文章
@@ -399,5 +400,32 @@ public interface RedisCacheFeignClient {
      */
     @PostMapping(value = "/redis_advertising_service/getAdvertisingToRedis")
     List<XiaoxiaoAdvertising> getAdvertisingToRedis();
+
+
+    /**
+     * 缓存分类的留言
+     * @param result
+     * @param page
+     */
+    @PostMapping(value = "/redis_leave_message/insertLeaveMessage")
+     void insertLeaveMessage(@RequestBody PageResult result,
+                                   @RequestParam(name = "page") Integer page);
+
+
+    /**
+     * 缓存分类的留言
+     * @param page
+     * @return
+     */
+    @PostMapping(value = "/redis_leave_message/getLeaveMessage")
+     PageResult getLeaveMessage(@RequestParam(name = "page") Integer page);
+
+
+    /**
+     * 缓存分类的留言
+     * @param
+     */
+    @PostMapping(value = "/redis_leave_message/deleteLeaveMessage")
+     void deleteLeaveMessage();
 
 }

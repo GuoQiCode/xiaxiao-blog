@@ -112,25 +112,25 @@ public class RedisArticleController
 
     @ApiOperation(value = "缓存首页博客列表数据", notes = "缓存首页博客列表数据")
     @PostMapping(value = "/insert_index_article")
-    public void insertIndexArticle(@RequestBody PageResult result)
+    public void insertIndexArticle(@RequestBody PageResult result,@RequestParam(name = "page")Integer page)
     {
-        this.redisArticleService.insertIndexArticle(result);
+        this.redisArticleService.insertIndexArticle(result,page);
     }
 
 
     @ApiOperation(value = "获取首页缓存中的数据", response = PageResult.class, notes = "获取首页缓存中的数据")
     @PostMapping(value = "/get_index_article")
-    public PageResult getIndexArticle()
+    public PageResult getIndexArticle(@RequestParam(name = "page")Integer page)
     {
-        return this.redisArticleService.getIndexArticle();
+        return this.redisArticleService.getIndexArticle(page);
     }
 
 
     @ApiOperation(value = "删除首页缓存信息", notes = "删除首页缓存信息")
     @PostMapping(value = "/delete_index_article")
-    public void deleteIndexArticle()
+    public void deleteIndexArticle(@RequestParam(name = "page")Integer page)
     {
-        this.redisArticleService.deleteIndexArticle();
+        this.redisArticleService.deleteIndexArticle(page);
     }
 
 

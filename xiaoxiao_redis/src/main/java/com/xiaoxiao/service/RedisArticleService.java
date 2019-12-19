@@ -58,11 +58,11 @@ public interface RedisArticleService
 
     void deleteArticleNewRecommend();
 
-    void insertIndexArticle(PageResult result);
+    void insertIndexArticle(PageResult result, Integer page);
 
-    PageResult getIndexArticle();
+    PageResult getIndexArticle(Integer page);
 
-    void deleteIndexArticle();
+    void deleteIndexArticle(Integer page);
 
     void insertBlogsBySortsToRedis(PageResult articleVos, Long sortId);
 

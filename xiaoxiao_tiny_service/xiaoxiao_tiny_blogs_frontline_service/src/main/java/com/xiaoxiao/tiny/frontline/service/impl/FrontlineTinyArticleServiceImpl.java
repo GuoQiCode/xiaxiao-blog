@@ -178,7 +178,7 @@ public class FrontlineTinyArticleServiceImpl implements FrontlineTinyArticleServ
         PageResult result = null;
         try
         {
-             result = this.client.getIndexArticle();
+             result = this.client.getIndexArticle(page);
              if(result.getResult() != null && result.getResult().size() > 0)
              {
                  return Result.ok(StatusCode.OK, this.MARKED_WORDS_SUCCESS,result);
@@ -194,7 +194,7 @@ public class FrontlineTinyArticleServiceImpl implements FrontlineTinyArticleServ
         {
             try
             {
-                this.client.insertIndexArticle(result1);
+                this.client.insertIndexArticle(result1,page);
             } catch (Exception e)
             {
                 e.printStackTrace();

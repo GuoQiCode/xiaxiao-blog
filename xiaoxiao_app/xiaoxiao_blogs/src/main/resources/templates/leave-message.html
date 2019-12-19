@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <title>留言</title>
+</head>
+<link th:href="@{/css/leave-message.css}" rel="stylesheet">
+<link th:href="@{/css/layui.css}">
+<link th:href="@{/css/leave.css}">
+<script th:src="@{/js/leave-message.js}"></script>
+<body style="background-color: white">
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace="_fragments :: nav">
+</nav>
+
+<div>
+    <!--留言图片-->
+    <div class="message-image">
+        <div>
+            <img src="http://file02.16sucai.com/d/file/2014/0829/372edfeb74c3119b666237bd4af92be5.jpg"/>
+        </div>
+    </div>
+
+
+    <div class="message">
+        <!--小功能-->
+
+        <div>
+            <div>
+                <span class="ui red tag label" style="margin-top: 15px;margin-left: 25px;font-size: 16px">小功能</span>
+            </div>
+            <div class="function">
+                <a class="ui purple label">Purple Label</a>
+                <a class="ui red label">Red Label</a>
+                <a class="ui teal label">Teal Label</a>
+            </div>
+        </div>
+
+        <!--关注我-->
+        <div class="focus-me">
+            <div>
+                <span class="ui teal  tag label" style="margin-top: 15px;margin-left: 30px;font-size: 16px">关注我</span>
+            </div>
+            <div>
+                <div class="icon">
+                    <a href="https://github.com/GuoQiCode/xiaxiao-blog" target="_blank"><img
+                            style="margin-left: 4px;width: 40px;height: 40px" th:src="@{/images/icon/github.jpg}"
+                            alt="GitHub"/><br/></a>
+                    <span>GitHub</span>
+                </div>
+
+            </div>
+        </div>
+        <hr>
+        <!--个人信息-->
+        <div class="personage">
+            <div class="personage-img">
+                <img class="ui medium circular image" style="margin-right: 20px"
+                     src="http://bpic.588ku.com/element_origin_min_pic/01/38/06/41573c70d7d87fb.jpg">
+            </div>
+            <div>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;作落潇城๑</span>
+                <p>&nbsp;&nbsp;一个学习爱折腾的码农~~~</p>
+            </div>
+
+            <!--网站访问信息-->
+            <div class="font">
+                <div class="ui label">
+                    留言总数
+                    <a class="detail"><i class="inverted black  mail icon"></i> 23</a>
+                </div>
+                <div class="ui label">
+                    总访问次数
+                    <a class="detail"><i class="inverted blue  bar chart icon"></i> 23</a>
+                </div>
+                <div class="ui label">
+                    今日被访问次数
+                    <a class="detail"><i class="inverted purple  mail icon"></i> 23</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="message-board" style="background-color: white">
+    <br/>
+    <br/>
+    <br/>
+    <!--留言标题-->
+    <div class="">
+        <h2 class="ui center aligned icon header">
+            <i class="circular users icon"></i>
+            <div class="ui massive label">
+                留言板
+            </div>
+        </h2>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="margin-left: 40px;width: 80%">
+        <div>
+            <form class="ui reply form" id="from">
+                <div class="field">
+                    <span class="ui teal tag label">留下你痕迹的名字吧~</span>
+                    <input type="text" placeholder="请输入留言昵称...." name="messageNickname" onblur="verifyName()">
+
+                </div>
+                <div class="field">
+                    <span class="ui teal tag label">留下你的邮箱~</span>
+                    <input type="text" placeholder="请输入邮箱...." name="messageEmail" onblur="verifyEmail()">
+                </div>
+                <div class="field">
+                    <span class="ui teal tag label">留下你心中的话吧~</span>
+                    <textarea placeholder="既然来了就留下点痕迹吧..........." name="messageContent" onblur="verifyContent()"></textarea>
+                </div>
+                <div class="ui primary submit labeled icon button" onclick="submit()" id="submit">
+                    <i class="icon edit"></i> 提交留言
+                </div>
+            </form>
+        </div>
+        <!--评论的内容-->
+        <div style="margin-left: 20px;margin-top: 60px">
+            <div class="ui comments" style="margin-bottom: 80px" id="comments">
+
+            </div>
+        </div>
+
+        <div style="margin-left: 50px">
+            <div class="ui bottom attached segment" style="height: 60px">
+                <div th:include="admin/_page.html"></div>
+                <script type="text/javascript">
+                    function currentPage(currentPage) {
+                        find_all_leave_message(currentPage)
+                    }
+
+                    $("#pager").zPager({
+                        totalData: totalRows,
+                        pageData: pageSize,
+                        pageCount: totalPage,
+                        htmlBox: $('#wraper'),
+                        btnShow: true,
+                        ajaxSetData: false,
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    /*
+     留言提交
+    * */
+
+</script>
+</html>

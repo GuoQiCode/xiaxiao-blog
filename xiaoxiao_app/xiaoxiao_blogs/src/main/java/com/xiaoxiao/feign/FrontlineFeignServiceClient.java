@@ -1,6 +1,7 @@
 package com.xiaoxiao.feign;
 
 import com.xiaoxiao.pojo.XiaoxiaoComments;
+import com.xiaoxiao.pojo.XiaoxiaoLeaveMessage;
 import com.xiaoxiao.utils.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -272,4 +273,24 @@ public interface FrontlineFeignServiceClient
     @PostMapping(value = "/frontline/tiny/advertising/findAdvertisingAll")
     Result findAdvertisingAll(@RequestParam(name = "page",defaultValue = "1")Integer page,
                               @RequestParam(name = "rows",defaultValue = "4")Integer rows);
+
+
+    /**
+     * 插入留言信息
+     * @param leaveMessage
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/leave/message/insert")
+    Result insert(@RequestBody XiaoxiaoLeaveMessage leaveMessage);
+
+
+    /**
+     * 分页查询留言
+     * @param page
+     * @param rows
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/leave/message/findAllLeaveMessage")
+    Result findAllLeaveMessage(@RequestParam(name = "page",defaultValue = "1")Integer page,
+                               @RequestParam(name = "rows",defaultValue = "10")Integer rows);
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -162,32 +163,36 @@ public class RedisArticleServiceImpl implements RedisArticleService
     /**
      * 缓存首页的博客数展示列表
      * @param result
+     * @param page
      */
     @Override
-    public void insertIndexArticle(PageResult result)
+    public void insertIndexArticle(PageResult result, Integer page)
     {
-        this.redisTemplate.opsForValue().set(this.INDEX_ARTICLE, result, 1, TimeUnit.DAYS);
+        this.redisTemplate.opsForValue().set(this.INDEX_ARTICLE+page, result, 1, TimeUnit.DAYS);
     }
 
 
     /**
      * 获取首页缓存的博客
      * @return
+     * @param page
      */
     @Override
-    public PageResult getIndexArticle()
+    public PageResult getIndexArticle(Integer page)
     {
-        return (PageResult) this.redisTemplate.opsForValue().get(this.INDEX_ARTICLE);
+        return (PageResult) this.redisTemplate.opsForValue().get(this.INDEX_ARTICLE+page);
     }
 
 
     /**
      * 删除首页缓存博客列表
+     * @param page
      */
     @Override
-    public void deleteIndexArticle()
+    public void deleteIndexArticle(Integer page)
     {
-        this.redisTemplate.delete(this.INDEX_ARTICLE);
+        Set<String> keys = this.redisTemplate.keys(this.INDEX_ARTICLE + "*");
+        this.redisTemplate.delete(keys);
     }
 
 
