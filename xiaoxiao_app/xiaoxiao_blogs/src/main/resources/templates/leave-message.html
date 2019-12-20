@@ -88,12 +88,7 @@
     <br/>
     <!--留言标题-->
     <div class="">
-        <h2 class="ui center aligned icon header">
-            <i class="circular users icon"></i>
-            <div class="ui massive label">
-                留言板
-            </div>
-        </h2>
+     <img tsrc="/images/liuyan.jpg"/>
     </div>
     <br>
     <br>
@@ -128,18 +123,18 @@
             </div>
         </div>
 
-        <div style="margin-left: 50px">
+        <div style="margin-left: 0">
             <div class="ui bottom attached segment" style="height: 60px">
                 <div th:include="admin/_page.html"></div>
                 <script type="text/javascript">
                     function currentPage(currentPage) {
                         find_all_leave_message(currentPage)
                     }
-
                     $("#pager").zPager({
-                        totalData: totalRows,
-                        pageData: pageSize,
-                        pageCount: totalPage,
+                        totalData:sessionStorage.getItem("totalRows"),
+                        pageData: sessionStorage.getItem("pageSize"),
+                        pageCount: sessionStorage.getItem("totalPages"),
+                        minPage:0,
                         htmlBox: $('#wraper'),
                         btnShow: true,
                         ajaxSetData: false,

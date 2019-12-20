@@ -41,9 +41,9 @@ function find_all_leave_message(currentPage) {
         timeout: 5000,
         success:(data)=>{
             if(data.code == 20000){
-                totalRows = data.data.totalRows
-                totalPage = data.data.totalPages
-                pageSize = data.data.pageSize
+                sessionStorage.setItem("totalRows",data.data.totalRows)
+                sessionStorage.setItem("totalPage",data.data.totalPages)
+                sessionStorage.setItem("pageSize",data.data.pageSize)
                 split(data.data.result)
             }else{
                 $("#comments").html("")
