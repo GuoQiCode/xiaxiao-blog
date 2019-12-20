@@ -142,7 +142,6 @@ function page(curPage, totalPages, totalRows) {
                             <i class="icon inbox"></i> 第${curPage}页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <i class="icon comment"></i> 共${totalPages}页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <i class="icon mail"></i> 共${totalRows}条数据
-                            <div class="floating ui red label">22</div>
                     </div>
                 </div>
     `)
@@ -168,7 +167,6 @@ function pageSort(curPage, totalPages, totalRows,sortId) {
                             <i class="icon inbox"></i> 第${curPage}页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <i class="icon comment"></i> 共${totalPages}页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <i class="icon mail"></i> 共${totalRows}条数据
-                            <div class="floating ui red label">22</div>
                     </div>
                 </div>
     `)
