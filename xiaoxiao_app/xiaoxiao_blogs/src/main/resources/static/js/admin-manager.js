@@ -1,3 +1,11 @@
+
+$(function () {
+    /**
+     * 查询全部
+     */
+    find_manager_all(1)
+})
+
 /**
  * 查询全部后台管理信息
  * @param currentPage
@@ -8,9 +16,7 @@ function find_manager_all(currentPage) {
         type: "POST",
         timeout: 5000,
         success: (data) => {
-            totalRows = data.data.totalRows
-            totalPage = data.data.totalPages
-            pageSize = data.data.pageSize
+            page(data.data.curPage, data.data.totalPages, data.data.totalRows)
             $("#admin-manager-list").html("");
             Splicing(data)
         }
@@ -83,4 +89,24 @@ function submit() {
             }
         }
     })
+}
+
+/**
+ * 下一页
+ */
+
+function next_page(page,totalPages) {
+    page = ++page
+    if(page <= totalPages){
+        findAll(page)
+    }
+}
+/**
+ * 上一页
+ */
+function up_page(page) {
+    page = --page
+    if(page >= 1){
+        findAll(page)
+    }
 }

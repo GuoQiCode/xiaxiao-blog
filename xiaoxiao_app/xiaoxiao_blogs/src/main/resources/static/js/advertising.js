@@ -1,4 +1,10 @@
 
+$(function () {
+    /**
+     * 查询全部
+     */
+    find_all(1)
+})
 let  flag
 /**
  * 查询全部
@@ -12,6 +18,7 @@ function find_all(currentPage) {
         success:(data)=>{
             $("#advertising").html("")
             if(data.code == 20000){
+                page(data.data.curPage, data.data.totalPages,data.data.totalRows)
                 joint(data.data)
             }
         }
@@ -156,3 +163,23 @@ function onto(advertisingId) {
 }
 
 
+/**
+ * 下一页
+ * @param page
+ * @param totalPages
+ */
+function next_page(page,totalPages) {
+    page = ++page
+    if(page <= totalPages){
+        find_all(page)
+    }
+}
+/**
+ * 上一页
+ */
+function up_page(page) {
+    page = --page
+    if(page >= 1){
+        find_all(page)
+    }
+}
