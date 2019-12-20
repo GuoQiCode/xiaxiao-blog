@@ -1,4 +1,9 @@
-
+$(function () {
+    /**
+     * 请求文章
+     */
+    findAllArticle(1)
+})
 
 /**
  * 获取全部的文章
@@ -12,15 +17,36 @@ function findAllArticle(currentPage) {
         timeout: 5000,
         success: (data) => {
             if (data.code == 20000) {
-                totalRows = data.data.totalRows
-                totalPage = data.data.totalPages
-                pageSize = data.data.pageSize
-                curPage = data.data.curPage
-                $("#blogs").empty()
-                Splicing(data)
+              if(data.code == 20000){
+                  $("#blogs").empty()
+                  page(data.data.curPage, data.data.totalPages, data.data.totalRows)
+                  Splicing(data)
+              }
             }
         }
     })
+}
+
+
+
+/**
+ * 下一页
+ */
+
+function next_page(page,totalPages) {
+    page = ++page
+    if(page <= totalPages){
+        findAllArticle(page)
+    }
+}
+/**
+ * 上一页
+ */
+function up_page(page) {
+    page = --page
+    if(page >= 1){
+        findAllArticle(page)
+    }
 }
 
 /**
@@ -86,7 +112,7 @@ function updateRecommend(articleId, articleRecommend) {
         data:{"articleId":articleId,'articleRecommend':articleRecommend},
         success:(data)=>{
             if(data.code == 20000){
-                findAllArticle(curPage)
+                findAllArticle(1)
             }else{
                 alert(data.message)
             }
