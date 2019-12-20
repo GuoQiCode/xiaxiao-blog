@@ -3,6 +3,7 @@ package com.xiaoxiao.tiny.frontline.component;
 import com.xiaoxiao.pojo.*;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
+import com.xiaoxiao.pojo.vo.XiaoxiaoLeaveMessageVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import com.xiaoxiao.tiny.frontline.feign.RedisCacheFeignClient;
 import com.xiaoxiao.utils.PageResult;
@@ -329,6 +330,24 @@ public class FrontlineTinyRedisFallback implements RedisCacheFeignClient
 
     @Override
     public void deleteLeaveMessage()
+    {
+
+    }
+
+    @Override
+    public void insertLeaveMessageSum(XiaoxiaoLeaveMessageVo leaveMessageVo)
+    {
+
+    }
+
+    @Override
+    public XiaoxiaoLeaveMessageVo getLeaveMessageSum()
+    {
+        return null;
+    }
+
+    @Override
+    public void deleteLeaveMessageSum()
     {
 
     }

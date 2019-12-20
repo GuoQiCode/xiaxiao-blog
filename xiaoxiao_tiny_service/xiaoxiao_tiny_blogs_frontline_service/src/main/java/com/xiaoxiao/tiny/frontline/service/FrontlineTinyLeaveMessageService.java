@@ -57,4 +57,13 @@ public interface FrontlineTinyLeaveMessageService
      * @return
      */
     Result findAllLeaveMessage(Integer page, Integer rows);
+
+
+    /**
+     * 获取留言个数
+     * @return
+     */
+    Result getLeaveMessageSum();
+
+
 }

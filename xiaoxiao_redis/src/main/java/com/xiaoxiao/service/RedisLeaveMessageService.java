@@ -1,5 +1,6 @@
 package com.xiaoxiao.service;
 
+import com.xiaoxiao.pojo.vo.XiaoxiaoLeaveMessageVo;
 import com.xiaoxiao.utils.PageResult;
 
 /**
@@ -62,4 +63,26 @@ public interface RedisLeaveMessageService
      * 删除
      */
     void deleteLeaveMessage();
+
+
+    /**
+     * 缓存留言数
+     * @param leaveMessageVo
+     */
+    void insertLeaveMessageSum(XiaoxiaoLeaveMessageVo leaveMessageVo);
+
+
+    /**
+     * 获取的留言总数
+     * @return
+     */
+    XiaoxiaoLeaveMessageVo getLeaveMessageSum();
+
+
+    /**
+     * 删除留言总数
+     */
+    void deleteLeaveMessageSum();
+
+
 }

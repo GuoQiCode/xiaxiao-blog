@@ -293,4 +293,13 @@ public interface FrontlineFeignServiceClient
     @PostMapping(value = "/frontline/tiny/leave/message/findAllLeaveMessage")
     Result findAllLeaveMessage(@RequestParam(name = "page",defaultValue = "1")Integer page,
                                @RequestParam(name = "rows",defaultValue = "10")Integer rows);
+
+
+    /**
+     *获取首页留言个数
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/leave/message/getLeaveMessageSum")
+    Result getLeaveMessageSum();
+
 }

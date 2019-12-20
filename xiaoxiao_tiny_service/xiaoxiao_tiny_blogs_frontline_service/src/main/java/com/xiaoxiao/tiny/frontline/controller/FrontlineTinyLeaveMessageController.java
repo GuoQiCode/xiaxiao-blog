@@ -6,6 +6,7 @@ import com.xiaoxiao.utils.Result;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.transaction.support.ResourceHolderSupport;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -68,4 +69,11 @@ public class FrontlineTinyLeaveMessageController
         return this.frontlineTinyLeaveMessageService.findAllLeaveMessage(page,rows);
     }
 
+
+
+    @ApiOperation(value = "获取留言的个数",response = Result.class,notes = "获取留言的个数")
+    @PostMapping(value = "/getLeaveMessageSum")
+    public Result getLeaveMessageSum(){
+        return this.frontlineTinyLeaveMessageService.getLeaveMessageSum();
+    }
 }

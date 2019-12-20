@@ -1,5 +1,6 @@
 package com.xiaoxiao.service.backend.impl;
 
+import com.xiaoxiao.pojo.vo.XiaoxiaoLeaveMessageVo;
 import com.xiaoxiao.service.RedisLeaveMessageService;
 import com.xiaoxiao.utils.PageResult;
 import org.aspectj.lang.annotation.SuppressAjWarnings;
@@ -56,6 +57,10 @@ public class RedisLeaveMessageServiceImpl implements RedisLeaveMessageService
     private RedisTemplate<String,Object> redisTemplate;
 
 
+    @Value("${LEAVE_MESSAGE_SUM}")
+    private String LEAVE_MESSAGE_SUM;
+
+
     @Value("${LEAVE_MESSAGE}")
     private String LEAVE_MESSAGE;
 
@@ -79,5 +84,24 @@ public class RedisLeaveMessageServiceImpl implements RedisLeaveMessageService
     {
         Set<String> keys = this.redisTemplate.keys(this.LEAVE_MESSAGE + "*");
         this.redisTemplate.delete(keys);
+    }
+
+    @Override
+    public void insertLeaveMessageSum(XiaoxiaoLeaveMessageVo leaveMessageVo)
+    {
+        this.redisTemplate.opsForValue().set(LEAVE_MESSAGE_SUM, leaveMessageVo);
+    }
+
+    @Override
+    public XiaoxiaoLeaveMessageVo getLeaveMessageSum()
+    {
+        return (XiaoxiaoLeaveMessageVo) this.redisTemplate.opsForValue().get(LEAVE_MESSAGE_SUM);
+    }
+
+    @Override
+    public void deleteLeaveMessageSum()
+    {
+        this.redisTemplate.delete(LEAVE_MESSAGE_SUM);
+
     }
 }

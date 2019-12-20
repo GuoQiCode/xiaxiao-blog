@@ -67,7 +67,9 @@
             <div class="font">
                 <div class="ui label">
                     留言总数
-                    <a class="detail"><i class="inverted black  mail icon"></i> 23</a>
+                    <a class="detail"><i class="inverted black  mail icon"></i>
+                        <span id="message-sum"></span>
+                    </a>
                 </div>
                 <div class="ui label">
                     总访问次数
@@ -88,7 +90,7 @@
     <br/>
     <!--留言标题-->
     <div class="">
-     <img tsrc="/images/liuyan.jpg"/>
+     <img class="message-title-img" src="/images/liuyan.jpg"/>
     </div>
     <br>
     <br>
@@ -121,25 +123,24 @@
             <div class="ui comments" style="margin-bottom: 80px" id="comments">
 
             </div>
-        </div>
-
-        <div style="margin-left: 0">
-            <div class="ui bottom attached segment" style="height: 60px">
-                <div th:include="admin/_page.html"></div>
-                <script type="text/javascript">
-                    function currentPage(currentPage) {
-                        find_all_leave_message(currentPage)
-                    }
-                    $("#pager").zPager({
-                        totalData:sessionStorage.getItem("totalRows"),
-                        pageData: sessionStorage.getItem("pageSize"),
-                        pageCount: sessionStorage.getItem("totalPages"),
-                        minPage:0,
-                        htmlBox: $('#wraper'),
-                        btnShow: true,
-                        ajaxSetData: false,
-                    });
-                </script>
+            <div style="margin-left: 100px">
+                <div class="ui bottom attached segment" style="height: 60px">
+                    <div th:include="admin/_page.html"></div>
+                    <script type="text/javascript">
+                        function currentPage(currentPage) {
+                            find_all_leave_message(currentPage)
+                        }
+                        $("#pager").zPager({
+                            totalData:sessionStorage.getItem("totalRows"),
+                            pageData: sessionStorage.getItem("pageSize"),
+                            pageCount: sessionStorage.getItem("totalPages"),
+                            minPage:0,
+                            htmlBox: $('#wraper'),
+                            btnShow: true,
+                            ajaxSetData: false,
+                        });
+                    </script>
+                </div>
             </div>
         </div>
     </div>

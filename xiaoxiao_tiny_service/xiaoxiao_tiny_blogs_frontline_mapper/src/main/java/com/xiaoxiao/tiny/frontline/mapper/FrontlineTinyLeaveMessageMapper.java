@@ -1,6 +1,7 @@
 package com.xiaoxiao.tiny.frontline.mapper;
 
 import com.xiaoxiao.pojo.XiaoxiaoLeaveMessage;
+import com.xiaoxiao.pojo.vo.XiaoxiaoLeaveMessageVo;
 import com.xiaoxiao.tiny.frontline.provider.XiaoxiaoLeaveMessageProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Param;
@@ -64,5 +65,12 @@ public interface FrontlineTinyLeaveMessageMapper
     @Select("SELECT * FROM xiaoxiao_leave_message ORDER BY message_date DESC")
     List<XiaoxiaoLeaveMessage> findAllLeaveMessage();
 
+
+    /**
+     * 获取的
+     * @return
+     */
+    @Select("select count(a.message_id) sum from  xiaoxiao_leave_message as a")
+    XiaoxiaoLeaveMessageVo getLeaveMessageSum();
 
 }

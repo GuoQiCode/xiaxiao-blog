@@ -1,3 +1,29 @@
+
+$(function () {
+    /**\
+     * 请求留言个数
+     */
+    getLeaveMessageSum()
+    
+    
+})
+
+
+/**
+ * 获取留言个数
+ */
+function getLeaveMessageSum() {
+    $.ajax("/frontline/leave/message/getLeaveMessageSum",{
+        dataType: 'JSON',
+        type: 'POST',
+        data:$("#from").serialize(),
+        timeout: 5000,
+        success:(data)=>{
+            $("#message-sum").text(data.data.sum)
+        }
+    })
+}
+
 /**
  * 留言提交
  */

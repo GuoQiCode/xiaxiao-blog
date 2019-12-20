@@ -3,6 +3,7 @@ package com.xiaoxiao.tiny.frontline.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xiaoxiao.pojo.XiaoxiaoLeaveMessage;
+import com.xiaoxiao.pojo.vo.XiaoxiaoLeaveMessageVo;
 import com.xiaoxiao.tiny.frontline.feign.RedisCacheFeignClient;
 import com.xiaoxiao.tiny.frontline.mapper.FrontlineTinyLeaveMessageMapper;
 import com.xiaoxiao.tiny.frontline.service.FrontlineTinyLeaveMessageService;
@@ -14,6 +15,7 @@ import com.xiaoxiao.utils.StatusCode;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -114,12 +116,47 @@ public class FrontlineTinyLeaveMessageServiceImpl implements FrontlineTinyLeaveM
                  * 插入缓存
                  */
                 this.client.insertLeaveMessage(result,page);
+
+
+                /**
+                 * 删除缓存留言个数
+                 */
+                this.client.deleteLeaveMessageSum();
             } catch (Exception e)
             {
                 e.printStackTrace();
             }
 
             return Result.ok(StatusCode.OK,true ,Result.MARKED_WORDS_SUCCESS,result);
+        }
+        return Result.error(StatusCode.ERROR, Result.MARKED_WORDS_FAULT);
+    }
+
+    @Override
+    public Result getLeaveMessageSum()
+    {
+        try
+        {
+            XiaoxiaoLeaveMessageVo leaveMessageSum1 = this.client.getLeaveMessageSum();
+            if(leaveMessageSum1 != null){
+                return Result.ok(StatusCode.OK, true,Result.MARKED_WORDS_SUCCESS,leaveMessageSum1);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        XiaoxiaoLeaveMessageVo leaveMessageSum = this.frontlineTinyLeaveMessageMapper.getLeaveMessageSum();
+        if(leaveMessageSum != null){
+            try
+            {
+                this.client.insertLeaveMessageSum(leaveMessageSum);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            return Result.ok(StatusCode.OK, true, Result.MARKED_WORDS_SUCCESS,leaveMessageSum);
         }
         return Result.error(StatusCode.ERROR, Result.MARKED_WORDS_FAULT);
     }

@@ -60,7 +60,7 @@ public class FrontlineLeaveMessageServiceImpl implements FrontlineLeaveMessageSe
     @Override
     public Result getLeaveMessageSum()
     {
-        return null;
+        return this.client.getLeaveMessageSum();
     }
 
     @Override

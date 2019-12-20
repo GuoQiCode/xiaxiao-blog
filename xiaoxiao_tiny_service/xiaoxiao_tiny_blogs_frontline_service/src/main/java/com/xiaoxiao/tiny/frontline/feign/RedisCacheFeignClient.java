@@ -3,6 +3,7 @@ package com.xiaoxiao.tiny.frontline.feign;
 import com.xiaoxiao.pojo.*;
 import com.xiaoxiao.pojo.vo.XiaoxiaoArticleVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoLabelVo;
+import com.xiaoxiao.pojo.vo.XiaoxiaoLeaveMessageVo;
 import com.xiaoxiao.pojo.vo.XiaoxiaoSortsVo;
 import com.xiaoxiao.tiny.frontline.component.FrontlineTinyRedisFallback;
 import com.xiaoxiao.utils.PageResult;
@@ -427,5 +428,29 @@ public interface RedisCacheFeignClient {
      */
     @PostMapping(value = "/redis_leave_message/deleteLeaveMessage")
      void deleteLeaveMessage();
+
+
+    /**
+     * 缓存留言个数
+     * @param leaveMessageVo
+     */
+    @PostMapping(value = "/redis_leave_message/insertLeaveMessageSum")
+     void insertLeaveMessageSum(@RequestBody XiaoxiaoLeaveMessageVo leaveMessageVo) ;
+
+
+    /**
+     * 缓存留言个数
+     * @return
+     */
+    @PostMapping(value = "/redis_leave_message/getLeaveMessageSum")
+     XiaoxiaoLeaveMessageVo getLeaveMessageSum() ;
+
+
+    /**
+     * 缓存留言个数
+     */
+    @PostMapping(value = "/redis_leave_message/deleteLeaveMessageSum")
+     void deleteLeaveMessageSum();
+
 
 }
