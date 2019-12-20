@@ -1,3 +1,12 @@
+$(function () {
+    /**
+     * 获取所有的标签
+     */
+    findAll(1)
+
+})
+
+
 /**
  * 查询全部的标签
  */
@@ -9,9 +18,7 @@ function findAll(currentPage) {
         timeout:5000,
         success:(data) =>{
             if(data.code == 20000){
-                totalRows = data.data.totalRows
-                totalPage = data.data.totalPages
-                pageSize = data.data.pageSize
+                page(data.data.curPage, data.data.totalPages,data.data.totalRows)
                 $("#labels").empty()
                 Splicing(data)
             }
@@ -146,3 +153,24 @@ function submit() {
     }
 }
 
+
+
+/**
+ * 下一页
+ */
+
+function next_page(page,totalPages) {
+    page = ++page
+    if(page <= totalPages){
+        findAll(page)
+    }
+}
+/**
+ * 上一页
+ */
+function up_page(page) {
+    page = --page
+    if(page >= 1){
+        findAll(page)
+    }
+}
