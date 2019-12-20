@@ -5,6 +5,10 @@ $(function () {
      */
     show_me()
 
+    /**
+     * 请求信息展示
+     */
+    find_comments(1,window.location.href.split("/")[4])
 })
 
 
@@ -35,6 +39,7 @@ function find_comments(currentPage,articleId) {
         success: (data) => {
             if(data.code == 20000){
                 $("#comments").html("")
+                page(data.data.curPage, data.data.totalPages, data.data.totalRows)
                 splict(data)
             }
         }
@@ -112,4 +117,28 @@ function child(commentId, item) {
                             </div>
                         </div>
                 `)
+}
+
+/**
+ * 下一页
+ */
+
+function next_page(page,totalPages) {
+    page = ++page
+    if(page <= totalPages){
+        find_comments(page,window.location.href.split("/")[4])
+    }else {
+        alert(11)
+    }
+}
+/**
+ * 上一页
+ */
+function up_page(page) {
+    page = --page
+    if(page >= 1){
+        find_comments(page,window.location.href.split("/")[4])
+    }else {
+        alert(11)
+    }
 }

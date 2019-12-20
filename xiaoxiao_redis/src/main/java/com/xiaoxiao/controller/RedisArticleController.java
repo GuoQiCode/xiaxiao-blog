@@ -128,7 +128,7 @@ public class RedisArticleController
 
     @ApiOperation(value = "删除首页缓存信息", notes = "删除首页缓存信息")
     @PostMapping(value = "/delete_index_article")
-    public void deleteIndexArticle(@RequestParam(name = "page")Integer page)
+    public void deleteIndexArticle(@RequestParam(name = "page",required = false)Integer page)
     {
         this.redisArticleService.deleteIndexArticle(page);
     }

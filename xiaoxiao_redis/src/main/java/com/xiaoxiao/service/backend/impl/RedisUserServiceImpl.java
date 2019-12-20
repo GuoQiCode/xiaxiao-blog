@@ -75,7 +75,7 @@ public class RedisUserServiceImpl implements RedisUserService
     {
         this.token = token;
         users.setUserPassword("");
-        this.redisTemplate.opsForValue().set(this.USER_REDIS_ID+token, users, 1800, TimeUnit.SECONDS);
+        this.redisTemplate.opsForValue().set(this.USER_REDIS_ID+token, users, 3, TimeUnit.DAYS);
     }
 
 
