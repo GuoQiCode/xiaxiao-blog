@@ -132,7 +132,7 @@ function del(articleId) {
         timeout: 5000,
         success: (data) => {
             if (data.code == 20000) {
-                findAllArticle(curPage)
+                findAllArticle(1)
             } else {
                 alert(data.message)
             }
