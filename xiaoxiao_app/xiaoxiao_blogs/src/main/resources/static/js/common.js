@@ -149,14 +149,11 @@ function page(curPage, totalPages, totalRows) {
 
                         <div class="ui inverted blue button" id="next_page" onclick="next_page(${curPage},${totalPages})">下一页</div>
                     </div>
-                    <div class="ui label" style="margin-left: 15px;">
-                        <span class="item">
+                    <div class="ui label" style="margin-left: 15px; margin-top: 5px">
+                            <i class="icon inbox"></i> 第${curPage}页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i class="icon comment"></i> 共${totalPages}页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <i class="icon mail"></i> 共${totalRows}条数据
-                        </span>
-                        <span class="item">
-                            <i class="icon inbox"></i> 当前第${curPage}页数据
                             <div class="floating ui red label">22</div>
-                        </span>
                     </div>
                 </div>
     `)

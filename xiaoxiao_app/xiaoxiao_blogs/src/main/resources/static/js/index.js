@@ -87,8 +87,6 @@ function next_page(page,totalPages) {
     page = ++page
     if(page <= totalPages){
         indexArticle(page)
-    }else {
-        alert("当前已经是最后一页啦~~~")
     }
 }
 /**
@@ -98,8 +96,6 @@ function up_page(page) {
     page = --page
     if(page >= 1){
         indexArticle(page)
-    }else{
-        alert("当前已经是第一页啦~~")
     }
 }
 

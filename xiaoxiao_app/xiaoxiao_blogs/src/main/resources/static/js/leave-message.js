@@ -94,8 +94,6 @@ function next_page(page, totalPages) {
     page = ++page
     if (page <= totalPages) {
         find_all_leave_message(page)
-    } else {
-        alert("当前已经是最后一页啦~~~")
     }
 }
 
@@ -106,8 +104,6 @@ function up_page(page) {
     page = --page
     if(page >= 1){
         find_all_leave_message(page)
-    }else{
-        alert("已经是第一页了哦~~~")
     }
 }
 
