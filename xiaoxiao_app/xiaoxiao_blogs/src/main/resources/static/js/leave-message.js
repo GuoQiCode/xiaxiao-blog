@@ -83,30 +83,7 @@ function find_all_leave_message(currentPage) {
 
 }
 
-/**
- * 拼接的分页
- * @param curPage
- * @param totalPages
- * @param totalRows
- */
-function page(curPage, totalPages, totalRows) {
-    $("#page").html("")
-    $("#page").append(`
-           <div>
-                    <div style="float: left">
-                        <div class="ui inverted blue button" id="up_page" onclick="up_page(${curPage})">上一页</div>
 
-                        <div class="ui inverted blue button" id="next_page" onclick="next_page(${curPage},${totalPages})">下一页</div>
-                    </div>
-                    <div class="ui label" style="margin-left: 15px;height: 34.8px;text-align: center">
-                        <span class="item">
-                            <i class="icon mail"></i> 共${totalRows}条数据
-                            <div class="floating ui red label">22</div>
-                        </span>
-                    </div>
-                </div>
-    `)
-}
 
 
 /**

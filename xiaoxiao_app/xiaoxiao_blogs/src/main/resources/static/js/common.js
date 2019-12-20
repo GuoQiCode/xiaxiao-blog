@@ -137,3 +137,27 @@ function splice(data) {
     `)
     })
 }
+
+
+
+function page(curPage, totalPages, totalRows) {
+    $("#page").html("")
+    $("#page").append(`
+           <div>
+                    <div style="float: left">
+                        <div class="ui inverted blue button" id="up_page" onclick="up_page(${curPage})">上一页</div>
+
+                        <div class="ui inverted blue button" id="next_page" onclick="next_page(${curPage},${totalPages})">下一页</div>
+                    </div>
+                    <div class="ui label" style="margin-left: 15px;">
+                        <span class="item">
+                            <i class="icon mail"></i> 共${totalRows}条数据
+                        </span>
+                        <span class="item">
+                            <i class="icon inbox"></i> 当前第${curPage}页数据
+                            <div class="floating ui red label">22</div>
+                        </span>
+                    </div>
+                </div>
+    `)
+}
