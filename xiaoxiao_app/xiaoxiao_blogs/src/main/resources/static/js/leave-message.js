@@ -4,8 +4,12 @@ $(function () {
      * 请求留言个数
      */
     getLeaveMessageSum()
-    
-    
+
+    /**
+     *
+     */
+    find_all_leave_message(1)
+
 })
 
 
@@ -60,6 +64,7 @@ function submit() {
  * 查找全部的留言信息
  */
 function find_all_leave_message(currentPage) {
+    let result = null;
     $.ajax("/frontline/leave/message/findAllLeaveMessage",{
         dataType: 'JSON',
         type: 'POST',
@@ -68,13 +73,13 @@ function find_all_leave_message(currentPage) {
         async:false,
         success:(data)=>{
             if(data.code == 20000){
-                sessionStorage.setItem("md",data.data.totalRows)
-                split(data.data.result)
+                result =  data
             }else{
                 $("#comments").html("")
             }
         }
     })
+    return result;
 }
 
 /**

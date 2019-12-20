@@ -45,6 +45,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/redis_comments_service")
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class RedisCommentsController
 {
 

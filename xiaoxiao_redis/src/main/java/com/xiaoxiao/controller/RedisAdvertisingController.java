@@ -4,10 +4,7 @@ import com.xiaoxiao.pojo.XiaoxiaoAdvertising;
 import com.xiaoxiao.service.RedisAdvertisingService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,6 +46,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/redis_advertising_service")
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class RedisAdvertisingController
 {
     @Autowired

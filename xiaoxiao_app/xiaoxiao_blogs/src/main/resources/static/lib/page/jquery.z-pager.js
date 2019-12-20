@@ -286,13 +286,13 @@
 		}
 	})
 
-	$.fn.zPager.defaults = {
-		totalData: 10, //数据总条数
-		pageData: 5, //每页数据条数
-		pageCount: 0, //总页数
+	$.fn.zPager.df = {
+		totalData: 50, //数据总条数
+		pageData: 10, //每页数据条数
+		pageCount: 5, //总页数
 		current: 1, //当前页码数
 		pageStep: 8, //当前可见最多页码个数
-		minPage: 5, //最小页码数，页码小于此数值则不显示上下分页按钮
+		minPage: 0, //最小页码数，页码小于此数值则不显示上下分页按钮
 		active: 'current', //当前页码样式
 		prevBtn: 'pg-prev', //上一页按钮
 		nextBtn: 'pg-next', //下一页按钮
@@ -301,7 +301,7 @@
 		lastBtn: 'pg-last', //最后一页按钮
 		btnShow: true, //是否显示第一页和最后一页按钮
 		disabled: true, //按钮失效样式
-		ajaxSetData: true, //是否使用ajax获取数据 此属性为真时需要url和htmlBox不为空
+		ajaxSetData: false, //是否使用ajax获取数据 此属性为真时需要url和htmlBox不为空
 		url: '', //ajax路由
 		htmlBox: '' //ajax数据写入容器
 	}

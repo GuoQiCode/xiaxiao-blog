@@ -52,7 +52,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 @RequestMapping(value = "/tiny_user")
-@CrossOrigin
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class UserSsoController
 {
 

@@ -47,6 +47,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/frontline/tiny/leave/message")
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class FrontlineTinyLeaveMessageController
 {
 

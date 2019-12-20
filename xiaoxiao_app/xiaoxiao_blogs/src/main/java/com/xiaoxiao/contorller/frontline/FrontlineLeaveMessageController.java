@@ -4,10 +4,7 @@ import com.xiaoxiao.pojo.XiaoxiaoLeaveMessage;
 import com.xiaoxiao.service.frontline.FrontlineLeaveMessageService;
 import com.xiaoxiao.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -49,6 +46,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping(value = "/frontline/leave/message")
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class FrontlineLeaveMessageController
 {
     @Autowired
