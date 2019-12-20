@@ -13,68 +13,43 @@
 <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace="_fragments :: nav">
 </nav>
 
-  <!--中间内容-->
-  <div  class="m-container-small m-padded-tb-big">
+<!--中间内容-->
+<div class="m-container-small m-padded-tb-big">
     <div class="ui container">
-      <!--header-->
-      <div class="ui top attached segment">
-        <div class="ui middle aligned two column grid">
-          <div class="column">
-            <h3 class="ui teal header">标签</h3>
-          </div>
-          <div class="right aligned column">
-              <!--含有标签数据-->
-            共 <h2 class="ui orange header m-inline-block m-text-thin" id="sum"></h2> 个
-          </div>
+        <!--header-->
+        <div class="ui top attached segment">
+            <div class="ui middle aligned two column grid">
+                <div class="column">
+                    <h3 class="ui teal header">标签</h3>
+                </div>
+                <div class="right aligned column">
+                    <!--含有标签数据-->
+                    共 <h2 class="ui orange header m-inline-block m-text-thin" id="sum"></h2> 个
+                </div>
+            </div>
         </div>
-      </div>
 
         <!--标签-->
-      <div class="ui attached segment m-padded-tb-large" id="label">
+        <div class="ui attached segment m-padded-tb-large" id="label">
 
-      </div>
-
-        <!--博客内容-->
-      <div class="ui top attached teal segment" id="content">
-
-
-
-
-      </div>
-
-
-        <div class="ui bottom attached segment" style="height: 60px">
-            <div th:include="admin/_page.html"></div>
-            <script type="text/javascript">
-                function currentPage(currentPage){
-                    if(labelId != null){
-                        find_article_by_label(labelId,currentPage)
-                    }else {
-                        find_all_article(currentPage)
-                    }
-                }
-                $("#pager").zPager({
-                    totalData: totalRows,
-                    pageData: pageSize,
-                    pageCount: totalPage,
-                    htmlBox: $('#wraper'),
-                    btnShow: true,
-                    ajaxSetData: false,
-                });
-            </script>
         </div>
 
-
-    </div>
-  </div>
-
+        <!--博客内容-->
+        <div class="ui top attached teal segment" id="content">
 
 
-  <script>
-    $('.menu.toggle').click(function () {
-      $('.m-item').toggleClass('m-mobile-hide');
-    });
 
-  </script>
+        </div>
+
+        <div id="page">
+
+        </div>
+
+        <script>
+            $('.menu.toggle').click(function () {
+                $('.m-item').toggleClass('m-mobile-hide');
+            });
+
+        </script>
 </body>
 </html>

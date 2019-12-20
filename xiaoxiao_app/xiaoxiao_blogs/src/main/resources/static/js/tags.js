@@ -8,6 +8,12 @@ $(function () {
      * 获取文章标签分类总数
      */
     find_label_sum_and_article()
+
+
+    /**
+     * 请求全部文章
+     */
+    find_all_article(1)
 })
 
 
@@ -51,15 +57,17 @@ function find_label_sum_and_article() {
  * @param currentPage
  */
 function find_all_article(currentPage) {
-    $.ajax("/frontline/article/find_index_article?page="+currentPage,{
+    $.ajax("/frontline/article/find_index_article",{
         dataType: "json",
         type: "POST",
         timeout: 5000,
+        data:{'page':currentPage},
+        async:false,
         success:(data)=>{
-            totalRows = data.data.totalRows
-            totalPage = data.data.totalPages
-            pageSize = data.data.pageSize
-            splice(data.data)
+            if(data.code == 20000){
+                page(data.data.curPage, data.data.totalPages, data.data.totalRows)
+                splice(data.data)
+            }
         }
     })
 }
@@ -70,20 +78,64 @@ function find_all_article(currentPage) {
  * @param currentPage
  */
 function find_article_by_label(currentPage,id) {
-    labelId = id
     $.ajax("/frontline/article/find_article_by_label_id",{
         dataType: "json",
         type: "POST",
-        data:{'labelId':labelId,'page':currentPage},
+        data:{'labelId':id,'page':currentPage},
         timeout: 5000,
         success:(data)=>{
-            totalRows = data.data.totalRows
-            totalPage = data.data.totalPages
-            pageSize = data.data.pageSize
-            splice(data.data)
+            if(data.code == 20000){
+                pageSort(data.data.curPage, data.data.totalPages, data.data.totalRows,id)
+                splice(data.data)
+            }
         }
     })
 }
 
+
+/**
+ * 下一页
+ */
+
+function next_page(page,totalPages,sortId) {
+    page = ++page
+    if(sortId != null && sortId != undefined){
+        /**
+         * 查询标签文章
+         */
+        if(page <= totalPages){
+            find_article_by_label(page,sortId)
+        }
+    }else
+    {
+        /**
+         * 执行请求首页缓存
+         */
+        if(page <= totalPages){
+            find_index_article(page)
+        }
+    }
+}
+/**
+ * 上一页
+ */
+function up_page(page,sortId) {
+    page = --page
+    if(sortId !=null && sortId != undefined){
+        /**
+         * 查询标签文章
+         */
+        if(page >= 1){
+            find_article_by_label(page,sortId)
+        }
+    }else {
+        /**
+         * 请求首页文章
+         */
+        if(page >= 1){
+            find_index_article(page)
+        }
+    }
+}
 
 
