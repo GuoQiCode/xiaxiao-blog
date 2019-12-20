@@ -35,22 +35,9 @@
             <tfoot>
             <tr>
                 <th colspan="6">
-                    <div th:include="admin/_page.html"></div>
+                    <!--分页-->
+                    <div id="page"></div>
                 </th>
-                <a onclick="showPopup(null,2)" class="ui mini red basic button">新增</a>
-                <script type="text/javascript">
-                    function currentPage(currentPage){
-                        findAll(currentPage)
-                    }
-                    $("#pager").zPager({
-                        totalData: totalRows,
-                        pageData: pageSize,
-                        pageCount: totalPage,
-                        htmlBox: $('#wraper'),
-                        btnShow: true,
-                        ajaxSetData: false,
-                    });
-                </script>
             </tr>
             </tfoot>
         </table>

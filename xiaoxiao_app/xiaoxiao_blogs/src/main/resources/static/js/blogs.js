@@ -30,8 +30,8 @@ function findAllArticle(currentPage) {
 
 
 /**
- * 下一页
- */
+* 下一页
+*/
 
 function next_page(page,totalPages) {
     page = ++page
