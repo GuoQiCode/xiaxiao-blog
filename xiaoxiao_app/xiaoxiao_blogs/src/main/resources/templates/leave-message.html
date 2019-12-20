@@ -90,7 +90,7 @@
     <br/>
     <!--留言标题-->
     <div class="">
-     <img class="message-title-img" src="/images/liuyan.jpg"/>
+        <img class="message-title-img" src="/images/liuyan.jpg"/>
     </div>
     <br>
     <br>
@@ -111,7 +111,8 @@
                 </div>
                 <div class="field">
                     <span class="ui teal tag label">留下你心中的话吧~</span>
-                    <textarea placeholder="既然来了就留下点痕迹吧..........." name="messageContent" onblur="verifyContent()"></textarea>
+                    <textarea placeholder="既然来了就留下点痕迹吧..........." name="messageContent"
+                              onblur="verifyContent()"></textarea>
                 </div>
                 <div class="ui primary submit labeled icon button" onclick="submit()" id="submit">
                     <i class="icon edit"></i> 提交留言
@@ -123,33 +124,8 @@
             <div class="ui comments" style="margin-bottom: 80px" id="comments">
 
             </div>
-            <div style="margin-left: 100px">
-                <div class="ui bottom attached segment" style="height: 60px">
-                    <div th:include="admin/_page.html"></div>
-                    <script type="text/javascript">
-                        function currentPage(currentPage) {
-                            find_all_leave_message(currentPage)
-                        }
-                        $("#pager").zPager({
-                            totalData:sessionStorage.getItem("totalRows"),
-                            pageData: sessionStorage.getItem("pageSize"),
-                            pageCount: sessionStorage.getItem("totalPages"),
-                            minPage:0,
-                            htmlBox: $('#wraper'),
-                            btnShow: true,
-                            ajaxSetData: false,
-                        });
-                    </script>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 </body>
-<script>
-    /*
-     留言提交
-    * */
-
-</script>
 </html>

@@ -1,6 +1,6 @@
 
 $(function () {
-    /**\
+    /**
      * 请求留言个数
      */
     getLeaveMessageSum()
@@ -65,11 +65,10 @@ function find_all_leave_message(currentPage) {
         type: 'POST',
         data:{'page':currentPage},
         timeout: 5000,
+        async:false,
         success:(data)=>{
             if(data.code == 20000){
-                sessionStorage.setItem("totalRows",data.data.totalRows)
-                sessionStorage.setItem("totalPage",data.data.totalPages)
-                sessionStorage.setItem("pageSize",data.data.pageSize)
+                sessionStorage.setItem("md",data.data.totalRows)
                 split(data.data.result)
             }else{
                 $("#comments").html("")
