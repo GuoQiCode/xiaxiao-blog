@@ -9,17 +9,6 @@ function showAndHide(flag) {
 }
 
 
-
-/**
- * 分页数据
- */
-let totalPage
-let totalRows
-let pageSize
-let curPage
-
-
-
 /**
  * 在分类分页查询中实现存储分类ID
  */
@@ -145,9 +134,35 @@ function page(curPage, totalPages, totalRows) {
     $("#page").append(`
            <div>
                     <div style="float: left">
-                        <div class="ui inverted blue button" id="up_page" onclick="up_page(${curPage})">上一页</div>
+                        <div class="ui small  inverted blue button" id="up_page" onclick="up_page(${curPage})">上一页</div>
 
-                        <div class="ui inverted blue button" id="next_page" onclick="next_page(${curPage},${totalPages})">下一页</div>
+                        <div class="ui small  inverted blue button" id="next_page" onclick="next_page(${curPage},${totalPages})">下一页</div>
+                    </div>
+                    <div class="ui label" style="margin-left: 15px; margin-top: 5px">
+                            <i class="icon inbox"></i> 第${curPage}页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i class="icon comment"></i> 共${totalPages}页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i class="icon mail"></i> 共${totalRows}条数据
+                            <div class="floating ui red label">22</div>
+                    </div>
+                </div>
+    `)
+}
+
+/**
+ *
+ * @param curPage
+ * @param totalPages
+ * @param totalRows
+ * @param sortId
+ */
+function pageSort(curPage, totalPages, totalRows,sortId) {
+    $("#page").html("")
+    $("#page").append(`
+           <div>
+                    <div style="float: left">
+                        <div class="ui small  inverted blue button" id="up_page" onclick="up_page(${curPage},${sortId})">上一页</div>
+
+                        <div class="ui small  inverted blue button" id="next_page" onclick="next_page(${curPage},${totalPages},${sortId})">下一页</div>
                     </div>
                     <div class="ui label" style="margin-left: 15px; margin-top: 5px">
                             <i class="icon inbox"></i> 第${curPage}页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

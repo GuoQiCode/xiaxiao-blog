@@ -72,7 +72,7 @@ function indexArticle(currentPage) {
         timeout: 5000,
         async:false,
         success: (data) => {
-            page(1,1,data.data.totalRows)
+            page(data.data.curPage, data.data.totalPages, data.data.totalRows)
             $("#content").html("")
             splice(data.data)
         }
