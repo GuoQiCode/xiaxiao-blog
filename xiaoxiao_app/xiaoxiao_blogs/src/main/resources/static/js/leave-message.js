@@ -1,4 +1,10 @@
 $(function () {
+
+
+    /**
+     * 请求我的个人信息
+     */
+    show_me()
     /**
      * 请求留言个数
      */
@@ -10,6 +16,26 @@ $(function () {
     find_all_leave_message(1)
 
 })
+
+
+
+/**
+ * 展示我的个人信息
+ */
+function show_me() {
+    $.ajax("/frontline/users/show_me",{
+        dataType: "json",
+        type: "POST",
+        timeout: 5000,
+        success:(data)=>{
+            $("#userNickname").text(data.data.userNickname)
+            $("#userSignature").text(data.data.userSignature)
+            $("img[name = 'userProfilePhoto']").prop("src",data.data.userProfilePhoto)
+        }
+    })
+}
+
+
 
 
 /**
