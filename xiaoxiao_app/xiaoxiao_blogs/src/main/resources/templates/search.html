@@ -21,27 +21,7 @@
     </div>
 </div>
 <div id="page" class="m-container-small m-padded-tb-big left-auto">
-    <div class="ui bottom attached segment" style="height: 60px">
-        <div th:include="admin/_page.html"></div>
-        <script type="text/javascript">
-            function currentPage(currentPage) {
-                let query =   UrlParam.paramValues("query")
-                if(query[0] == null || query[0 == ""]){
-                    search_artcile(currentPage,"*:*")
-                }else {
-                    search_artcile(currentPage,query[0])
-                }
-            }
-            $("#pager").zPager({
-                totalData: totalRows,
-                pageData: pageSize,
-                pageCount: totalPage,
-                htmlBox: $('#wraper'),
-                btnShow: true,
-                ajaxSetData: false,
-            });
-        </script>
-    </div>
+
 </div>
 </div>
 </div>

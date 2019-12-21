@@ -351,4 +351,22 @@ public class FrontlineTinyRedisFallback implements RedisCacheFeignClient
     {
 
     }
+
+    @Override
+    public void insertVisitToRedis(XiaoxiaoVisit xiaoxiaoVisit)
+    {
+
+    }
+
+    @Override
+    public void deleteVisitToRedis()
+    {
+
+    }
+
+    @Override
+    public XiaoxiaoVisit getVisitToRedis()
+    {
+        return null;
+    }
 }

@@ -302,4 +302,12 @@ public interface FrontlineFeignServiceClient
     @PostMapping(value = "/frontline/tiny/leave/message/getLeaveMessageSum")
     Result getLeaveMessageSum();
 
+
+    /**
+     * 获取网站浏览信息
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/visit/getVisitMessages")
+    Result getVisitMessages();
+
 }

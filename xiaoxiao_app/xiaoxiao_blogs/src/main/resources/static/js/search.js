@@ -1,21 +1,67 @@
 
-function search_artcile(currentPage,query) {
+let query
+$(function () {
+    /**
+     * 1.获取的浏览器上的关键字
+     * 2.触发ajax
+     * 3.实现上一页下一的功能
+     */
+
+     query = UrlParam.paramValues(`query`)
+    if (query[0] != null && query[0] != "") {
+        search_artcile(1, query[0])
+    }
+})
+
+
+function search_artcile(currentPage, query) {
     $.ajax("/frontline/article/searchArticle", {
         dataType: 'JSON',
         type: 'POST',
-        data:{'page':currentPage,"query":query},
+        data: {'page': currentPage, "query": query},
         timeout: 5000,
         success: (data) => {
-            totalRows = data.data.totalRows
-            totalPage = data.data.totalPages
-            pageSize = data.data.pageSize
-            if(data.code = 20000 && data.data !=null && data.data.length > 0){
+            if (data.code = 20000 && data.data != null && data.data.length > 0) {
+                let pages
+
+                if(data.data.length % 10 > 0)
+                {
+                    pages = String(data.data.length/10).substring(0,1)
+                    parseInt(pages)
+                    pages = ++pages
+                }else if(data.data.length % 10 < 0){
+                    pages = String(data.data.length/10).substring(0,1)
+                    pages = parseInt(pages)
+                }
+                page(currentPage, pages, data.data.length)
                 searchSplit(data)
-            }else {
+            } else {
                 $("#page").html("")
             }
         }
     })
+}
+
+
+/**
+ * 下一页
+ */
+
+function next_page(page,totalPages) {
+    page = ++page
+    if(page <= totalPages){
+        search_artcile(page,query[0])
+    }
+
+}
+/**
+ * 上一页
+ */
+function up_page(page) {
+    page = --page
+    if(page >= 1){
+        search_artcile(page,query[0])
+    }
 }
 
 
@@ -24,7 +70,7 @@ function searchSplit(data) {
      * 置空中间内容
      */
     $("#content").html("")
-    data.data.forEach((item)=>{
+    data.data.forEach((item) => {
         $("#content").append(`
             <div class="ui padded vertical segment m-padded-tb-large">
                         <div class="ui mobile reversed stackable grid">

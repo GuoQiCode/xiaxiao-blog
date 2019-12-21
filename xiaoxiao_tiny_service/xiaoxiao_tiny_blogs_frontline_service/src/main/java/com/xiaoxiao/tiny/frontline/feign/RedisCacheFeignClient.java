@@ -24,7 +24,7 @@ import java.util.Map;
  * @author:shinelon
  * @Describe:
  */
-@FeignClient(name = "xiaoxiao-redis",fallback = FrontlineTinyRedisFallback.class)
+@FeignClient(name = "xiaoxiao-redis", fallback = FrontlineTinyRedisFallback.class)
 public interface RedisCacheFeignClient {
 
     /**
@@ -132,10 +132,11 @@ public interface RedisCacheFeignClient {
      * @param page
      */
     @PostMapping(value = "/redis_article_service/insert_index_article")
-    void insertIndexArticle(@RequestBody PageResult result,@RequestParam(name = "page") Integer page);
+    void insertIndexArticle(@RequestBody PageResult result, @RequestParam(name = "page") Integer page);
 
     /**
      * 获取首页博客
+     * 
      * @param page
      * @return
      */
@@ -402,55 +403,74 @@ public interface RedisCacheFeignClient {
     @PostMapping(value = "/redis_advertising_service/getAdvertisingToRedis")
     List<XiaoxiaoAdvertising> getAdvertisingToRedis();
 
-
     /**
      * 缓存分类的留言
+     * 
      * @param result
      * @param page
      */
     @PostMapping(value = "/redis_leave_message/insertLeaveMessage")
-     void insertLeaveMessage(@RequestBody PageResult result,
-                                   @RequestParam(name = "page") Integer page);
-
+    void insertLeaveMessage(@RequestBody PageResult result, @RequestParam(name = "page") Integer page);
 
     /**
      * 缓存分类的留言
+     * 
      * @param page
      * @return
      */
     @PostMapping(value = "/redis_leave_message/getLeaveMessage")
-     PageResult getLeaveMessage(@RequestParam(name = "page") Integer page);
-
+    PageResult getLeaveMessage(@RequestParam(name = "page") Integer page);
 
     /**
      * 缓存分类的留言
+     * 
      * @param
      */
     @PostMapping(value = "/redis_leave_message/deleteLeaveMessage")
-     void deleteLeaveMessage();
-
+    void deleteLeaveMessage();
 
     /**
      * 缓存留言个数
+     * 
      * @param leaveMessageVo
      */
     @PostMapping(value = "/redis_leave_message/insertLeaveMessageSum")
-     void insertLeaveMessageSum(@RequestBody XiaoxiaoLeaveMessageVo leaveMessageVo) ;
-
+    void insertLeaveMessageSum(@RequestBody XiaoxiaoLeaveMessageVo leaveMessageVo);
 
     /**
      * 缓存留言个数
+     * 
      * @return
      */
     @PostMapping(value = "/redis_leave_message/getLeaveMessageSum")
-     XiaoxiaoLeaveMessageVo getLeaveMessageSum() ;
-
+    XiaoxiaoLeaveMessageVo getLeaveMessageSum();
 
     /**
      * 缓存留言个数
      */
     @PostMapping(value = "/redis_leave_message/deleteLeaveMessageSum")
-     void deleteLeaveMessageSum();
+    void deleteLeaveMessageSum();
 
+    /**
+     * 缓存网站信息
+     * 
+     * @param xiaoxiaoVisit
+     */
+    @PostMapping(value = "/redis_visit_service/insertVisitToRedis")
+    void insertVisitToRedis(@RequestBody XiaoxiaoVisit xiaoxiaoVisit);
+
+    /**
+     * 缓存网站信息
+     */
+    @PostMapping(value = "/redis_visit_service/insertVisitToRedis")
+    void deleteVisitToRedis();
+
+    /**
+     * \ 缓存网站信息
+     * 
+     * @return
+     */
+    @PostMapping(value = "/redis_visit_service/getVisitToRedis")
+    XiaoxiaoVisit getVisitToRedis();
 
 }

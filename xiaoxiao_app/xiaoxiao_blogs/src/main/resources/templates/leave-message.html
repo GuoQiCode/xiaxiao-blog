@@ -55,7 +55,7 @@
         <div class="personage">
             <div class="personage-img">
                 <img class="ui medium circular image"  style="margin-right: 20px"
-                     th:src="@{/images/photo-heard.jpg}">
+                     th:src="@{/images/photo_heard.jpg}">
             </div>
             <div>
                 &nbsp;&nbsp;&nbsp;<span id="userNickname"></span>
@@ -72,11 +72,11 @@
                 </div>
                 <div class="ui label">
                     总访问次数
-                    <a class="detail"><i class="inverted blue  bar chart icon"></i> 23</a>
+                    <a class="detail"><i class="inverted blue  bar chart icon"></i> <span id="visit-sum"></span></a>
                 </div>
                 <div class="ui label">
                     今日被访问次数
-                    <a class="detail"><i class="inverted purple  mail icon"></i> 23</a>
+                    <a class="detail"><i class="inverted purple  mail icon"></i> <span id="today-sum"></span></a>
                 </div>
             </div>
         </div>

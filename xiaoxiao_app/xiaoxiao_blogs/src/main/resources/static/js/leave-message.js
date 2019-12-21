@@ -11,12 +11,35 @@ $(function () {
     getLeaveMessageSum()
 
     /**
-     *
+     *获取全部的留言
      */
     find_all_leave_message(1)
 
+
+    /**
+     * 获取网站的信息
+     */
+    getVisitMessage()
+
 })
 
+
+/**
+ * 获取网站浏览的信息
+ */
+function getVisitMessage() {
+    $.ajax("/frontline/visit/getVisitMessages",{
+        dataType: "json",
+        type: "POST",
+        timeout: 5000,
+        success:(data)=>{
+           if(data.code == 20000){
+                $("#visit-sum").text(data.data.visitSum)
+                $("#today-sum").text(data.data.visitTodaySum)
+           }
+        }
+    })
+}
 
 
 /**
