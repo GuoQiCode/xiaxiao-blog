@@ -49,7 +49,6 @@ function Splicing(data) {
                                         <a onclick="showPopup(${item.sortId},1)"  class="ui mini teal basic button">编辑</a>
                                         <a onclick="showPopup(null,2)" class="ui mini teal basic button">新增</a>
                                        <a onclick="del(${item.sortId})" class="ui mini red basic button">删除</a>
-                                       
                                     </td>
                                 </tr> `)
     })

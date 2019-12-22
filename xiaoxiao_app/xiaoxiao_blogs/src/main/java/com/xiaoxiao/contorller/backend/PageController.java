@@ -143,4 +143,14 @@ public class PageController
         return "admin/advertising";
     }
 
+    /**
+     * 留言管理页面
+     * @return
+     */
+    @GetMapping(value = "/admin/leave_message")
+    public String leaveMessage(){
+        return "admin/leave-message";
+    }
+
+
 }

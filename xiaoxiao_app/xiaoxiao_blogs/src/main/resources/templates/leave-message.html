@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="_fragments :: head(~{::title})">
     <title>留言</title>
@@ -30,9 +29,9 @@
                 <span class="ui red tag label" style="margin-top: 15px;margin-left: 25px;font-size: 16px">小功能</span>
             </div>
             <div class="function">
-                <a class="ui purple label">Purple Label</a>
-                <a class="ui red label">Red Label</a>
-                <a class="ui teal label">Teal Label</a>
+                <a class="ui purple label">待开发</a>
+                <a class="ui red label">待开发</a>
+                <a class="ui teal label">待开发</a>
             </div>
         </div>
 
@@ -64,6 +63,8 @@
 
             <!--网站访问信息-->
             <div class="font">
+
+
                 <div class="ui label">
                     留言总数
                     <a class="detail"><i class="inverted black  mail icon"></i>
@@ -99,6 +100,12 @@
     <div style="margin-left: 40px;width: 80%">
         <div>
             <form class="ui reply form" id="from">
+                <!--头像选择-->
+                <span class="ui teal tag label">选一个帅气的头像~</span>
+                <div th:include="tx.html">
+
+                </div>
+
                 <div class="field">
                     <span class="ui teal tag label">留下你痕迹的名字吧~</span>
                     <input type="text" placeholder="请输入留言昵称...." name="messageNickname" onblur="verifyName()">

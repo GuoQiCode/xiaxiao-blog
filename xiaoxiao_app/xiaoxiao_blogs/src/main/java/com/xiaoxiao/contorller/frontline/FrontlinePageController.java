@@ -48,7 +48,6 @@ import javax.jws.WebParam;
  */
 @Controller
 @CrossOrigin(origins = {"*"},maxAge = 3600)
-
 public class FrontlinePageController
 {
 
@@ -161,6 +160,12 @@ public class FrontlinePageController
     @GetMapping(value = "/leave_message")
     public String leaveMessage(){
         return "leave-message";
+    }
+
+
+    @GetMapping(value = "/tx")
+    public String tx(){
+        return "tx";
     }
 
 }

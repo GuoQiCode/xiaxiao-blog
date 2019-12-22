@@ -436,4 +436,46 @@ public interface BlogsFeignServiceClient
     @PostMapping(value = "/admin/backend_advertising/onto")
     Result onto(@RequestParam(name = "advertisingId") String advertisingId);
 
+
+    /**
+     * 分页展示数据
+     * @param page
+     * @param rows
+     * @return
+     */
+    @PostMapping(value = "/admin/backend_leave_message/findAll")
+    Result findAllLeaveMessage(@RequestParam(name = "page",defaultValue = "1") Integer page,
+                               @RequestParam(name = "rows",defaultValue = "10") Integer rows);
+
+    /**
+     * 删除
+     * @param messageId
+     * @return
+     */
+    @PostMapping(value = "/admin/backend_leave_message/delete")
+    Result delete(@RequestBody XiaoxiaoLeaveMessage messageId);
+
+    /**
+     * 获取一个
+     * @param messageId
+     * @return
+     */
+    @PostMapping(value = "/admin/backend_leave_message/findOne")
+    Result findOne(@RequestBody XiaoxiaoLeaveMessage messageId);
+
+    /**
+     * 修改
+     * @param xiaoxiaoVisit
+     * @return
+     */
+    @PostMapping(value = "/admin/backend_leave_message/update")
+    Result update(@RequestBody XiaoxiaoLeaveMessage xiaoxiaoVisit);
+
+    /**
+     * 插入
+     * @param xiaoxiaoVisit
+     * @return
+     */
+    @PostMapping(value = "/admin/backend_leave_message/insert")
+    Result insert(@RequestBody XiaoxiaoLeaveMessage xiaoxiaoVisit);
 }

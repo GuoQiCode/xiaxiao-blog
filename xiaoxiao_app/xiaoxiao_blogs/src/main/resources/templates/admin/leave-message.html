@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <title>留言管理</title>
+</head>
+<body>
+
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace="admin/_fragments :: nav">
+</nav>
+
+<!--菜单-->
+<div class="ui attached pointing menu" th:replace="admin/_fragments :: menu">
+</div>
+
+<!--中间内容-->
+<div class="m-container-big m-padded-tb-big">
+    <div class="ui container">
+        <script th:src="@{/js/admin/leave-message.js}"></script>
+        <a onclick="showPopup(null,2)" class="ui mini red basic button">新增</a>
+        <table class="ui celled table">
+            <thead>
+            <tr>
+                <th>留言昵称</th>
+                <th>留言头像</th>
+                <th>留言内容</th>
+                <th>留言时间</th>
+                <th>留言IP</th>
+                <th>留言Email</th>
+                <th>留言父ID</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="leave-message">
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="8">
+                    <!--分页-->
+                    <div id="page">
+
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<!--
+    分类弹窗
+-->
+<form class="ui modal form" id="form">
+    <i class="close icon"></i>
+    <div class="header">
+        分类管理
+    </div>
+    <div class="content">
+        <input id="sortId" name="sortId" hidden="hidden" value=""/>
+        <div class="field">
+            <label>留言昵称(默认为管理员)</label>
+            <input placeholder="请输入回复昵称...." name="messageNickname" type="text" value="管理员">
+        </div>
+        <div class="field">
+            <label>留言头像</label>
+            <input placeholder="请输入分类别名...." name="messageHeadPortrait" type="text" value="">
+        </div>
+        <div class="field">
+            <label>留言内容</label>
+            <textarea placeholder="请输入回复内容......" name="messageContent"></textarea>
+        </div>
+        <div class="field">
+            <label>留言父ID</label>
+            <input placeholder="请输入分类详情...." name="messageParentId" readonly="readonly" type="text" value="">
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui submit button" onclick="submit()">Submit</div>
+        <div class="ui positive right labeled icon button">
+            取消
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</form>
+
+
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    })
+</script>
+</body>
+</html>
