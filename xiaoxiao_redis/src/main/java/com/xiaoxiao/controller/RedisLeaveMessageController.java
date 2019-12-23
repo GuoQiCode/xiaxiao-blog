@@ -21,19 +21,19 @@ public class RedisLeaveMessageController {
     @Autowired
     private RedisLeaveMessageService redisLeaveMessageService;
 
-    @ApiOperation(value = "缓存分类的留言", notes = "缓存分类的留言")
+    @ApiOperation(value = "缓存留言页面留言信息", notes = "缓存留言页面留言信息")
     @PostMapping(value = "/insertLeaveMessage")
     public void insertLeaveMessage(@RequestBody PageResult result, @RequestParam(name = "page") Integer page) {
         this.redisLeaveMessageService.insertLeaveMessage(result, page);
     }
 
-    @ApiOperation(value = "缓存分类的留言", notes = "缓存分类的留言")
+    @ApiOperation(value = "获取缓存留言页面留言", notes = "虎丘留言页面留言")
     @PostMapping(value = "/getLeaveMessage")
     public PageResult getLeaveMessage(@RequestParam(name = "page") Integer page) {
         return this.redisLeaveMessageService.getLeaveMessage(page);
     }
 
-    @ApiOperation(value = "缓存分类的留言", notes = "缓存分类的留言")
+    @ApiOperation(value = "删除留言页面留言", notes = "删除留言页面留言")
     @PostMapping(value = "/deleteLeaveMessage")
     public void deleteLeaveMessage() {
         this.redisLeaveMessageService.deleteLeaveMessage();
@@ -45,13 +45,13 @@ public class RedisLeaveMessageController {
         this.redisLeaveMessageService.insertLeaveMessageSum(leaveMessageVo);
     }
 
-    @ApiOperation(value = "缓存留言个数")
+    @ApiOperation(value = "获取留言个数")
     @PostMapping(value = "/getLeaveMessageSum")
     public XiaoxiaoLeaveMessageVo getLeaveMessageSum() {
         return this.redisLeaveMessageService.getLeaveMessageSum();
     }
 
-    @ApiOperation(value = "缓存留言个数")
+    @ApiOperation(value = "删除留言")
     @PostMapping(value = "/deleteLeaveMessageSum")
     public void deleteLeaveMessageSum() {
         this.redisLeaveMessageService.deleteLeaveMessageSum();

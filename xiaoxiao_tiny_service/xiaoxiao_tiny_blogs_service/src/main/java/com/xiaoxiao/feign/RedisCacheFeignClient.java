@@ -187,4 +187,10 @@ public interface RedisCacheFeignClient {
      void deleteHeadPhoto() ;
 
 
+    /**
+     * 删除缓存留言
+     */
+    @PostMapping(value = "/redis_leave_message/deleteLeaveMessage")
+    void deleteLeaveMessage();
+
 }

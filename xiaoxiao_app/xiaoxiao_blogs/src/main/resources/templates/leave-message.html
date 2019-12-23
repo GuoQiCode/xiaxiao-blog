@@ -53,7 +53,7 @@
         <!--个人信息-->
         <div class="personage">
             <div class="personage-img">
-                <img class="ui medium circular image"  style="margin-right: 20px"
+                <img class="ui medium circular image" style="margin-right: 20px"
                      th:src="@{/images/photo_heard.jpg}">
             </div>
             <div>
@@ -125,11 +125,23 @@
                 </div>
             </form>
         </div>
+
         <!--评论的内容-->
         <div style="margin-left: 20px;margin-top: 60px">
-            <div class="ui comments" id="comments">
+            <div class="ui comments" id="">
+                <div class="ui threaded comments">
+                    <h3 class="ui dividing header">留言板</h3>
 
+                    <!--留言-->
+                    <div id="comments">
+
+
+
+                    </div>
+                </div>
             </div>
+
+            <!--分页-->
             <div id="page">
 
             </div>

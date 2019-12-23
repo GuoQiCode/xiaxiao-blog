@@ -7,7 +7,9 @@ import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -62,7 +64,7 @@ public interface FrontlineTinyLeaveMessageMapper
      * 分页查询
      * @return
      */
-    @Select("SELECT * FROM xiaoxiao_leave_message ORDER BY message_date DESC")
+    @Select("SELECT * FROM xiaoxiao_leave_message WHERE message_parent_id = '-1' ORDER BY message_date DESC")
     List<XiaoxiaoLeaveMessage> findAllLeaveMessage();
 
 
@@ -72,5 +74,13 @@ public interface FrontlineTinyLeaveMessageMapper
      */
     @Select("select count(a.message_id) sum from  xiaoxiao_leave_message as a")
     XiaoxiaoLeaveMessageVo getLeaveMessageSum();
+
+
+    /**
+     * 获取子评论
+     * @return
+     */
+    @Select("select * from xiaoxiao_leave_message as a where  a.message_parent_id = #{messageId}")
+    List<XiaoxiaoLeaveMessage> getSon(@Param("messageId") String messageId);
 
 }

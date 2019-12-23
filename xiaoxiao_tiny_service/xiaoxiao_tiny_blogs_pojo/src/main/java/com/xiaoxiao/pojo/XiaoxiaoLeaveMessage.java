@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author shinelon
@@ -24,4 +26,5 @@ public class XiaoxiaoLeaveMessage implements Serializable
   private String messageIp;
   private String messageEmail;
   private String messageParentId;
+  private List<XiaoxiaoLeaveMessage> list = new ArrayList<>();;
 }

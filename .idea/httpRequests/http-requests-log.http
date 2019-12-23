@@ -1,3 +1,59 @@
+POST http://localhost:10020/frontline/tiny/leave/message/findAllLeaveMessage
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-23T090032.200.json
+
+###
+
+POST http://localhost:10020/frontline/tiny/leave/message/findAllLeaveMessage
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-23T085725.500.json
+
+###
+
+POST http://localhost:10020/frontline/tiny/leave/message/findAllLeaveMessage
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-23T083804.200.json
+
+###
+
+POST http://localhost:10020/frontline/tiny/leave/message/findAllLeaveMessage
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-23T083437.200.json
+
+###
+
+POST http://localhost:10020/frontline/tiny/leave/message/findAllLeaveMessage
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-23T083025.200.json
+
+###
+
+POST http://localhost:10020/frontline/tiny/leave/message/findAllLeaveMessage
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-23T032732.200.json
+
+###
+
+POST http://localhost:10020/frontline/tiny/leave/message/findAllLeaveMessage
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-23T032219.200.json
+
+###
+
 POST http://localhost:10020/frontline/tiny/head/photo/findAll
 Accept: */*
 Cache-Control: no-cache
@@ -327,62 +383,6 @@ Accept: */*
 Cache-Control: no-cache
 
 <> 2019-12-12T105333.200.json
-
-###
-
-POST http://localhost:10020/frontline/tiny/comments/findComments?articleId=5
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-12T102902.200.json
-
-###
-
-POST http://localhost:8080/frontline/article/find_article_by_sort_sum?sortId=157492575291165
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-11T041726.200.html
-
-###
-
-POST http://localhost:8080/frontline/label/find_article_label_name?articleId=157536036650239
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-10T061941.200.json
-
-###
-
-POST http://localhost:8080/frontline/label/find_article_label_name?articleId=157536036650239
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-10T061750.200.html
-
-###
-
-POST http://localhost:10020/frontline/tiny/label/find_article_label_name?articleId=157536036650239
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-10T061606.200.json
-
-###
-
-POST http://localhost:10020/frontline/tiny/label/find_article_label_name?artcileId=157536036650239
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-10T061536.400.json
-
-###
-
-POST http://localhost:10020/frontline/tiny/label/find_article_label_name?artcileId=157536036650239
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-10T061500.400.json
 
 ###
 

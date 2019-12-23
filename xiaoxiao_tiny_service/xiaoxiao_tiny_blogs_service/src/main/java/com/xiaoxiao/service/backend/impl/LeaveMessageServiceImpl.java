@@ -2,6 +2,7 @@ package com.xiaoxiao.service.backend.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xiaoxiao.feign.RedisCacheFeignClient;
 import com.xiaoxiao.mapper.LeaveMessageMapper;
 import com.xiaoxiao.pojo.XiaoxiaoLeaveMessage;
 import com.xiaoxiao.service.backend.LeaveMessageService;
@@ -12,6 +13,7 @@ import com.xiaoxiao.utils.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -59,6 +61,10 @@ public class LeaveMessageServiceImpl implements LeaveMessageService
     private LeaveMessageMapper leaveMessageMapper;
 
 
+    @Autowired
+    private RedisCacheFeignClient client;
+
+
     @Override
     public Result findAllLeaveMessage(Integer page, Integer rows)
     {
@@ -74,6 +80,15 @@ public class LeaveMessageServiceImpl implements LeaveMessageService
     public Result delete(XiaoxiaoLeaveMessage xiaoxiaoLeaveMessage)
     {
         if(this.leaveMessageMapper.delete(xiaoxiaoLeaveMessage) > 0){
+
+            try
+            {
+                this.client.deleteLeaveMessage();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
             return Result.ok(StatusCode.OK,Result.MARKED_WORDS_SUCCESS);
         }
         return Result.error(StatusCode.ERROR, Result.MARKED_WORDS_FAULT);
@@ -94,6 +109,13 @@ public class LeaveMessageServiceImpl implements LeaveMessageService
     {
 
         if(this.leaveMessageMapper.update(xiaoxiaoVisit) >0){
+            try
+            {
+                this.client.deleteLeaveMessage();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             return Result.ok(StatusCode.OK,Result.MARKED_WORDS_SUCCESS);
         }
         return Result.error(StatusCode.ERROR, Result.MARKED_WORDS_FAULT);
@@ -103,7 +125,15 @@ public class LeaveMessageServiceImpl implements LeaveMessageService
     public Result insert(XiaoxiaoLeaveMessage xiaoxiaoLeaveMessage)
     {
         xiaoxiaoLeaveMessage.setMessageId(IDUtils.getUUID());
+        xiaoxiaoLeaveMessage.setMessageDate(new Date());
         if(this.leaveMessageMapper.insert(xiaoxiaoLeaveMessage) > 0){
+            try
+            {
+                this.client.deleteLeaveMessage();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             return Result.ok(StatusCode.OK,Result.MARKED_WORDS_SUCCESS);
         }
         return Result.error(StatusCode.ERROR, Result.MARKED_WORDS_FAULT);

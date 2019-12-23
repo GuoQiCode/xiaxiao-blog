@@ -172,4 +172,10 @@ public class BackendTinyBlogsFallback implements RedisCacheFeignClient
     {
 
     }
+
+    @Override
+    public void deleteLeaveMessage()
+    {
+
+    }
 }

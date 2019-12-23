@@ -92,6 +92,7 @@ function del(messageId) {
         data:{'messageId':messageId},
         success:(data)=>{
             if(data.code == 20000){
+                findAll(1)
                 alert(data.message)
             }else {
                 alert(data.message)
@@ -112,7 +113,7 @@ function submit() {
             data:$("#form").serialize(),
             success:(data)=>{
                 if(data.code == 20000){
-                    alert(data.message)
+                    findAll(1)
                     showAndHide(2)
                     $("textarea[name = 'messageContent']").val("")
                 }else {

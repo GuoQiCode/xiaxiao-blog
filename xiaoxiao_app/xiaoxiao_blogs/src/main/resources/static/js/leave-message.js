@@ -28,15 +28,15 @@ $(function () {
  * 获取网站浏览的信息
  */
 function getVisitMessage() {
-    $.ajax("/frontline/visit/getVisitMessages",{
+    $.ajax("/frontline/visit/getVisitMessages", {
         dataType: "json",
         type: "POST",
         timeout: 5000,
-        success:(data)=>{
-           if(data.code == 20000){
+        success: (data) => {
+            if (data.code == 20000) {
                 $("#visit-sum").text(data.data.visitSum)
                 $("#today-sum").text(data.data.visitTodaySum)
-           }
+            }
         }
     })
 }
@@ -46,19 +46,17 @@ function getVisitMessage() {
  * 展示我的个人信息
  */
 function show_me() {
-    $.ajax("/frontline/users/show_me",{
+    $.ajax("/frontline/users/show_me", {
         dataType: "json",
         type: "POST",
         timeout: 5000,
-        success:(data)=>{
+        success: (data) => {
             $("#userNickname").text(data.data.userNickname)
             $("#userSignature").text(data.data.userSignature)
-            $("img[name = 'userProfilePhoto']").prop("src",data.data.userProfilePhoto)
+            $("img[name = 'userProfilePhoto']").prop("src", data.data.userProfilePhoto)
         }
     })
 }
-
-
 
 
 /**
@@ -81,7 +79,7 @@ function getLeaveMessageSum() {
  * 留言提交
  */
 function submit() {
-    if (verifyEmail() && verifyContent() && verifyName()) {
+    if (verifyEmail() && verifyContent() && verifyName() && verifyPhoto()) {
         $.ajax("/frontline/leave/message/insert", {
             dataType: 'JSON',
             type: 'POST',
@@ -122,6 +120,7 @@ function find_all_leave_message(currentPage) {
         async: false,
         success: (data) => {
             if (data.code == 20000) {
+                $("#comments").html("")
                 split(data.data.result)
                 page(data.data.curPage, data.data.totalPages, data.data.totalRows)
             } else {
@@ -129,43 +128,31 @@ function find_all_leave_message(currentPage) {
             }
         }
     })
-
-}
-
-
-
-
-/**
- * 下一页
- */
-
-function next_page(page, totalPages) {
-    page = ++page
-    if (page <= totalPages) {
-        find_all_leave_message(page)
-    }
-}
-
-/**
- * 上一页
- */
-function up_page(page) {
-    page = --page
-    if(page >= 1){
-        find_all_leave_message(page)
-    }
 }
 
 
 /**
- * 拼接字符串
+ * 拼接子评论
  * @param result
  */
 function split(result) {
-    $("#comments").html("")
     result.forEach((item) => {
-        $("#comments").append(`
-             <div class="comment">
+        if (item.list != null) {
+            html(item)
+            let commentId = item.messageId
+            child(commentId,item)
+        } else {
+            html(item)
+        }
+    })
+}
+
+/**
+ * 拼接父评论
+ */
+function html(item) {
+    $("#comments").append(`
+             <div class="comment" id="${item.messageId}">
                     <a class="avatar">
                         <img src="${item.messageHeadPortrait}">
                     </a>
@@ -179,10 +166,35 @@ function split(result) {
                         </div>
                     </div>
                 </div>
-                <hr/>
-                <br/>
+                <hr class="ui dividing header"/>
         `)
+}
+
+/**
+ * 拼接子评论
+ */
+function child(commentId,item) {
+    item.list.forEach((item)=>{
+        $("#"+commentId).append(`
+                 <div class="comments">
+                                <div class="comment">
+                                    <a class="avatar">
+                                        <img src="${item.messageHeadPortrait}">
+                                    </a>
+                                    <div class="content">
+                                        <a class="author">${item.messageNickname}</a>
+                                        <div class="metadata">
+                                            <span class="date">${item.messageDate}</span>
+                                        </div>
+                                        <div class="text">
+                                           ${item.messageContent}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    `)
     })
+
 }
 
 
@@ -238,5 +250,45 @@ function verifyEmail() {
     } else {
         $("div.ui.pointing.left.label").remove()
         return true
+    }
+}
+
+/**
+ * 校验头像
+ */
+function verifyPhoto() {
+   let  url =  $("input[name = 'messageHeadPortrait']").val();
+   if(url == null || url == ""){
+       $(".my_box").after(`
+                 <div class="ui pointing left label" style="margin-top: 5px">
+                    请选择你的头像呢~~~
+                </div>
+       `)
+       return false
+   }else
+   {
+       $("div.ui.pointing.left.label").remove()
+       return true
+   }
+}
+
+/**
+ * 下一页
+ */
+
+function next_page(page, totalPages) {
+    page = ++page
+    if (page <= totalPages) {
+        find_all_leave_message(page)
+    }
+}
+
+/**
+ * 上一页
+ */
+function up_page(page) {
+    page = --page
+    if (page >= 1) {
+        find_all_leave_message(page)
     }
 }
