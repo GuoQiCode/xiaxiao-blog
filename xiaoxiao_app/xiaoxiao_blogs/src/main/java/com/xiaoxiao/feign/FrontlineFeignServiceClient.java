@@ -310,4 +310,12 @@ public interface FrontlineFeignServiceClient
     @PostMapping(value = "/frontline/tiny/visit/getVisitMessages")
     Result getVisitMessages();
 
+
+    /**
+     * 获取留言头像
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/head/photo/findAll")
+    Result findAllPhoto();
+
 }

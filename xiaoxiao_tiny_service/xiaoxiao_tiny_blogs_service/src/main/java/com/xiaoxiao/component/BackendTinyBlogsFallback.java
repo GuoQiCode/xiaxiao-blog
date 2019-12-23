@@ -166,4 +166,10 @@ public class BackendTinyBlogsFallback implements RedisCacheFeignClient
     {
 
     }
+
+    @Override
+    public void deleteHeadPhoto()
+    {
+
+    }
 }

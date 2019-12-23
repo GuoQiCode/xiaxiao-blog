@@ -2,6 +2,7 @@ package com.xiaoxiao.service.backend.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xiaoxiao.feign.RedisCacheFeignClient;
 import com.xiaoxiao.mapper.HeadPhotoMapper;
 import com.xiaoxiao.pojo.XiaoxiaoHeadPhoto;
 import com.xiaoxiao.service.backend.TinyHeadPhotoService;
@@ -59,6 +60,9 @@ public class TinyHeadPhotoServiceImpl implements TinyHeadPhotoService
     @Autowired
     private HeadPhotoMapper headPhotoMapper;
 
+    @Autowired
+    private RedisCacheFeignClient client;
+
 
     @Override
     public Result findAll(Integer page, Integer rows)
@@ -85,6 +89,13 @@ public class TinyHeadPhotoServiceImpl implements TinyHeadPhotoService
     public Result delete(XiaoxiaoHeadPhoto xiaoxiaoHeadPhoto)
     {
         if(this.headPhotoMapper.delete(xiaoxiaoHeadPhoto) > 0){
+            try
+            {
+                this.client.deleteHeadPhoto();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             return Result.ok(StatusCode.OK,Result.MARKED_WORDS_SUCCESS);
         }
         return Result.error(StatusCode.ERROR, Result.MARKED_WORDS_SUCCESS);
@@ -96,6 +107,13 @@ public class TinyHeadPhotoServiceImpl implements TinyHeadPhotoService
         xiaoxiaoHeadPhoto.setHeadId(IDUtils.getUUID());
         xiaoxiaoHeadPhoto.setHeadDate(new Date());
         if(this.headPhotoMapper.insert(xiaoxiaoHeadPhoto) > 0){
+            try
+            {
+                this.client.deleteHeadPhoto();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             return Result.ok(StatusCode.OK,Result.MARKED_WORDS_SUCCESS);
         }
         return Result.error(StatusCode.ERROR, Result.MARKED_WORDS_SUCCESS);
@@ -105,6 +123,13 @@ public class TinyHeadPhotoServiceImpl implements TinyHeadPhotoService
     public Result update(XiaoxiaoHeadPhoto xiaoxiaoHeadPhoto)
     {
         if(this.headPhotoMapper.update(xiaoxiaoHeadPhoto) > 0){
+            try
+            {
+                this.client.deleteHeadPhoto();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             return Result.ok(StatusCode.OK,Result.MARKED_WORDS_SUCCESS);
         }
         return Result.error(StatusCode.ERROR, Result.MARKED_WORDS_SUCCESS);

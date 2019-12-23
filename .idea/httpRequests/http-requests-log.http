@@ -1,3 +1,11 @@
+POST http://localhost:10020/frontline/tiny/head/photo/findAll
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-23T012654.200.json
+
+###
+
 POST http://localhost:8080/frontline/leave/message/findAllLeaveMessage
 Accept: */*
 Cache-Control: no-cache
@@ -375,14 +383,6 @@ Accept: */*
 Cache-Control: no-cache
 
 <> 2019-12-10T061500.400.json
-
-###
-
-POST http://localhost:8080/frontline/label/count
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-10T031635.200.json
 
 ###
 

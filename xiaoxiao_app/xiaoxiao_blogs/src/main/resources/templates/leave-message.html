@@ -102,21 +102,21 @@
             <form class="ui reply form" id="from">
                 <!--头像选择-->
                 <span class="ui teal tag label">选一个帅气的头像~</span>
-                <div th:include="tx.html">
+                <div th:include="tx.html" style="margin-top: 5px">
 
                 </div>
 
                 <div class="field">
-                    <span class="ui teal tag label">留下你痕迹的名字吧~</span>
+                    <span class="ui teal tag label" style="margin-bottom: 5px">留下你痕迹的名字吧~</span>
                     <input type="text" placeholder="请输入留言昵称...." name="messageNickname" onblur="verifyName()">
 
                 </div>
                 <div class="field">
-                    <span class="ui teal tag label">留下你的邮箱~</span>
+                    <span class="ui teal tag label" style="margin-bottom: 5px">留下你的邮箱~</span>
                     <input type="text" placeholder="请输入邮箱...." name="messageEmail" onblur="verifyEmail()">
                 </div>
                 <div class="field">
-                    <span class="ui teal tag label">留下你心中的话吧~</span>
+                    <span class="ui teal tag label" style="margin-bottom: 5px">留下你心中的话吧~</span>
                     <textarea placeholder="既然来了就留下点痕迹吧..........." name="messageContent"
                               onblur="verifyContent()"></textarea>
                 </div>

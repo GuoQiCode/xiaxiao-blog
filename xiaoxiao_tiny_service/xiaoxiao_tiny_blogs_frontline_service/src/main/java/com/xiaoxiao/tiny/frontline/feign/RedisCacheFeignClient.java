@@ -473,4 +473,20 @@ public interface RedisCacheFeignClient {
     @PostMapping(value = "/redis_visit_service/getVisitToRedis")
     XiaoxiaoVisit getVisitToRedis();
 
+    /**
+     * 缓存留言头像
+     * 
+     * @param xiaoxiaoHeadPhotos
+     */
+    @PostMapping(value = "/redis/head_photo_service/insertHeadPhoto")
+    void insertHeadPhoto(@RequestBody List<XiaoxiaoHeadPhoto> xiaoxiaoHeadPhotos);
+
+    /**
+     * 获取缓存的头像
+     * 
+     * @return
+     */
+    @PostMapping(value = "/redis/head_photo_service/getHeadPhoto")
+    List<XiaoxiaoHeadPhoto> getHeadPhoto();
+
 }

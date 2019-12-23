@@ -369,4 +369,16 @@ public class FrontlineTinyRedisFallback implements RedisCacheFeignClient
     {
         return null;
     }
+
+    @Override
+    public void insertHeadPhoto(List<XiaoxiaoHeadPhoto> xiaoxiaoHeadPhotos)
+    {
+
+    }
+
+    @Override
+    public List<XiaoxiaoHeadPhoto> getHeadPhoto()
+    {
+        return null;
+    }
 }

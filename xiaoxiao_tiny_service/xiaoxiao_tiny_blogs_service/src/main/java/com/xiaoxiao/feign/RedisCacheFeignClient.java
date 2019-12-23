@@ -176,8 +176,15 @@ public interface RedisCacheFeignClient {
     /**
      * 删除首页广告缓存
      */
-
     @PostMapping(value = "/redis_advertising_service/deleteAdvertisingToRedis")
     void deleteAdvertisingToRedis();
+
+
+    /**
+     * 删除留言页面的头像缓存
+     */
+    @PostMapping(value = "/redis/head_photo_service/deleteHeadPhoto")
+     void deleteHeadPhoto() ;
+
 
 }
