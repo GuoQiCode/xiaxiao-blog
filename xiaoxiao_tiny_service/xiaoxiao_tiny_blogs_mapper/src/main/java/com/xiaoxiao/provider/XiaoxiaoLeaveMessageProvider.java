@@ -71,6 +71,9 @@ public class XiaoxiaoLeaveMessageProvider
                 if (xiaoxiaoLeaveMessage.getMessageParentId() != null && xiaoxiaoLeaveMessage.getMessageParentId() != ""){
                     VALUES("message_parent_id ","#{xiaoxiaoLeaveMessage.messageParentId}");
                 }
+                if(xiaoxiaoLeaveMessage.getReply() !=null && xiaoxiaoLeaveMessage.getReply() != ""){
+                    VALUES("reply", "#{xiaoxiaoLeaveMessage.reply}");
+                }
             }
         }.toString();
     }
@@ -101,6 +104,9 @@ public class XiaoxiaoLeaveMessageProvider
                 }
                 if (xiaoxiaoLeaveMessage.getMessageParentId() != null && xiaoxiaoLeaveMessage.getMessageParentId() != ""){
                     SET("message_parent_id = #{xiaoxiaoLeaveMessage.messageParentId}");
+                }
+                if(xiaoxiaoLeaveMessage.getReply() !=null && xiaoxiaoLeaveMessage.getReply() != ""){
+                    SET("reply = #{xiaoxiaoLeaveMessage.reply}");
                 }
                 WHERE("message_id = #{xiaoxiaoLeaveMessage.messageId}");
             }

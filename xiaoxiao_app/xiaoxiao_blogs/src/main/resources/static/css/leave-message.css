@@ -73,6 +73,6 @@ span{
 }
 
 .message-title-img{
-    margin: 0 auto;
-    width: 911px;
+    margin: auto;
+    width:100%;
 }

@@ -132,7 +132,7 @@ function splice(data) {
 function page(curPage, totalPages, totalRows) {
     $("#page").html("")
     $("#page").append(`
-           <div>
+                <div style="margin-top: 20px;margin-bottom: 30px">
                     <div style="float: left">
                         <div class="ui small  inverted blue button" id="up_page" onclick="up_page(${curPage})">上一页</div>
 

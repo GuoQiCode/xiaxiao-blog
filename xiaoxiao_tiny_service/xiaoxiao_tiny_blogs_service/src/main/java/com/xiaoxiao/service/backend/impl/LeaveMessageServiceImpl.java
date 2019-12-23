@@ -126,6 +126,7 @@ public class LeaveMessageServiceImpl implements LeaveMessageService
     {
         xiaoxiaoLeaveMessage.setMessageId(IDUtils.getUUID());
         xiaoxiaoLeaveMessage.setMessageDate(new Date());
+        xiaoxiaoLeaveMessage.setReply("2");
         if(this.leaveMessageMapper.insert(xiaoxiaoLeaveMessage) > 0){
             try
             {

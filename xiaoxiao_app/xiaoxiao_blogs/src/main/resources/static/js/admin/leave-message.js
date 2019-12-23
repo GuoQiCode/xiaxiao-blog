@@ -32,7 +32,14 @@ function findAll(curPage) {
  */
 function joint(result) {
     $("#leave-message").html("")
+    let reply;
     result.forEach((item)=>{
+
+        if(item.reply == 1){
+            reply = "未回复"
+        }else {
+            reply = "以回复"
+        }
         $("#leave-message").append(`
              <tr>
                                     <td>${item.messageNickname}</td>
@@ -42,6 +49,7 @@ function joint(result) {
                                     <td>${item.messageIp}</td>
                                     <td>${item.messageEmail}</td>
                                     <td>${item.messagemessageParentIdId}</td>
+                                    <td>${reply}</td>
                                     <td>
                                         <a onclick="reply('${item.messageId}')"  class="ui mini teal basic button">回复</a>
                                         <a onclick="del('${item.messageId}')" class="ui mini red basic button">删除</a>

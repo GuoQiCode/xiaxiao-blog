@@ -26,5 +26,6 @@ public class XiaoxiaoLeaveMessage implements Serializable
   private String messageIp;
   private String messageEmail;
   private String messageParentId;
-  private List<XiaoxiaoLeaveMessage> list = new ArrayList<>();;
+  private List<XiaoxiaoLeaveMessage> list = new ArrayList<>();
+  private String reply;
 }

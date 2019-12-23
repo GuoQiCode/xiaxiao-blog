@@ -45,6 +45,9 @@ public class XiaoxiaoLeaveMessageProvider {
                 if (leaveMessage.getMessageParentId() != null && leaveMessage.getMessageParentId() != "") {
                     VALUES("message_parent_id", "#{leaveMessage.messageParentId}");
                 }
+                if(leaveMessage.getReply() !=null && leaveMessage.getReply() != ""){
+                    VALUES("reply", "#{xiaoxiaoLeaveMessage.reply}");
+                }
             }
         }.toString();
     }
