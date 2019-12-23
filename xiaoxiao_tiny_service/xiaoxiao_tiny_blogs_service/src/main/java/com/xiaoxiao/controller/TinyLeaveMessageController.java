@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/admin/backend_leave_message")
-public class LeaveMessageController {
+@CrossOrigin(origins = "*",maxAge = 3600)
+public class TinyLeaveMessageController {
 
     @Autowired
     private LeaveMessageService leaveMessageService;

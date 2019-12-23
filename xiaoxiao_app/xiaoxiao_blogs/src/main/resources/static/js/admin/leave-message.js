@@ -51,7 +51,6 @@ function joint(result) {
     })
 }
 
-
 /**
  * 下一页
  */

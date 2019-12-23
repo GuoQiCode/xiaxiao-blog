@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <title>头像管理</title>
+</head>
+<body>
+
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace="admin/_fragments :: nav">
+</nav>
+
+<!--菜单-->
+<div class="ui attached pointing menu" th:replace="admin/_fragments :: menu">
+</div>
+<script th:src="@{/js/admin/head-photo.js}"></script>
+<script th:src="@{/lib/upload-min.js}"></script>
+<link rel="stylesheet" th:href="@{/css/upload-1.css}"/>
+<!--中间内容-->
+<div class="m-container-big m-padded-tb-big">
+    <div class="ui container">
+
+        <a onclick="showPopup(null,2)" class="ui mini red basic button">新增</a>
+        <table class="ui celled table">
+            <thead>
+            <tr>
+                <th>图片地址预览</th>
+                <th>头像状态</th>
+                <th>上传时间</th>
+                <th>操作</th>>
+            </tr>
+            </thead>
+            <tbody id="head-photo">
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="4">
+                    <!--分页-->
+                    <div id="page">
+
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<!--
+    分类弹窗
+-->
+<form class="ui modal form" id="form">
+    <input type="text" hidden="hidden" name="headId" value="" />
+    <i class="close icon"></i>
+    <div class="header">
+        头像上传
+    </div>
+    <div class="content">
+        <div class="field">
+            <label>广告图片地址</label>
+            <input placeholder="请上传广告图片..." readonly="readonly"  id="callbackPath" name="headUrl"  type="text" value="">
+            <a id="zwb_upload" style="height: 30px;margin-top: 5px">
+                <input type="file" class="add" multiple>点击上传文件
+            </a>
+        </div>
+        <script>
+            //配置需要引入jq 1.7.2版本以上
+            //服务器端成功返回 {state:1,path:文件保存路径}
+            //服务器端失败返回 {state:0,errmsg:错误原因}
+            //默认做了文件名不能含有中文,后端接收文件的变量名为file
+            $("#zwb_upload").bindUpload({
+                url:"/admin/head/photo/upload",//上传服务器地址
+                callbackPath:"#callbackPath",//绑定上传成功后 图片地址的保存容器的id或者class 必须为input或者textarea等可以使用$(..).val()设置之的表单元素
+                // ps:值返回上传成功的 默认id为#callbackPath  保存容器为位置不限制,id需要加上#号,class需要加上.
+                // 返回格式为:
+                // 原来的文件名,服务端保存的路径|原来的文件名,服务端保存的路径|原来的文件名,服务端保存的路径|原来的文件名,服务端保存的路径....
+                num:10,//上传数量的限制 默认为空 无限制
+                type:"jpg|png|gif|svg",//上传文件类型 默认为空 无限制
+                size:3,//上传文件大小的限制,默认为5单位默认为mb
+            });
+        </script>
+
+        <div class="field">
+            <label>上传的状态:on 开启 off 关闭 默认开启：on</label>
+            <input placeholder="请输入分类别名...." name="headType" type="text" value="on">
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui submit button" onclick="submit()">Submit</div>
+        <div class="ui positive right labeled icon button">
+            取消
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</form>
+
+
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    })
+</script>
+</body>
+</html>

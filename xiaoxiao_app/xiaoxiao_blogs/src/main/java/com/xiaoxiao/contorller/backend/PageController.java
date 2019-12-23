@@ -153,4 +153,13 @@ public class PageController
     }
 
 
+    /**
+     * 头像管理
+     * @return
+     */
+    @GetMapping(value = "/admin/head_photo")
+    public String headPhoto(){
+        return "admin/head-photo";
+    }
+
 }

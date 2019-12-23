@@ -1,8 +1,9 @@
 package com.xiaoxiao.service.backend.impl;
 
 import com.xiaoxiao.feign.BlogsFeignServiceClient;
-import com.xiaoxiao.service.backend.AdvertisingService;
-import com.xiaoxiao.pojo.XiaoxiaoAdvertising;
+import com.xiaoxiao.pojo.XiaoxiaoHeadPhoto;
+import com.xiaoxiao.pojo.XiaoxiaoLeaveMessage;
+import com.xiaoxiao.service.backend.HeadPhotoService;
 import com.xiaoxiao.utils.BackendUploadResult;
 import com.xiaoxiao.utils.Result;
 import com.xiaoxiao.utils.UploadOSSUtils;
@@ -43,12 +44,13 @@ import org.springframework.web.multipart.MultipartFile;
  * 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
- * @date:2019/12/16:18:36
+ * @date:2019/12/22:22:11
  * @author:shinelon
  * @Describe:
  */
 @Service
-public class AdvertisingServiceImpl implements AdvertisingService
+@SuppressWarnings("all")
+public class HeadPhotoServiceImpl implements HeadPhotoService
 {
 
     @Value("${ENDPOINT}")
@@ -63,68 +65,58 @@ public class AdvertisingServiceImpl implements AdvertisingService
     @Value("${BUCKETNAME}")
     private String BUCKETNAME;
 
-    @Value("${ADVERTISING_FILE_PATH}")
-    private String ADVERTISING_FILE_PATH;
+    @Value("${HEAD_PHOTO}")
+    private String HEAD_PHOTO;
 
     @Value("${REQUEST_HEAD}")
     private String REQUEST_HEAD;
 
+
     @Autowired
     private BlogsFeignServiceClient client;
 
+
     @Override
-    public Result findAllAdvertising(Integer page, Integer rows)
+    public Result findAllHeadPhoto(Integer page, Integer rows)
     {
-        return this.client.findAllAdvertising(page,rows);
+        return this.client.findAllHeadPhoto(page,rows);
     }
 
     @Override
-    public Result deleteAdvertising(String advertisingId)
+    public Result findOne(XiaoxiaoHeadPhoto xiaoxiaoHeadPhoto)
     {
-        return this.client.deleteAdvertising(advertisingId);
+        return this.client.findOne(xiaoxiaoHeadPhoto);
     }
 
     @Override
-    public Result findAdvertisingById(String advertisingId)
+    public Result delete(XiaoxiaoHeadPhoto xiaoxiaoHeadPhoto)
     {
-        return this.client.findAdvertisingById(advertisingId);
+        return this.client.delete(xiaoxiaoHeadPhoto);
     }
 
     @Override
-    public Result insert(XiaoxiaoAdvertising advertising)
+    public Result insert(XiaoxiaoHeadPhoto xiaoxiaoHeadPhoto)
     {
-        return this.client.insert(advertising);
+        return this.client.insert(xiaoxiaoHeadPhoto);
     }
 
     @Override
-    public Result update(XiaoxiaoAdvertising advertising)
+    public Result update(XiaoxiaoHeadPhoto xiaoxiaoHeadPhoto)
     {
-        return this.client.update(advertising);
+        return this.client.update(xiaoxiaoHeadPhoto);
     }
 
 
     @Override
     public BackendUploadResult upload(MultipartFile file)
     {
-       String fileName = null;
-        try
-        {
-            fileName = UploadOSSUtils.upload(ENDPOINT, ACCESSKEYID, ACCESSKEYSECRET, BUCKETNAME,ADVERTISING_FILE_PATH, file.getInputStream());
-            /**
-             * 插入数据库文件
-             */
-            return BackendUploadResult.ok(1, this.REQUEST_HEAD+ADVERTISING_FILE_PATH+fileName);
+        String fileName = null;
+        try{
+            fileName =  UploadOSSUtils.upload(ENDPOINT, ACCESSKEYID, ACCESSKEYSECRET, BUCKETNAME,HEAD_PHOTO, file.getInputStream());
+            return BackendUploadResult.ok(1, this.REQUEST_HEAD+HEAD_PHOTO+fileName);
         }catch (Exception e){
 
         }
         return BackendUploadResult.error(0,"上传失败");
-    }
-
-
-
-    @Override
-    public Result onto(String advertisingId)
-    {
-        return this.client.onto(advertisingId);
     }
 }
