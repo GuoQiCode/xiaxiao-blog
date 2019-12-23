@@ -52,7 +52,7 @@ public interface LeaveMessageMapper
      * 分页查询
      * @return
      */
-    @Select("SELECT * FROM xiaoxiao_leave_message ORDER BY message_date DESC")
+    @Select("SELECT * FROM xiaoxiao_leave_message WHERE message_parent_id = '-1' ORDER BY message_date DESC")
     List<XiaoxiaoLeaveMessage> findAllLeaveMessage();
 
     /**

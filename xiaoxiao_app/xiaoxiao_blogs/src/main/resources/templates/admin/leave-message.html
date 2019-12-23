@@ -18,7 +18,6 @@
 <div class="m-container-big m-padded-tb-big">
     <div class="ui container">
         <script th:src="@{/js/admin/leave-message.js}"></script>
-        <a onclick="showPopup(null,2)" class="ui mini red basic button">新增</a>
         <table class="ui celled table">
             <thead>
             <tr>
@@ -66,7 +65,9 @@
         </div>
         <div class="field">
             <label>留言头像</label>
-            <input placeholder="请输入分类别名...." name="messageHeadPortrait" type="text" value="">
+            <div th:include="tx.html" style="margin-top: 5px">
+
+            </div>
         </div>
         <div class="field">
             <label>留言内容</label>
