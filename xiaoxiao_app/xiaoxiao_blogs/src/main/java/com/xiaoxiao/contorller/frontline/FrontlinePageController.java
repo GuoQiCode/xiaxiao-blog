@@ -157,15 +157,13 @@ public class FrontlinePageController
         return "slideshow";
     }
 
+    /**
+     * 留言页面
+     * @return
+     */
     @GetMapping(value = "/leave_message")
     public String leaveMessage(){
         return "leave-message";
-    }
-
-
-    @GetMapping(value = "/tx")
-    public String tx(){
-        return "tx";
     }
 
 }

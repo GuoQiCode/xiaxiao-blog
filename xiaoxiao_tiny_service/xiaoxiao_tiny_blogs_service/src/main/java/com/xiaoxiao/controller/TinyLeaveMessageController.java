@@ -4,6 +4,7 @@ import com.xiaoxiao.pojo.XiaoxiaoLeaveMessage;
 import com.xiaoxiao.pojo.XiaoxiaoVisit;
 import com.xiaoxiao.service.backend.LeaveMessageService;
 import com.xiaoxiao.utils.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/admin/backend_leave_message")
 @CrossOrigin(origins = "*",maxAge = 3600)
+@Api("留言管理")
 public class TinyLeaveMessageController {
 
     @Autowired

@@ -1,11 +1,11 @@
-package com.xiaoxiao.feign;
+package com.xiaoxiao.service.backend.impl;
 
-import com.xiaoxiao.component.SearchTinyFallback;
+import com.xiaoxiao.feign.BlogsFeignServiceClient;
+import com.xiaoxiao.pojo.XiaoxiaoNotice;
+import com.xiaoxiao.service.backend.NoticeService;
 import com.xiaoxiao.utils.Result;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * _ooOoo_
@@ -39,37 +39,44 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
- * @date:2019/12/14:14:38
+ * @date:2019/12/24:17:26
  * @author:shinelon
  * @Describe:
  */
-@FeignClient(name = "xiaoxiao-search",fallback = SearchTinyFallback.class)
-public interface SearchFeignClient
+@Service
+@SuppressWarnings("all")
+public class NoticeServiceImpl implements NoticeService
 {
+    @Autowired
+    private BlogsFeignServiceClient client;
 
-    /**
-     * 插入一个的文章到solr中
-     *
-     * @param articleId
-     */
-    @PostMapping(value = "/search_service/insertArticleToSolr")
-    void insertArticleToSolr(@RequestParam("articleId") Long articleId);
+    @Override
+    public Result findAll(Integer page, Integer rows)
+    {
+        return this.client.findAllNotice(page,rows);
+    }
 
+    @Override
+    public Result findOne(XiaoxiaoNotice notice)
+    {
+        return this.client.findOne(notice);
+    }
 
-    /**
-     * 删除solr内的数据
-     *
-     * @param articleId
-     */
-    @PostMapping(value = "/search_service/deleteArticleToSolr")
-    void deleteArticleToSolr(@RequestParam("articleId") Long articleId);
+    @Override
+    public Result insert(XiaoxiaoNotice notice)
+    {
+        return this.client.insert(notice);
+    }
 
+    @Override
+    public Result update(XiaoxiaoNotice notice)
+    {
+        return this.client.update(notice);
+    }
 
-    /**
-     * 导入的数据到Solr
-     *
-     * @return
-     */
-    @PostMapping(value = "/search_service/importArticleToSolr")
-    Result importArticleToSolr();
+    @Override
+    public Result delete(XiaoxiaoNotice notice)
+    {
+        return this.client.delete(notice);
+    }
 }

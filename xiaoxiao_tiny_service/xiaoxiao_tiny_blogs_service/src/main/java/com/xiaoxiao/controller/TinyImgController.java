@@ -46,6 +46,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/admin/tiny_img_service")
+@CrossOrigin(origins = "*",maxAge = 3600)
 @Api(value = "图片接口")
 public class TinyImgController
 {

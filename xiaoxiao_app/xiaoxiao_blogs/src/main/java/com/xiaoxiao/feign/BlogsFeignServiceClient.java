@@ -492,4 +492,46 @@ public interface BlogsFeignServiceClient {
     @PostMapping(value = "/admin/tiny_head_photo_service/update")
     Result update(@RequestBody XiaoxiaoHeadPhoto xiaoxiaoHeadPhoto);
 
+
+    /**
+     * 分页
+     * @param page
+     * @param rows
+     * @return
+     */
+    @PostMapping(value = "/admin/tiny/notice/findAll")
+    Result findAllNotice(@RequestParam(name = "page",defaultValue = "1") Integer page,
+                         @RequestParam(name = "rows",defaultValue = "10") Integer rows);
+
+    /**
+     * 差选一个
+     * @param notice
+     * @return
+     */
+    @PostMapping(value = "/admin/tiny/notice/findOne")
+    Result findOne(@RequestBody XiaoxiaoNotice notice);
+
+    /**
+     * 插入
+     * @param notice
+     * @return
+     */
+    @PostMapping(value = "/admin/tiny/notice/insert")
+    Result insert(@RequestBody XiaoxiaoNotice notice);
+
+    /**
+     * 修改
+     * @param notice
+     * @return
+     */
+    @PostMapping(value = "/admin/tiny/notice/update")
+    Result update(@RequestBody XiaoxiaoNotice notice);
+
+    /**
+     * 删除
+     * @param notice
+     * @return
+     */
+    @PostMapping(value = "/admin/tiny/notice/delete")
+    Result delete(@RequestBody XiaoxiaoNotice notice);
 }

@@ -3,6 +3,7 @@ package com.xiaoxiao.controller;
 import com.xiaoxiao.pojo.XiaoxiaoHobby;
 import com.xiaoxiao.service.backend.TinyHobbyService;
 import com.xiaoxiao.utils.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +46,8 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/admin/tiny_admin_hobby_service")
+@CrossOrigin(origins = "*",maxAge = 3600)
+@Api("愛好接口")
 public class TinyHobbyController
 {
     @Autowired

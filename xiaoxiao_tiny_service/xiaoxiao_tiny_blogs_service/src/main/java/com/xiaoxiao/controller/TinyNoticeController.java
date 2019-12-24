@@ -1,7 +1,7 @@
 package com.xiaoxiao.controller;
 
-import com.xiaoxiao.pojo.XiaoxiaoHeadPhoto;
-import com.xiaoxiao.service.backend.TinyHeadPhotoService;
+import com.xiaoxiao.pojo.XiaoxiaoNotice;
+import com.xiaoxiao.service.backend.TinyNoticeService;
 import com.xiaoxiao.utils.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -40,50 +40,53 @@ import org.springframework.web.bind.annotation.*;
  * 不见满街漂亮妹，哪个归得程序员？
  *
  * @project_name:xiaoxiao_final_blogs
- * @date:2019/12/22:21:07
+ * @date:2019/12/24:16:35
  * @author:shinelon
  * @Describe:
  */
 @RestController
-@RequestMapping(value = "/admin/tiny_head_photo_service")
-@CrossOrigin(origins = "*",maxAge = 3600)
-@Api("頭像")
-public class TinyHeadPhotoController
+@RequestMapping(value = "/admin/tiny/notice")
+@CrossOrigin
+@Api("公告")
+public class TinyNoticeController
 {
     @Autowired
-    private TinyHeadPhotoService tinyHeadPhotoService;
+    private TinyNoticeService tinyNoticeService;
 
 
-    @ApiOperation(value = "获取全部的头像",response = Result.class,notes = "获取全部的头像")
+    @ApiOperation(value = "分页查询",response = Result.class,notes = "分页查询")
     @PostMapping(value = "/findAll")
-    public Result findAllHeadPhoto(@RequestParam(name = "page",defaultValue = "1")Integer page,
+    public Result findAll(@RequestParam(name = "page",defaultValue = "1")Integer page,
                           @RequestParam(name = "rows",defaultValue = "10")Integer rows){
-        return this.tinyHeadPhotoService.findAll(page,rows);
+
+        return this.tinyNoticeService.findAll(page,rows);
     }
 
-    @ApiOperation(value = "查找一个",response = Result.class,notes = "查找一个")
+    @ApiOperation(value = "查询一个",response = Result.class,notes = "查询一个")
     @PostMapping(value = "/findOne")
-    public  Result findOne(@RequestBody XiaoxiaoHeadPhoto xiaoxiaoHeadPhoto){
-        return this.tinyHeadPhotoService.findOne(xiaoxiaoHeadPhoto);
-    }
+    public Result findOne(@RequestBody XiaoxiaoNotice notice){
 
-
-    @ApiOperation(value = "删除",response = Result.class,notes = "删除")
-    @PostMapping(value = "/delete")
-    public Result delete(@RequestBody XiaoxiaoHeadPhoto xiaoxiaoHeadPhoto){
-        return this.tinyHeadPhotoService.delete(xiaoxiaoHeadPhoto);
+        return this.tinyNoticeService.findOne(notice);
     }
 
     @ApiOperation(value = "插入",response = Result.class,notes = "插入")
     @PostMapping(value = "/insert")
-    public Result insert(@RequestBody XiaoxiaoHeadPhoto xiaoxiaoHeadPhoto){
-        return this.tinyHeadPhotoService.insert(xiaoxiaoHeadPhoto);
+    public Result insert(@RequestBody XiaoxiaoNotice notice){
+
+        return this.tinyNoticeService.insert(notice);
     }
 
     @ApiOperation(value = "修改",response = Result.class,notes = "修改")
     @PostMapping(value = "/update")
-    public Result  update(@RequestBody XiaoxiaoHeadPhoto xiaoxiaoHeadPhoto){
-        return this.tinyHeadPhotoService.update(xiaoxiaoHeadPhoto);
+    public Result update(@RequestBody XiaoxiaoNotice notice){
+
+        return this.tinyNoticeService.update(notice);
     }
 
+    @ApiOperation(value = "删除",response = Result.class,notes = "删除")
+    @PostMapping(value = "/delete")
+    public Result delete(@RequestBody XiaoxiaoNotice notice){
+
+        return this.tinyNoticeService.delete(notice);
+    }
 }

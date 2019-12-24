@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace = "_fragments :: head(~{::title})">
     <title>作落潇城๑ ~记录我们美好的回忆,时间很快有你就是最大的满足.............</title>
 </head>
 <body>
 
 <script th:src="@{/js/about.js}"></script>
+<link rel="stylesheet" th:href="@{/css/about.css}">
 <!--导航-->
 <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" th:replace = "_fragments :: nav">
 </nav>
@@ -14,11 +15,10 @@
   <!--中间内容-->
   <div  class="m-container m-padded-tb-big">
     <div class="ui container">
-
       <div class="ui stackable grid">
         <div class="eleven wide column">
-          <div class="ui segment">
-            <img name="userProfilePhoto" src="" alt="" class="ui rounded image">
+          <div class="ui segment" >
+            <img  name="userProfilePhoto" src="" class="ui rounded image" style="height: 314px">
           </div>
         </div>
         <div class="five wide column">
@@ -49,30 +49,31 @@
       </div>
     </div>
   </div>
-  <br>
-  <br>
+<!--公告信息-->
+<div class="notice">
+    <div th:include="timeline.html"></div>
+</div>
 
-    <br>
-    <br>
-    <br>
-    <br>
+<!--
+    友情链接
+-->
 
 
 
+</body>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
 
-  <script>
+<script>
     $('.menu.toggle').click(function () {
-      $('.m-item').toggleClass('m-mobile-hide');
+        $('.m-item').toggleClass('m-mobile-hide');
     });
 
     $('.wechat').popup({
-      popup : $('.wechat-qr'),
-      position: 'bottom center'
+        popup : $('.wechat-qr'),
+        position: 'bottom center'
     });
     $('.qq').popup();
 
-  </script>
-</body>
+</script>
 </html>

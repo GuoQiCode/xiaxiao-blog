@@ -1,6 +1,7 @@
 /**
  * 页面禁止右键和F12
  */
+/*
 $(function () {
     $(document).bind("contextmenu", function () {
         return false;
@@ -16,6 +17,7 @@ $(function () {
         }
     };//禁止F12
 })
+*/
 
 
 /**

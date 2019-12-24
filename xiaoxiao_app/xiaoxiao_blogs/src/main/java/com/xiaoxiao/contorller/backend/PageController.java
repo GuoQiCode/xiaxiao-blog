@@ -162,4 +162,13 @@ public class PageController
         return "admin/head-photo";
     }
 
+    /**
+     * 公告
+     * @return
+     */
+    @GetMapping(value = "/admin/notice")
+    public String notice(){
+        return "admin/notice";
+    }
+
 }

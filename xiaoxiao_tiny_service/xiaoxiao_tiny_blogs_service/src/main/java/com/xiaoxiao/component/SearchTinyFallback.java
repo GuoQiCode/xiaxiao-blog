@@ -1,6 +1,7 @@
 package com.xiaoxiao.component;
 
 import com.xiaoxiao.feign.SearchFeignClient;
+import com.xiaoxiao.utils.Result;
 import org.springframework.stereotype.Component;
 
 /**
@@ -52,5 +53,11 @@ public class SearchTinyFallback implements SearchFeignClient
     public void deleteArticleToSolr(Long articleId)
     {
 
+    }
+
+    @Override
+    public Result importArticleToSolr()
+    {
+        return null;
     }
 }
