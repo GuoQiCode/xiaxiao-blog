@@ -16,17 +16,17 @@ $(function () {
     find_all_leave_message(1)
 
 
-    /**
+/*    /!**
      * 获取网站的信息
-     */
-    getVisitMessage()
+     *!/
+    getVisitMessage()*/
 
 })
 
 
-/**
+/*
+*
  * 获取网站浏览的信息
- */
 function getVisitMessage() {
     $.ajax("/frontline/visit/getVisitMessages", {
         dataType: "json",
@@ -40,6 +40,7 @@ function getVisitMessage() {
         }
     })
 }
+*/
 
 
 /**
@@ -157,16 +158,16 @@ function html(item) {
                         <img src="${item.messageHeadPortrait}">
                     </a>
                     <div class="content">
-                        <a class="author">${item.messageNickname}</a>
+                        <a class="author" style="color: orange">${item.messageNickname}</a>
                         <div class="metadata">
-                            <div class="date">${item.messageDate}</div>
+                            <div class="date" style="color: orange">${item.messageDate}</div>
                         </div>
-                        <div class="text">
+                        <div class="text" style="color: darkcyan">
                             <p>${item.messageContent}</p>
                         </div>
                     </div>
                 </div>
-                <hr class="ui dividing header"/>
+                <hr class=""style-two"/>
         `)
 }
 
@@ -176,17 +177,17 @@ function html(item) {
 function child(commentId,item) {
     item.list.forEach((item)=>{
         $("#"+commentId).append(`
-                 <div class="comments">
+                 <div class="comments" >
                                 <div class="comment">
-                                    <a class="avatar">
+                                    <a class="avatar" >
                                         <img src="${item.messageHeadPortrait}">
                                     </a>
                                     <div class="content">
-                                        <a class="author">${item.messageNickname}</a>
+                                        <a class="author" style="color: orange">${item.messageNickname}</a>
                                         <div class="metadata">
-                                            <span class="date">${item.messageDate}</span>
+                                            <span class="date" style="color: orange">${item.messageDate}</span>
                                         </div>
-                                        <div class="text">
+                                        <div class="text" style="color: darkcyan">
                                            ${item.messageContent}
                                         </div>
                                     </div>

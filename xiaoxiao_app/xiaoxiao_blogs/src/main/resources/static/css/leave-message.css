@@ -15,9 +15,11 @@
 
 .message{
     float: left;
-    width: 30%;
+    margin-left: 30px;
+    width: 25%;
     height: 500px;
     margin-top: 50px;
+    background-color: white;
 }
 
 .function{
@@ -69,10 +71,17 @@ span{
     width: 60%;
     margin-left: 100px;
     margin-top: 580px;
-    background-color: chocolate;
 }
 
 .message-title-img{
     margin: auto;
     width:100%;
+}
+
+.style-two {/*透明渐变水平线*/
+    width:80%;
+    border: 0;
+    height: 2px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }
