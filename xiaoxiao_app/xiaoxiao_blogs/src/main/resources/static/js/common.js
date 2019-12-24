@@ -1,8 +1,32 @@
+/**
+ * 页面禁止右键和F12
+ */
+$(function () {
+    $(document).bind("contextmenu", function () {
+        return false;
+    });//禁止右键
+    document.oncontextmenu = function () {
+        return false;
+    };
+    document.onkeydown = function () {
+        if (window.event && window.event.keyCode == 123) {
+            event.keyCode = 0;
+            event.returnValue = false;
+            return false;
+        }
+    };//禁止F12
+})
+
+
+/**
+ * 弹窗显示
+ * @param flag
+ */
 function showAndHide(flag) {
-    if(flag == 1){
+    if (flag == 1) {
         $('.ui.modal.form')
             .modal('show')
-    }else {
+    } else {
         $('.ui.modal.form')
             .modal('hide')
     }
@@ -12,7 +36,7 @@ function showAndHide(flag) {
 /**
  * 在分类分页查询中实现存储分类ID
  */
-let  sortId
+let sortId
 
 /**
  * 在标签页面存储分类的数据
@@ -23,7 +47,7 @@ let labelId;
  * 页面之间传值
  * @type {{paramValues: UrlParam.paramValues, param: UrlParam.param, hasParam: (function(*): boolean), paramMap: (function())}}
  */
-UrlParam = function() { // url参数
+UrlParam = function () { // url参数
     var data, index;
     (function init() {
         data = []; //值，如[["1","2"],["zhangsan"],["lisi"]]
@@ -37,9 +61,9 @@ UrlParam = function() { // url参数
                     if (p.length == 1 || (p.length == 2 && p[1] == '')) {// p | p= | =
                         data.push(['']);
                         index[p[0]] = data.length - 1;
-                    } else if (typeof(p[0]) == 'undefined' || p[0] == '') { // =c 舍弃
+                    } else if (typeof (p[0]) == 'undefined' || p[0] == '') { // =c 舍弃
                         continue;
-                    } else if (typeof(index[p[0]]) == 'undefined') { // c=aaa
+                    } else if (typeof (index[p[0]]) == 'undefined') { // c=aaa
                         data.push([p[1]]);
                         index[p[0]] = data.length - 1;
                     } else {// c=aaa
@@ -51,28 +75,32 @@ UrlParam = function() { // url参数
     })();
     return {
         // 获得参数,类似request.getParameter()
-        param : function(o) { // o: 参数名或者参数次序
+        param: function (o) { // o: 参数名或者参数次序
             try {
-                return (typeof(o) == 'number' ? data[o][0] : data[index[o]][0]);
+                return (typeof (o) == 'number' ? data[o][0] : data[index[o]][0]);
             } catch (e) {
             }
         },
         //获得参数组, 类似request.getParameterValues()
-        paramValues : function(o) { // o: 参数名或者参数次序
+        paramValues: function (o) { // o: 参数名或者参数次序
             try {
-                return (typeof(o) == 'number' ? data[o] : data[index[o]]);
-            } catch (e) {}
+                return (typeof (o) == 'number' ? data[o] : data[index[o]]);
+            } catch (e) {
+            }
         },
         //是否含有paramName参数
-        hasParam : function(paramName) {
-            return typeof(paramName) == 'string' ? typeof(index[paramName]) != 'undefined' : false;
+        hasParam: function (paramName) {
+            return typeof (paramName) == 'string' ? typeof (index[paramName]) != 'undefined' : false;
         },
         // 获得参数Map ,类似request.getParameterMap()
-        paramMap : function() {
+        paramMap: function () {
             var map = {};
             try {
-                for (var p in index) { map[p] = data[index[p]]; }
-            } catch (e) {}
+                for (var p in index) {
+                    map[p] = data[index[p]];
+                }
+            } catch (e) {
+            }
             return map;
         }
     }
@@ -86,7 +114,7 @@ function splice(data) {
      * 置空中间内容
      */
     $("#content").html("")
-    data.result.forEach((item)=>{
+    data.result.forEach((item) => {
         $("#content").append(`
             <div class="ui padded vertical segment m-padded-tb-large">
                         <div class="ui mobile reversed stackable grid">
@@ -128,7 +156,6 @@ function splice(data) {
 }
 
 
-
 function page(curPage, totalPages, totalRows) {
     $("#page").html("")
     $("#page").append(`
@@ -154,7 +181,7 @@ function page(curPage, totalPages, totalRows) {
  * @param totalRows
  * @param sortId
  */
-function pageSort(curPage, totalPages, totalRows,sortId) {
+function pageSort(curPage, totalPages, totalRows, sortId) {
     $("#page").html("")
     $("#page").append(`
            <div>
@@ -171,3 +198,6 @@ function pageSort(curPage, totalPages, totalRows,sortId) {
                 </div>
     `)
 }
+
+
+
