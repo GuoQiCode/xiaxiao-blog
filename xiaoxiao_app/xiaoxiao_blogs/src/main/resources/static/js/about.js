@@ -17,6 +17,13 @@ $(function () {
      * 展示全部的标签
      */
     find_all_label()
+
+
+    /**
+     * 获取公告
+     */
+    findAllNotice()
+
 })
 
 /**
@@ -69,5 +76,47 @@ function find_all_label() {
                 `)
             })
         }
+    })
+}
+
+
+/**
+ * 获取公告信息
+ */
+function findAllNotice() {
+    $.ajax("/frontline/notice/findAllNotice",{
+        dataType: "json",
+        type: "POST",
+        timeout: 5000,
+        success:(data)=>{
+            if(data.code == 20000){
+                $("#notice").html("")
+                jointNotice(data.data.result)
+            }
+        }
+    })
+}
+
+/**
+ * 拼接串
+ */
+function jointNotice(result) {
+    result.forEach((item)=>{
+        $("#notice").append(`
+               <a class="item">
+            <div class="line"></div>
+            <div class="dot active"></div>
+            <div class="box">
+                <div class="cbox" style="left: 0px;">
+                    <div class="date">${item.date}</div>
+                    <div class="title">${item.title}</div>
+                    <div class="types">
+                        <p>${item.content}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <div class="activeLine"></div>
+            `)
     })
 }

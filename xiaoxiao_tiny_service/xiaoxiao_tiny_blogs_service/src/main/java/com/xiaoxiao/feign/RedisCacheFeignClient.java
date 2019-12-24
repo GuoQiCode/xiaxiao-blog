@@ -193,4 +193,11 @@ public interface RedisCacheFeignClient {
     @PostMapping(value = "/redis_leave_message/deleteLeaveMessage")
     void deleteLeaveMessage();
 
+
+    /**
+     * 删除公告缓存
+     */
+    @PostMapping(value = "/redis_notice_service/delete")
+     void deleteNotice();
+
 }

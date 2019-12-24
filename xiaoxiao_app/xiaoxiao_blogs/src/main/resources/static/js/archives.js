@@ -39,7 +39,7 @@ function find_article_archive() {
             for(const key in data.data){
                 $("#content").after(
                     `
-                         <h3 class="ui center aligned header">${key}</h3>
+                         <h3 class="ui center aligned header" style="font-family: 方正舒体;color: chocolate;font-size: 36px">${key}</h3>
                             <div class="ui fluid vertical menu" id="${key}">
              
                             </div>
@@ -53,7 +53,7 @@ function find_article_archive() {
                               <a href="/blog_details/${item.articleId}" target="_blank" class="item">
                                   <span>
                                     <i class="mini teal circle icon"></i>${item.articleTitle}
-                                    <div class="ui teal basic left pointing label m-padded-mini">${item.year}</div>
+                                    <div class="ui teal basic left pointing label m-padded-mini" >${item.year}</div>
                                   </span>
                                 <div class="ui orange basic left pointing label m-padded-mini ">${item.articleType}</div>
                              </a>

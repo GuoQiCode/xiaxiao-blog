@@ -381,4 +381,17 @@ public class FrontlineTinyRedisFallback implements RedisCacheFeignClient
     {
         return null;
     }
+
+    @Override
+    public void insertNotice(PageResult result)
+    {
+
+    }
+
+    @Override
+    public PageResult getNotice()
+    {
+        return null;
+    }
+
 }

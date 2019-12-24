@@ -489,4 +489,20 @@ public interface RedisCacheFeignClient {
     @PostMapping(value = "/redis/head_photo_service/getHeadPhoto")
     List<XiaoxiaoHeadPhoto> getHeadPhoto();
 
+    /**
+     * 缓存公告信息
+     * 
+     * @param result
+     */
+    @PostMapping(value = "/redis_notice_service/insert")
+    void insertNotice(@RequestBody PageResult result);
+
+    /**
+     * 获取缓存公告信息
+     * 
+     * @return
+     */
+    @PostMapping(value = "/redis_notice_service/get")
+    PageResult getNotice();
+
 }

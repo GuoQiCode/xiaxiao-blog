@@ -318,4 +318,15 @@ public interface FrontlineFeignServiceClient
     @PostMapping(value = "/frontline/tiny/head/photo/findAll")
     Result findAllPhoto();
 
+
+    /**
+     * 获取首页广告
+     * @param page
+     * @param rows
+     * @return
+     */
+    @PostMapping(value = "/frontline/tiny/notice/findAll")
+     Result findAllNotice(@RequestParam(name = "page",defaultValue = "1")Integer page,
+                          @RequestParam(name = "rows",defaultValue = "10")Integer rows);
+
 }

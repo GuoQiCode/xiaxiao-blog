@@ -2,6 +2,7 @@ package com.xiaoxiao.service.backend.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xiaoxiao.feign.RedisCacheFeignClient;
 import com.xiaoxiao.mapper.NoticeMapper;
 import com.xiaoxiao.pojo.XiaoxiaoNotice;
 import com.xiaoxiao.service.backend.TinyNoticeService;
@@ -59,6 +60,9 @@ public class TinyNoticeServiceImpl implements TinyNoticeService
     @Autowired
     private NoticeMapper noticeMapper;
 
+    @Autowired
+    private RedisCacheFeignClient client;
+
 
     @Override
     public Result findAll(Integer page, Integer rows)
@@ -87,6 +91,15 @@ public class TinyNoticeServiceImpl implements TinyNoticeService
         notice.setId(IDUtils.getUUID());
         notice.setDate(new Date());
         if(this.noticeMapper.insert(notice) > 0){
+
+            try
+            {
+                this.client.deleteNotice();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
             return Result.ok(StatusCode.OK,Result.MARKED_WORDS_SUCCESS);
         }
         return Result.ok(StatusCode.OK, Result.MARKED_WORDS_FAULT);
@@ -96,6 +109,13 @@ public class TinyNoticeServiceImpl implements TinyNoticeService
     public Result update(XiaoxiaoNotice notice)
     {
         if(this.noticeMapper.update(notice) > 0){
+            try
+            {
+                this.client.deleteNotice();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             return Result.ok(StatusCode.OK,Result.MARKED_WORDS_SUCCESS);
         }
         return Result.ok(StatusCode.OK, Result.MARKED_WORDS_FAULT);
@@ -105,6 +125,13 @@ public class TinyNoticeServiceImpl implements TinyNoticeService
     public Result delete(XiaoxiaoNotice notice)
     {
         if(this.noticeMapper.delete(notice) > 0){
+            try
+            {
+                this.client.deleteNotice();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             return Result.ok(StatusCode.OK,Result.MARKED_WORDS_SUCCESS);
         }
         return Result.ok(StatusCode.OK, Result.MARKED_WORDS_FAULT);
