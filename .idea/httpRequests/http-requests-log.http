@@ -1,3 +1,11 @@
+POST http://39.99.161.5:9998/redis_article_service/get_article_new_recommend
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-27T013530.200.json
+
+###
+
 POST http://localhost:10020/frontline/tiny/leave/message/findAllLeaveMessage
 Accept: */*
 Cache-Control: no-cache
@@ -375,14 +383,6 @@ Accept: */*
 Cache-Control: no-cache
 
 <> 2019-12-13T024516.500.json
-
-###
-
-POST http://localhost:10020/frontline/tiny/comments/findComments?articleId=5
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-12-12T105333.200.json
 
 ###
 

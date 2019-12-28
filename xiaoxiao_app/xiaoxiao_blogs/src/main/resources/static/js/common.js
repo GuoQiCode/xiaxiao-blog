@@ -1,7 +1,6 @@
 /**
  * 页面禁止右键和F12
  */
-/*
 $(function () {
     $(document).bind("contextmenu", function () {
         return false;
@@ -16,8 +15,14 @@ $(function () {
             return false;
         }
     };//禁止F12
+    /*禁止使用保存*/
+    $(document).keydown(function(e){
+        if( e.ctrlKey  == true && e.keyCode == 83 ){
+            console.log('ctrl+s');
+            return false; // 截取返回false就不会保存网页了
+        }
+    });
 })
-*/
 
 
 /**

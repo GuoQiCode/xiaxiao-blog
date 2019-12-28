@@ -18,12 +18,4 @@
         <module>xiaoxiao_tiny_blogs_frontline_service</module>
         <module>xiaoxiao_tiny_blogs_frontline_mapper</module>
     </modules>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

@@ -131,7 +131,10 @@ public class FrontlinePageController
         return "blog-type";
     }
 
-
+    /**
+     * 获取标签文章
+     * @return
+     */
     @GetMapping(value = "/blogLabel")
     public String blogLabel(){
         return "blog-label";

@@ -3,6 +3,7 @@ package com.xiaoxiao.contorller.backend;
 import com.xiaoxiao.utils.Result;
 import com.xiaoxiao.utils.StatusCode;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -43,6 +44,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @Describe:页面的跳转
  */
 @Controller
+@CrossOrigin
 public class PageController
 {
 

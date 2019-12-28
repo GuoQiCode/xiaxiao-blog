@@ -44,6 +44,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/admin/message")
+@CrossOrigin
 public class AdminManagerController
 {
 

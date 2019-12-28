@@ -12,7 +12,9 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://dk-xiaoxiao.com:9999/eureka/
+      defaultZone: http://39.99.161.5:9999/eureka/
+  instance:
+    prefer-ip-address: true
 
 
 COOKIE_NAME: USER

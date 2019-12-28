@@ -3,6 +3,7 @@ package com.xiaoxiao.contorller.backend;
 import com.xiaoxiao.feign.UserSSOFeignClient;
 import com.xiaoxiao.pojo.XiaoxiaoUsers;
 import com.xiaoxiao.service.backend.UserFeignService;
+import com.xiaoxiao.utils.Cookie;
 import com.xiaoxiao.utils.CookieUtils;
 import com.xiaoxiao.utils.Result;
 import com.xiaoxiao.utils.StatusCode;
@@ -13,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -56,6 +56,7 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 @RequestMapping(value = "/admin")
+@CrossOrigin
 public class UserController
 {
     @Autowired
@@ -94,7 +95,8 @@ public class UserController
             {
                 if (StringUtils.isEmpty(token) || !token.equals(login.getMessage()))
                 {
-                    CookieUtils.setCookie(request, response, COOKIE_NAME, login.getMessage(), 1800, "utf-8");
+                    Cookie.setCookie(request, response, COOKIE_NAME, login.getMessage(), 259200, true);
+                    /*CookieUtils.setCookie(request, response, COOKIE_NAME, login.getMessage(), 1800, "utf-8");*/
                 }
                 return "redirect:/admin/blogs";
             }

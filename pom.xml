@@ -34,8 +34,6 @@
         <oss-version>3.5.0</oss-version>
     </properties>
     <dependencyManagement>
-
-
         <dependencies>
             <dependency>
                 <groupId>mysql</groupId>
@@ -102,12 +100,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+
 </project>

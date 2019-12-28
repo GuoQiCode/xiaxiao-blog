@@ -62,6 +62,13 @@ public class RedisArticleController
     private RedisArticleService redisArticleService;
 
 
+
+    @GetMapping(value = "test")
+    public String test(){
+        return "你好";
+    }
+
+
     @ApiOperation(value = "插入文章个数到缓存中", notes = "插入文章个数到缓存中")
     @PostMapping(value = "/insert_article_sum_to_redis")
     public void insertArticleSumToRedis(@RequestParam("sum") Integer sum)

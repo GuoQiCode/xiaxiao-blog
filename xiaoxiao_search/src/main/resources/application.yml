@@ -6,20 +6,22 @@ spring:
   datasource:
     username: root
     password: 159302
-    url: jdbc:mysql://dk-xiaoxiao.com:9178/xiaoxiao_borker?characterEncoding=UTF-8
+    url: jdbc:mysql://39.99.161.5:9178/xiaoxiao_borker?characterEncoding=UTF-8
     sql-script-encoding: UTF-8
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
   data:
     core: blog
     solr:
-      host: http://dk-xiaoxiao.com:9995/solr
+      host: http://39.99.161.5:9995/solr
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 eureka:
   client:
     service-url:
-      defaultZone: http://dk-xiaoxiao.com:9999/eureka/
+      defaultZone: http://39.99.161.5:9999/eureka/
+  instance:
+    prefer-ip-address: true
 mybatis:
   configuration:
     map-underscore-to-camel-case: true

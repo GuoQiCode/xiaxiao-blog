@@ -52,7 +52,7 @@ public interface NoticeMapper
      * 查询全部
      * @return
      */
-    @Select("SELECT * FROM xiaoxiao_notice")
+    @Select("SELECT * FROM xiaoxiao_notice ORDER BY date")
     List<XiaoxiaoNotice> findAll();
 
 

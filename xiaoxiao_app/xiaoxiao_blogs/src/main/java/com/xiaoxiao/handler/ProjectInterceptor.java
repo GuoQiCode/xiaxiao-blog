@@ -1,17 +1,12 @@
 package com.xiaoxiao.handler;
 
-import com.sun.deploy.net.cookie.CookieUnavailableException;
 import com.xiaoxiao.feign.UserSSOFeignClient;
 import com.xiaoxiao.utils.CookieUtils;
 import com.xiaoxiao.utils.Result;
 import com.xiaoxiao.utils.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

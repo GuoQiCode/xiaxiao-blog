@@ -3,6 +3,11 @@ $(function () {
      * 获取指定分类文章的个数
      */
     find_article_sort_sum()
+
+    /**
+     * 获取分类文章
+     */
+    find_article_by_sort(UrlParam.param("sortId"),1)
 })
 
 /**
@@ -17,10 +22,10 @@ function find_article_by_sort(sortId,currentPage) {
         data:{'sortId':sortId,'page':currentPage},
         timeout:5000,
         success:(data)=>{
-            totalRows = data.data.totalRows
-            totalPage = data.data.totalPages
-            pageSize = data.data.pageSize
-            splice(data.data)
+            if(data.code ==  20000){
+                page(data.data.curPage, data.data.totalPages, data.data.totalRows)
+                splice(data.data)
+            }
         }
     })
 }
@@ -33,11 +38,34 @@ function find_article_sort_sum() {
     $.ajax("/frontline/article/find_article_by_sort_sum",{
         dataType: 'JSON',
         type:'POST',
-        data:{'sortId':sortId[0]},
+        data:{'sortId':UrlParam.param("sortId")},
         timeout:5000,
         success:(data)=>{
-            $("#sortName").text(data.data.sortName)
-            $("#sum").text(data.data.sum)
+            if(data.code == 20000){
+                $("#sortName").text(data.data.sortName)
+                $("#sum").text(data.data.sum)
+            }
         }
     })
+}
+
+
+/**
+ * 下一页
+ */
+
+function next_page(page,totalPages) {
+    page = ++page
+    if(page <= totalPages){
+       find_article_by_sort(UrlParam.param("sortId"),page)
+    }
+}
+/**
+ * 上一页
+ */
+function up_page(page) {
+    page = --page
+    if(page >= 1){
+        find_article_by_sort(UrlParam.param("sortId"),page)
+    }
 }
